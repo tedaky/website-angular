@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
     ServerModule,
     ModuleMapLoaderModule // <-- *Important* to have lazy-loaded routes work
   ],
-  providers: [ ],
   // Since the bootstrapped component is not inherited from your
   // imported AppModule, it needs to be repeated here.
   bootstrap: [AppComponent],
