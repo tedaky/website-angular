@@ -25,7 +25,7 @@ const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toStri
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
 
 
-app.engine('html', (_, options, callback) => {
+app.engine('html', (_: any, options: any, callback: any) => {
   renderModuleFactory(AppServerModuleNgFactory, {
     // Our index.html
     document: template,
@@ -46,7 +46,7 @@ app.set('views', join(DIST_FOLDER, 'browser'));
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 // All regular routes use the Universal engine
-app.get('*', (req, res) => {
+app.get('*', (req: any, res: any) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
 
