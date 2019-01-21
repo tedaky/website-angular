@@ -10,50 +10,50 @@ jobs:
       - checkout
       # Log the current branch
       - run:
-        name: Show current branch
-        command: echo ${CIRCLE_BRANCH}
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
       # Restore local dependencies from cache
       - restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       # Install project dependencies
       - run:
-        name: Install local dependencies
-        command: npm install
+          name: Install local dependencies
+          command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-        key: v1-dependencies-{{ checksum "package.json" }}
-        paths:
-          - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       # Lint the source code
       - run:
-        name: Linting
-        command: npm run lint
+          name: Linting
+          command: npm run lint
       # Test the source code
       - run:
-        name: Testing
-        command: npm run test
+          name: Testing
+          command: npm run test
       # End 2 end test the source code
       - run:
-        name: Testing e2e
-        command: npm run e2e
+          name: Testing e2e
+          command: npm run e2e
       # Build project with different configurations
       # based on the current branch
       - run:
-        name: Building
-        command: |
-          if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-            npm run build
-          elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-            npm run build
-          else
-            npm run build
-          fi
+          name: Building
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+              npm run build
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npm run build
+            else
+              npm run build
+            fi
       - save_cache:
-        key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-        paths:
-          - dist
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - dist
 workflows:
   version: 2
   build_and_deploy:
