@@ -33,11 +33,11 @@ jobs:
       # Test the source code
       - run:
           name: Testing
-          command: npm run test
+          command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
       # End 2 end test the source code
       - run:
           name: Testing e2e
-          command: npm run e2e
+          command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
   build:
     working_directory: ~/project
     docker:
@@ -52,7 +52,7 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             - v1-dependencies-
       # Install project dependencies
       - run:
@@ -60,7 +60,7 @@ jobs:
           command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       # Build project with different configurations
