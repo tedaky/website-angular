@@ -6,11 +6,19 @@ describe('workspace-project App', () => {
 
   beforeEach(() => {
     page = new AppPage();
+    page.navigateTo();
   });
 
   it('should display welcome message', () => {
-    page.navigateTo();
     expect(page.getTitleText()).toEqual('Welcome to angular-website!');
+  });
+
+  it('should display helpful heading', () => {
+    expect(page.getSubtitleText()).toEqual('Here are some links to help you start:');
+  });
+
+  it('should display three helpful links', () => {
+    expect(page.getHelpLinks().count()).toEqual(3);
   });
 
   afterEach(async () => {
