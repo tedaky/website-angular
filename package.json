@@ -16,8 +16,8 @@
     "build:client-and-server-bundles-production": "ng build --prod --aot --optimization --buildOptimizer && ng run angular-website:server:production"
   },
   "pre-commit": [
-    "lint",
-    "test"
+    "ng lint",
+    "ng test"
   ],
   "private": true,
   "dependencies": {

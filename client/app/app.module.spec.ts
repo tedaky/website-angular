@@ -5,12 +5,12 @@ import { PLATFORM_ID, APP_ID } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
-describe('AppModule', () => {
+describe('AppModule', (): void => {
 
-  describe('Browser', () => {
+  describe('Browser', (): void => {
     let fixture: ComponentFixture<AppComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async((): void => {
       TestBed.configureTestingModule({
         imports: [
           RouterTestingModule,
@@ -27,17 +27,17 @@ describe('AppModule', () => {
       fixture = TestBed.createComponent(AppComponent);
     }));
 
-    it('should create the app on browser', () => {
-      const app = fixture.debugElement.componentInstance;
+    it('should create the app on browser', (): void => {
+      const app: any = fixture.debugElement.componentInstance;
       console.log(APP_ID);
       expect(app).toBeTruthy();
     });
   });
 
-  describe('Server', () => {
+  describe('Server', (): void => {
     let fixture: ComponentFixture<AppComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async((): void => {
       TestBed.configureTestingModule({
         imports: [
           RouterTestingModule,
@@ -54,8 +54,8 @@ describe('AppModule', () => {
       fixture = TestBed.createComponent(AppComponent);
     }));
 
-    it('should create the app on server', () => {
-      const app = fixture.debugElement.componentInstance;
+    it('should create the app on server', (): void => {
+      const app: any = fixture.debugElement.componentInstance;
       expect(app).toBeTruthy();
     });
   });
