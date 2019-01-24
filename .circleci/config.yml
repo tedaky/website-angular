@@ -107,12 +107,10 @@ jobs:
       - run:
           name: Building
           command: |
-            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-              npm run build
-            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-              npm run build:ssr
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npm run build:ssr:production
             else
-              npm run build
+              npm run build:ssr
             fi
       - save_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -122,6 +120,6 @@ workflows:
   version: 2
   test_and_build:
     jobs:
+      - build
       - test
       - coverage
-      - build
