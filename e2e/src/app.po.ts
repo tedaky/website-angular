@@ -1,19 +1,23 @@
-import { browser, by, element } from 'protractor';
+import {
+  browser,
+  element,
+  by
+} from 'protractor';
 
 export class AppPage {
-  navigateTo() {
+  public navigateTo(): any {
     return browser.get('/');
   }
 
-  getTitleText() {
+  public getTitleText(): any {
     return element(by.css('app-root h1')).getText();
   }
 
-  getSubtitleText() {
+  public getSubtitleText(): any {
     return element(by.css('app-root > h2')).getText();
   }
 
-  getHelpLinks() {
+  public getHelpLinks(): any {
     return element.all(by.css('app-root a'));
   }
 }

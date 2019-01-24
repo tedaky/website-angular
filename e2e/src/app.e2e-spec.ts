@@ -1,31 +1,34 @@
+import {
+  browser,
+  logging
+} from 'protractor';
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('workspace-project App', (): void => {
   let page: AppPage;
 
-  beforeEach(() => {
+  beforeEach((): void => {
     page = new AppPage();
     page.navigateTo();
   });
 
-  it('should display welcome message', () => {
+  it('should display welcome message', (): void => {
     expect(page.getTitleText()).toEqual('Welcome to angular-website!');
   });
 
-  it('should display helpful heading', () => {
+  it('should display helpful heading', (): void => {
     expect(page.getSubtitleText()).toEqual('Here are some links to help you start:');
   });
 
-  it('should display three helpful links', () => {
+  it('should display three helpful links', (): void => {
     expect(page.getHelpLinks().count()).toEqual(3);
   });
 
-  afterEach(async () => {
+  afterEach(async (): Promise<void> => {
     // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+    const logs: logging.Entry[] = await browser.manage().logs().get(logging.Type.BROWSER);
     expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
+      level: logging.Level.SEVERE
     }));
   });
 });
