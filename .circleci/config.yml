@@ -5,13 +5,12 @@ jobs:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
-      - image: circleci/mysql:5.6
+      - image: circleci/mariadb:5.5-ram
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ''
-          MYSQL_ROOT_HOST: localhost
-          MYSQL_HOST: localhost
           MYSQL_DATABASE: db
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_ROOT_HOST: "%"
           MYSQL_USER: root
     steps:
       # Checkout the code from the branch into the working_directory
