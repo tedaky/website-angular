@@ -18,6 +18,9 @@ jobs:
       - checkout
       # Log the current branch
       - run:
+          name: install mysql
+          command: sudo apt install mysql-client
+      - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
       - run:
@@ -129,6 +132,10 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+      # Log the current branch
+      - run:
+          name: install mysql
+          command: sudo apt install mysql-client
       - run:
           name: Wait for DB
           # preinstalled in circleci/* docker image
