@@ -12,10 +12,10 @@ import { AppComponent } from '../client/app/app.component';
   imports: [
     // The AppServerModule should import your AppModule followed
     // by the ServerModule from @angular/platform-server.
-    ServerTransferStateModule,
-    ModuleMapLoaderModule, // <-- *Important* to have lazy-loaded routes work
+    AppModule,
     ServerModule,
-    AppModule
+    ModuleMapLoaderModule, // <-- *Important* to have lazy-loaded routes work
+    ServerTransferStateModule,
   ],
   // Since the bootstrapped component is not inherited from your
   // imported AppModule, it needs to be repeated here.

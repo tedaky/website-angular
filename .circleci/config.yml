@@ -1,10 +1,17 @@
 version: 2
 jobs:
-  # The build job
-  test:
+  # The test job
+  build:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
+      - image: circleci/mysql:latest
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: db
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_ROOT_HOST: "%"
+          MYSQL_USER: root
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -12,43 +19,28 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
-      # Restore local dependencies from cache
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
-            - v1-dependencies-
-      # Install project dependencies
+    #   - run:
+    #       name: Install MySQL Client
+    #       command: sudo apt install -y mysql-client
+    #   - run:
+    #       name: Install MySQL Server
+    #       command: sudo apt install -y mysql-server
+    #   - run:
+    #       name: Restart MySQL
+    #       command: sudo /etc/init.d/mysqld restart
+    #   # preinstalled in circleci/* docker image
+    #   - run:
+    #       name: Wait for DB
+    #       command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
       - run:
-          name: Install local dependencies
-          command: npm install
-      # Cache local dependencies if they don't exist
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      # Lint the source code
+          name: database.json
+          command: cp ./config/database.sample.json ./config/database.json
       - run:
-          name: Linting
-          command: npm run lint
-      # Test the source code
-      - run:
-          name: Testing
-          command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      # End 2 end test the source code
-      - run:
-          name: Testing e2e
-          command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-  coverage:
-    working_directory: ~/project
-    docker:
-      - image: circleci/node:8.15-browsers
-    steps:
-      # Checkout the code from the branch into the working_directory
-      - checkout
-      # Log the current branch
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
+          name: db.cred.sample.ts
+          command: cp ./config/db.cred.sample.ts ./config/db.cred.ts
+    #   - run:
+    #       name: mysql create db
+    #       command: mysql -h localhost -u root -e 'CREATE DATABASE IF NOT EXISTS db';
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -66,42 +58,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      # Test the source code
+      # Lint the source code
       - run:
-          name: Testing
-          command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
-      - run:
-          name: Send Coverage
-          command: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-      - save_cache:
-          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - coverage
-  build:
-    working_directory: ~/project
-    docker:
-      - image: circleci/node:8.15-browsers
-    steps:
-      # Checkout the code from the branch into the working_directory
-      - checkout
-      # Log the current branch
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
-      # Restore local dependencies from cache
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
-            - v1-dependencies-
-      # Install project dependencies
-      - run:
-          name: Install local dependencies
-          command: npm install
-      # Cache local dependencies if they don't exist
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
+          name: Linting
+          command: npm run lint
       # Build project with different configurations
       # based on the current branch
       - run:
@@ -116,10 +76,31 @@ jobs:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - dist
+    #   - run:
+    #       name: Database Migration
+    #       command: npm run db:up:circle:all
+    #   # End 2 end test the source code
+    #   - run:
+    #       name: Testing e2e
+    #       command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      # Test the source code
+      - run:
+          name: Testing
+          command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
+      - run:
+          name: Send Coverage
+          command: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+      - save_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - coverage
 workflows:
   version: 2
   test_and_build:
     jobs:
       - build
-      - test
-      - coverage

@@ -9,8 +9,14 @@ addons:
   apt:
     sources:
       - google-chrome
+      - mysql-5.7-trusty
     packages:
       - google-chrome-stable
+      - mysql-server
+      - mysql-client
+
+services:
+  - mysql
 
 cache:
   directories:
@@ -20,11 +26,20 @@ install:
   - npm install
   - npm install coveralls
 
+before_script:
+  - cp ./config/db.cred.sample.ts ./config/db.cred.ts
+  - cp ./config/database.sample.json ./config/database.json
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root
+  - sudo service mysql restart
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS db;'
+
 script:
   - npm run lint
   - npm run build:ssr
+  - npm run db:up:travis:all
   - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
 
 after_success:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage

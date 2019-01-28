@@ -7,8 +7,10 @@ import {
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserModule } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -24,7 +26,9 @@ import { AppComponent } from './app.component';
       appId: 'my-app'
     }),
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    TransferHttpCacheModule
   ],
   bootstrap: [
     AppComponent
