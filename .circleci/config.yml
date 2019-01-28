@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
-      - image: circleci/mariadb:5.5-ram
+      - image: circleci/mysql:latest
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: db
