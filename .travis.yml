@@ -29,8 +29,8 @@ install:
 before_script:
   - cp ./config/db.cred.sample.ts ./config/db.cred.ts
   - cp ./config/database.sample.json ./config/database.json
-  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('new_password') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-  - sudo mysql_upgrade -u root -pnew_password
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root
   - sudo service mysql restart
   - mysql -e 'CREATE DATABASE IF NOT EXISTS db;'
 

@@ -20,7 +20,7 @@
     "host": "localhost",
     "driver": "mysql",
     "user": "root",
-    "password": "new_password",
+    "password": "",
     "multipleStatements": true
   },
   "circle": {
