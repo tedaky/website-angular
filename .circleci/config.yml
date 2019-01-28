@@ -19,28 +19,28 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
-      - run:
-          name: Install MySQL Client
-          command: sudo apt install -y mysql-client
-      - run:
-          name: Install MySQL Server
-          command: sudo apt install -y mysql-server
-      - run:
-          name: Restart MySQL
-          command: sudo /etc/init.d/mysqld restart
-      # preinstalled in circleci/* docker image
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+    #   - run:
+    #       name: Install MySQL Client
+    #       command: sudo apt install -y mysql-client
+    #   - run:
+    #       name: Install MySQL Server
+    #       command: sudo apt install -y mysql-server
+    #   - run:
+    #       name: Restart MySQL
+    #       command: sudo /etc/init.d/mysqld restart
+    #   # preinstalled in circleci/* docker image
+    #   - run:
+    #       name: Wait for DB
+    #       command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
       - run:
           name: database.json
           command: cp ./config/database.sample.json ./config/database.json
       - run:
           name: db.cred.sample.ts
           command: cp ./config/db.cred.sample.ts ./config/db.cred.ts
-      - run:
-          name: mysql create db
-          command: mysql -h localhost -u root -e 'CREATE DATABASE IF NOT EXISTS db';
+    #   - run:
+    #       name: mysql create db
+    #       command: mysql -h localhost -u root -e 'CREATE DATABASE IF NOT EXISTS db';
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -76,13 +76,13 @@ jobs:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - dist
-      - run:
-          name: Database Migration
-          command: npm run db:up:circle:all
-      # End 2 end test the source code
-      - run:
-          name: Testing e2e
-          command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+    #   - run:
+    #       name: Database Migration
+    #       command: npm run db:up:circle:all
+    #   # End 2 end test the source code
+    #   - run:
+    #       name: Testing e2e
+    #       command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
       # Cache local dependencies if they don't exist
       - save_cache:
           key: v1-dependencies-{{ checksum "package-lock.json" }}
