@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
-      - image: tkuchiki/delayed-mysql
+      - image: circle/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
@@ -17,9 +17,6 @@ jobs:
       # Checkout the code from the branch into the working_directory
       - checkout
       # Log the current branch
-      - run:
-          name: install mysql
-          command: sudo apt install mysql-client
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
@@ -66,7 +63,7 @@ jobs:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
-      - image: tkuchiki/delayed-mysql
+      - image: circle/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
@@ -117,7 +114,7 @@ jobs:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
-      - image: tkuchiki/delayed-mysql
+      - image: circle/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
@@ -132,10 +129,6 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
-      # Log the current branch
-      - run:
-          name: install mysql
-          command: sudo apt install mysql-client
       - run:
           name: Wait for DB
           # preinstalled in circleci/* docker image
