@@ -25,7 +25,7 @@
   },
   "circle": {
     "database": "db",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "driver": "mysql",
     "user": "root",
     "password": "",
