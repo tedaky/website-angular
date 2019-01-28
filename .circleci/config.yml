@@ -28,7 +28,7 @@ jobs:
           command: sudo apt install -y mysql-server
       - run:
           name: Start MySQL
-          command: sudo service mysql start
+          command: sudo service mysql restart
       - run:
           name: Wait for DB
           # preinstalled in circleci/* docker image
@@ -95,7 +95,7 @@ jobs:
           command: sudo apt install -y mysql-server
       - run:
           name: Start MySQL
-          command: sudo service mysql start
+          command: sudo service mysql restart
       - run:
           name: Wait for DB
           # preinstalled in circleci/* docker image
@@ -164,7 +164,7 @@ jobs:
           command: sudo apt install -y mysql-server
       - run:
           name: Start MySQL
-          command: sudo service mysql start
+          command: sudo service mysql restart
       - run:
           name: Wait for DB
           # preinstalled in circleci/* docker image
