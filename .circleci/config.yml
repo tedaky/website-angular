@@ -41,7 +41,7 @@ jobs:
           command: cp ./config/db.cred.sample.ts ./config/db.cred.ts
       - run:
           name: mysql create db
-          command: mysql -e 'CREATE DATABASE IF NOT EXISTS db';
+          command: mysql -u root -e 'CREATE DATABASE IF NOT EXISTS db';
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -166,6 +166,9 @@ jobs:
       - run:
           name: db.cred.sample.ts
           command: cp ./config/db.cred.sample.ts ./config/db.cred.ts
+      - run:
+          name: mysql create db
+          command: mysql -u root -e 'CREATE DATABASE IF NOT EXISTS db';
       # Restore local dependencies from cache
       - restore_cache:
           keys:
