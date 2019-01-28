@@ -29,7 +29,7 @@ jobs:
           command: cp ./config/database.sample.json ./config/database.json
       - run:
           name: db.cred.sample.ts
-          command: cp ./config/db.cred.sample.ts ./config/db.cred.sample.ts
+          command: cp ./config/db.cred.sample.ts ./config/db.cred.ts
       - run:
           name: mysql create db
           command: mysql -e 'CREATE DATABASE IF NOT EXISTS db';
@@ -138,7 +138,7 @@ jobs:
           command: cp ./config/database.sample.json ./config/database.json
       - run:
           name: db.cred.sample.ts
-          command: cp ./config/db.cred.sample.ts ./config/db.cred.sample.ts
+          command: cp ./config/db.cred.sample.ts ./config/db.cred.ts
       # Restore local dependencies from cache
       - restore_cache:
           keys:
