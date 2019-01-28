@@ -10,7 +10,7 @@ jobs:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_ROOT_HOST: localhost
-          MYSQL_HOST: 127.0.0.1
+          MYSQL_HOST: localhost
           MYSQL_DATABASE: db
           MYSQL_USER: root
     steps:
@@ -71,7 +71,7 @@ jobs:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_ROOT_HOST: localhost
-          MYSQL_HOST: 127.0.0.1
+          MYSQL_HOST: localhost
           MYSQL_DATABASE: db
           MYSQL_USER: root
     steps:
@@ -122,7 +122,7 @@ jobs:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_ROOT_HOST: localhost
-          MYSQL_HOST: 127.0.0.1
+          MYSQL_HOST: localhost
           MYSQL_DATABASE: db
           MYSQL_USER: root
     steps:

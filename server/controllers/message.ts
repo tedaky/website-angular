@@ -25,6 +25,7 @@ export class MessageController {
         if (err) {
           console.log('Error: ', err);
         } else {
+          res.header('Access-Control-Allow-Origin', '*');
           res.status(200).send(rows[0]);
         }
       }

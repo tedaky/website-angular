@@ -6,10 +6,12 @@ import { AppPage } from './app.po';
 
 describe('workspace-project App', (): void => {
   let page: AppPage;
+  let server;
 
   beforeEach((): void => {
     page = new AppPage();
     page.navigateTo();
+    server = require('../../dist/local/server');
   });
 
   it('should display welcome message', (): void => {
