@@ -21,6 +21,9 @@ jobs:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
       - run:
+          name: Install MySQL
+          command: sudo apt install -y mysql-client
+      - run:
           name: Wait for DB
           # preinstalled in circleci/* docker image
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
@@ -79,6 +82,9 @@ jobs:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
       - run:
+          name: Install MySQL
+          command: sudo apt install -y mysql-client
+      - run:
           name: Wait for DB
           # preinstalled in circleci/* docker image
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
@@ -129,6 +135,9 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Install MySQL
+          command: sudo apt install -y mysql-client
       - run:
           name: Wait for DB
           # preinstalled in circleci/* docker image
