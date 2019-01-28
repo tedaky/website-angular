@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
+            "outputPath": "dist/local/browser",
             "index": "client/index.html",
             "main": "client/main.ts",
             "polyfills": "client/polyfills.ts",
@@ -36,10 +36,11 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "client/environments/environment.ts",
-                  "with": "client/environments/environment.prod.ts"
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.prod.ts"
                 }
               ],
+              "outputPath": "dist/prod/browser",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -63,7 +64,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/server",
+            "outputPath": "dist/local/server",
             "main": "server/main.server.ts",
             "tsConfig": "server/tsconfig.server.json"
           },
@@ -71,10 +72,11 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "client/environments/environment.ts",
-                  "with": "client/environments/environment.prod.ts"
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.prod.ts"
                 }
               ],
+              "outputPath": "dist/prod/server",
               "optimization": true,
               "sourceMap": false,
               "namedChunks": false,

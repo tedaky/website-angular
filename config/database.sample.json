@@ -1,0 +1,34 @@
+{
+  "prod": {
+    "database": "db",
+    "host": "localhost",
+    "driver": "mysql",
+    "user": "root",
+    "password": "",
+    "multipleStatements": true
+  },
+  "local": {
+    "database": "db",
+    "host": "localhost",
+    "driver": "mysql",
+    "user": "root",
+    "password": "",
+    "multipleStatements": true
+  },
+  "travis": {
+    "database": "db",
+    "host": "localhost",
+    "driver": "mysql",
+    "user": "root",
+    "password": "new_password",
+    "multipleStatements": true
+  },
+  "circle": {
+    "database": "db",
+    "host": "127.0.0.1",
+    "driver": "mysql",
+    "user": "root",
+    "password": "",
+    "multipleStatements": true
+  }
+}

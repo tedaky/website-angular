@@ -1,10 +1,18 @@
 version: 2
 jobs:
-  # The build job
+  # The test job
   test:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
+      - image: tkuchiki/delayed-mysql
+          environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_ROOT_HOST: %
+            MYSQL_HOST: 127.0.0.1
+            MYSQL_DATABASE: db
+            MYSQL_USER: root
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -12,6 +20,19 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Wait for DB
+          # preinstalled in circleci/* docker image
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run:
+          name: database.json
+          command: cp ./config/database.sample.json ./config/database.json
+      - run:
+          name: db.cred.sample.ts
+          command: cp ./config/db.cred.sample.ts ./config/db.cred.sample.ts
+      - run:
+          name: mysql create db
+          command: mysql -e 'CREATE DATABASE IF NOT EXISTS db';
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -42,6 +63,14 @@ jobs:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
+      - image: tkuchiki/delayed-mysql
+          environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_ROOT_HOST: %
+            MYSQL_HOST: 127.0.0.1
+            MYSQL_DATABASE: db
+            MYSQL_USER: root
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -49,6 +78,10 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Wait for DB
+          # preinstalled in circleci/* docker image
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -81,6 +114,14 @@ jobs:
     working_directory: ~/project
     docker:
       - image: circleci/node:8.15-browsers
+      - image: tkuchiki/delayed-mysql
+          environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_ROOT_HOST: %
+            MYSQL_HOST: 127.0.0.1
+            MYSQL_DATABASE: db
+            MYSQL_USER: root
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -88,6 +129,16 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Wait for DB
+          # preinstalled in circleci/* docker image
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run:
+          name: database.json
+          command: cp ./config/database.sample.json ./config/database.json
+      - run:
+          name: db.cred.sample.ts
+          command: cp ./config/db.cred.sample.ts ./config/db.cred.sample.ts
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -116,6 +167,9 @@ jobs:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - dist
+      - run:
+          name: Database Migration
+          command: npm run db:up:circle:all
 workflows:
   version: 2
   test_and_build:

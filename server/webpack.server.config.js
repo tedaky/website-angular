@@ -14,7 +14,7 @@ module.exports = {
   // this makes sure we include node_modules and other 3rd party libraries
   externals: [/(node_modules|main\..*\.js)/],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '../dist/local'),
     filename: '[name].js'
   },
   module: {
@@ -28,12 +28,12 @@ module.exports = {
     // for "WARNING Critical dependency: the request of a dependency is an expression"
     new webpack.ContextReplacementPlugin(
       /(.+)?angular(\\|\/)core(.+)?/,
-      path.join(__dirname, 'client'), // location of your src
+      path.join(__dirname, '../client'), // location of your src
       {} // a map of your routes
     ),
     new webpack.ContextReplacementPlugin(
       /(.+)?express(\\|\/)(.+)?/,
-      path.join(__dirname, 'client'), {}
+      path.join(__dirname, '../client'), {}
     )
   ]
 };
