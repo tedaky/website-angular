@@ -6,13 +6,13 @@ jobs:
     docker:
       - image: circleci/node:8.15-browsers
       - image: tkuchiki/delayed-mysql
-          environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: yes
-            MYSQL_ROOT_PASSWORD: ''
-            MYSQL_ROOT_HOST: %
-            MYSQL_HOST: 127.0.0.1
-            MYSQL_DATABASE: db
-            MYSQL_USER: root
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_HOST: %
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: db
+          MYSQL_USER: root
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -64,13 +64,13 @@ jobs:
     docker:
       - image: circleci/node:8.15-browsers
       - image: tkuchiki/delayed-mysql
-          environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: yes
-            MYSQL_ROOT_PASSWORD: ''
-            MYSQL_ROOT_HOST: %
-            MYSQL_HOST: 127.0.0.1
-            MYSQL_DATABASE: db
-            MYSQL_USER: root
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_HOST: %
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: db
+          MYSQL_USER: root
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -115,13 +115,13 @@ jobs:
     docker:
       - image: circleci/node:8.15-browsers
       - image: tkuchiki/delayed-mysql
-          environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: yes
-            MYSQL_ROOT_PASSWORD: ''
-            MYSQL_ROOT_HOST: %
-            MYSQL_HOST: 127.0.0.1
-            MYSQL_DATABASE: db
-            MYSQL_USER: root
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_HOST: %
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: db
+          MYSQL_USER: root
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
