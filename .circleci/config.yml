@@ -9,7 +9,7 @@ jobs:
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
-          MYSQL_ROOT_HOST: %
+          MYSQL_ROOT_HOST: localhost
           MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: db
           MYSQL_USER: root
@@ -67,7 +67,7 @@ jobs:
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
-          MYSQL_ROOT_HOST: %
+          MYSQL_ROOT_HOST: localhost
           MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: db
           MYSQL_USER: root
@@ -118,7 +118,7 @@ jobs:
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
-          MYSQL_ROOT_HOST: %
+          MYSQL_ROOT_HOST: localhost
           MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: db
           MYSQL_USER: root
