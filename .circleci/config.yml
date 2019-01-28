@@ -25,6 +25,9 @@ jobs:
       - run:
           name: Install MySQL Server
           command: sudo apt install -y mysql-server
+      - run:
+          name: Restart MySQL
+          command: sudo systemctl restart mysql
       # preinstalled in circleci/* docker image
       - run:
           name: Wait for DB
