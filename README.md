@@ -1,3 +1,11 @@
+[![Build Status](https://travis-ci.org/tedaky/website-angular.svg?branch=master)](https://travis-ci.org/tedaky/website-angular)
+[![Coverage Status](https://coveralls.io/repos/github/tedaky/website-angular/badge.svg?branch=master)](https://coveralls.io/github/tedaky/website-angular?branch=master)
+[![Dependency Status](https://david-dm.org/tedaky/website-angular.svg)](https://david-dm.org/tedaky/website-angular)
+[![devDependencies Status](https://david-dm.org/tedaky/website-angular/dev-status.svg)](https://david-dm.org/tedaky/website-angular?type=dev)
+[![Last Commit](https://img.shields.io/github/last-commit/tedaky/website-angular.svg)](https://github.com/tedaky/website-angular/graphs/commit-activity)
+[![Website](https://img.shields.io/website-up-down-green-red/https/www.etiedeken.com.svg?label=website)](https://www.etiedeken.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 # AngularWebsite
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
