@@ -16,6 +16,11 @@ export class MainService {
     this.url = environment.origin + 'api/message';
   }
 
+  /**
+   * Get the message from server API
+   *
+   * returns Observable<Message>
+   */
   public getMessage(): Observable<Message> {
     return this.httpClient.get<Message>(this.url);
   }
