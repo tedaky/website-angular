@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/tedaky/website-angular.svg?branch=master)](https://travis-ci.org/tedaky/website-angular)
 [![Coverage Status](https://coveralls.io/repos/github/tedaky/website-angular/badge.svg?branch=master)](https://coveralls.io/github/tedaky/website-angular?branch=master)
+[![Release](https://img.shields.io/github/release/tedaky/website-angular.svg)](https://github.com/tedaky/website-angular/releases/latest)
 [![Dependency Status](https://david-dm.org/tedaky/website-angular.svg)](https://david-dm.org/tedaky/website-angular)
 [![devDependencies Status](https://david-dm.org/tedaky/website-angular/dev-status.svg)](https://david-dm.org/tedaky/website-angular?type=dev)
 [![Last Commit](https://img.shields.io/github/last-commit/tedaky/website-angular.svg)](https://github.com/tedaky/website-angular/graphs/commit-activity)
