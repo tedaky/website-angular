@@ -1,6 +1,13 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import {
+  TestBed,
+  async,
+  ComponentFixture
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PLATFORM_ID, APP_ID } from '@angular/core';
+import {
+  PLATFORM_ID
+} from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
@@ -20,6 +27,10 @@ describe('AppModule', (): void => {
           {
             provide: PLATFORM_ID,
             useValue: 'browser'
+          },
+          {
+            provide: APP_BASE_HREF,
+            useValue: '/'
           }
         ]
       }).compileComponents();
@@ -28,8 +39,7 @@ describe('AppModule', (): void => {
     }));
 
     it('should create the app on browser', (): void => {
-      const app: any = fixture.debugElement.componentInstance;
-      console.log(APP_ID);
+      const app: any = fixture.componentInstance;
       expect(app).toBeTruthy();
     });
   });
@@ -47,6 +57,10 @@ describe('AppModule', (): void => {
           {
             provide: PLATFORM_ID,
             useValue: 'server'
+          },
+          {
+            provide: APP_BASE_HREF,
+            useValue: '/'
           }
         ]
       }).compileComponents();
@@ -55,7 +69,7 @@ describe('AppModule', (): void => {
     }));
 
     it('should create the app on server', (): void => {
-      const app: any = fixture.debugElement.componentInstance;
+      const app: any = fixture.componentInstance;
       expect(app).toBeTruthy();
     });
   });

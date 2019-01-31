@@ -8,7 +8,6 @@ import * as express from 'express';
 import { Engine } from './engine';
 import { View } from './view';
 import { Routes } from './routes';
-import { Listen } from './listen';
 
 enableProdMode();
 
@@ -21,14 +20,12 @@ class App {
   private engine: Engine = new Engine();
   private view: View = new View();
   private routes: Routes = new Routes();
-  private listen: Listen = new Listen();
 
   constructor() {
     this.app = express();
     this.engine.set(this.app);
     this.view.set(this.app);
     this.routes.set(this.app, express);
-    this.listen.set(this.app);
   }
 }
 

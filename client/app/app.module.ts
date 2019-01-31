@@ -4,20 +4,26 @@ import {
   APP_ID,
   Inject
 } from '@angular/core';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserModule } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { TransferHttpCacheModule } from '@nguniversal/common';
+import {
+  isPlatformBrowser,
+  CommonModule
+} from '@angular/common';
 
 import { environment } from '../../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainModule } from './main/main.module';
+
+const declarations = [ AppComponent ];
+
+const imports = (environment.production) ? [ ] : [ MainModule ];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: declarations,
   imports: [
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
@@ -25,20 +31,29 @@ import { AppComponent } from './app.component';
     BrowserModule.withServerTransition({
       appId: 'my-app'
     }),
-    AppRoutingModule,
+    CommonModule,
     BrowserModule,
     HttpClientModule,
-    TransferHttpCacheModule
+    AppRoutingModule,
+    TransferHttpCacheModule,
+    imports
   ],
   bootstrap: [
     AppComponent
   ]
 })
 export class AppModule {
-  constructor (
+  constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(APP_ID) private appId: string
   ) {
+    this.log();
+  }
+
+  /**
+   * Console log the platform and appId
+   */
+  private log(): void {
     const platform = isPlatformBrowser(this.platformId) ? 'in the browser' : 'on the server';
     console.log(`Running ${platform} with appId=${this.appId}`);
   }
