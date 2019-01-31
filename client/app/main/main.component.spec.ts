@@ -45,21 +45,21 @@ describe('MainComponent', (): void => {
     }));
 
     beforeEach((): void => {
-      fixture = TestBed.createComponent(MainComponent);
+      fixture = TestBed.createComponent<MainComponent>(MainComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
 
     it('should create the app', (): void => {
-      expect(component).toBeDefined();
+      expect<MainComponent>(component).toBeDefined();
     });
 
     it(`should have a title = 'angular-website'`, (): void => {
-      expect(component.title).toEqual('angular-website');
+      expect<string>(component.title).toEqual('angular-website');
     });
 
     it(`should set default message_description = 'loading'`, (): void => {
-      expect(component.message.message_description).toEqual('loading');
+      expect<string>(component.message.message_description).toEqual('loading');
     });
   });
 
@@ -83,14 +83,14 @@ describe('MainComponent', (): void => {
     }));
 
     beforeEach((): void => {
-      fixture = TestBed.createComponent(MainComponent);
+      fixture = TestBed.createComponent<MainComponent>(MainComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
 
     it('should set the message_description', (): void => {
       component.ngOnInit();
-      expect(component.message.message_description).not.toEqual('loading');
+      expect<string>(component.message.message_description).not.toEqual('loading');
     });
   });
 });
