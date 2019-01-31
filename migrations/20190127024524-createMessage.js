@@ -18,8 +18,8 @@ exports.setup = function(options, seedLink) {
 /**
  * Create and set columns for the table 'message'
  */
-exports.up = function(db, callback) {
-  db.createTable('message', {
+exports.up = function(db) {
+  return db.createTable('message', {
     message_id: {
       type: 'int',
       unsigned: true,
@@ -36,9 +36,9 @@ exports.up = function(db, callback) {
       type: 'string',
       length: 75
     }
-  }, function(err) {
-    if (err) return callback(err);
-    return callback();
+  })
+  .then([], function(err) {
+    return err;
   });
 };
 
@@ -46,9 +46,9 @@ exports.up = function(db, callback) {
  * Drop the table 'message'
  */
 exports.down = function(db, callback) {
-  db.dropTable('message', function(err) {
-    if (err) return callback(err);
-    return callback();
+  return db.dropTable('message')
+    .then([], function(err) {
+      return err;
   });
 };
 

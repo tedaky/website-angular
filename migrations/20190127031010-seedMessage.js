@@ -20,9 +20,9 @@ exports.setup = function(options, seedLink) {
  * @returns callback
  */
 exports.up = function(db, callback) {
-  db.insert('message', ['message_description', 'message_seed'], ['API Message!', '20190127031010-seedMessage'], function(err) {
-    if (err) return callback(err);
-    return callback();
+  return db.insert('message', ['message_description', 'message_seed'], ['API Message!', '20190127031010-seedMessage'])
+    .then([], function(err) {
+      return err;
   });
 };
 
@@ -31,9 +31,9 @@ exports.up = function(db, callback) {
  * @returns callback
  */
 exports.down = function(db, callback) {
-  db.runSql('DELETE FROM `message` WHERE `message_seed` = ?', ['20190127031010-seedMessage'], function(err) {
-    if (err) return callback(err);
-    return callback();
+  return db.runSql('DELETE FROM `message` WHERE `message_seed` = ?', ['20190127031010-seedMessage'])
+    .then([], function(err) {
+      return err;
   });
 };
 
