@@ -10,14 +10,14 @@ export class AppPage {
   }
 
   public getTitleText(): any {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('app-main-component h1')).getText();
   }
 
   public getSubtitleText(): any {
-    return element(by.css('app-root > h2')).getText();
+    return element(by.css('app-main-component > h2')).getText();
   }
 
   public getHelpLinks(): any {
-    return element.all(by.css('app-root a'));
+    return element.all(by.css('app-main-component a'));
   }
 }

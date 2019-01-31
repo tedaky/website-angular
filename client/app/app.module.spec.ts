@@ -1,9 +1,17 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import {
+  TestBed,
+  async,
+  ComponentFixture
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PLATFORM_ID, APP_ID } from '@angular/core';
+import {
+  PLATFORM_ID
+} from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
+import { AppModule, imports } from './app.module';
+import { appRoutes, loadMainModule } from './app-routing.module';
 
 describe('AppModule', (): void => {
 
@@ -20,6 +28,10 @@ describe('AppModule', (): void => {
           {
             provide: PLATFORM_ID,
             useValue: 'browser'
+          },
+          {
+            provide: APP_BASE_HREF,
+            useValue: '/'
           }
         ]
       }).compileComponents();
@@ -28,9 +40,32 @@ describe('AppModule', (): void => {
     }));
 
     it('should create the app on browser', (): void => {
-      const app: any = fixture.debugElement.componentInstance;
-      console.log(APP_ID);
+      const app: any = fixture.componentInstance;
       expect(app).toBeTruthy();
+    });
+
+    it('#imports dev', (): void => {
+      expect(imports(false).length).toBeGreaterThan(0);
+    });
+
+    it('#imports production', (): void => {
+      expect(imports(true).length).toBe(0);
+    });
+
+    it('#appRoutes dev', (): void => {
+      expect(appRoutes(false)[0].component).toBeDefined();
+    });
+
+    it('#appRoutes production', (): void => {
+      expect(appRoutes(true)[0].loadChildren).toBeDefined();
+    });
+
+    it('#loadMainModule dev', (): void => {
+      expect(loadMainModule(false)).toBeUndefined();
+    });
+
+    it('#loadMainModule production', (): void => {
+      expect(loadMainModule(true)).toBeDefined();
     });
   });
 
@@ -47,6 +82,10 @@ describe('AppModule', (): void => {
           {
             provide: PLATFORM_ID,
             useValue: 'server'
+          },
+          {
+            provide: APP_BASE_HREF,
+            useValue: '/'
           }
         ]
       }).compileComponents();
@@ -55,7 +94,7 @@ describe('AppModule', (): void => {
     }));
 
     it('should create the app on server', (): void => {
-      const app: any = fixture.debugElement.componentInstance;
+      const app: any = fixture.componentInstance;
       expect(app).toBeTruthy();
     });
   });

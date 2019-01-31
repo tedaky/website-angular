@@ -1,4 +1,5 @@
 import {
+  async,
   TestBed,
   getTestBed
 } from '@angular/core/testing';
@@ -8,29 +9,35 @@ import {
 } from '@angular/common/http/testing';
 
 import {
-  AppService,
+  MainService,
   Message
-} from './app.service';
-import { message } from './app.component.mock';
-import { environment } from '../../environments/environment';
+} from './main.service';
+import { environment } from '../../../environments/environment';
 
-describe('AppService', (): void => {
+const message: Message = {
+  message_id: 1,
+  message_description: 'Api Works!'
+};
+
+describe('MainService', (): void => {
   let injector: TestBed;
-  let service: AppService;
+  let service: MainService;
   let httpMock: HttpTestingController;
 
-  beforeEach((): void => {
+  beforeEach(async((): void => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
       ],
       providers: [
-        AppService
+        MainService
       ]
     });
+  }));
 
+  beforeEach((): void => {
     injector = getTestBed();
-    service = injector.get(AppService);
+    service = injector.get(MainService);
     httpMock = injector.get(HttpTestingController);
   });
 
