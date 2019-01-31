@@ -18,6 +18,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
 
+import { CheckForUpdateService } from './check-for-update/check-for-update.service';
+import { PromptUpdateService } from './prompt-update/prompt-update.service';
+import { LogUpdateService } from './log-update/log-update.service';
+
 const declarations = [ AppComponent ];
 
 export function imports(env: boolean) {
@@ -42,6 +46,11 @@ export function imports(env: boolean) {
   ],
   bootstrap: [
     AppComponent
+  ],
+  providers: [
+    CheckForUpdateService,
+    PromptUpdateService,
+    LogUpdateService
   ]
 })
 export class AppModule {
