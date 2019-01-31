@@ -49,23 +49,23 @@ jobs:
     - stage: lint
       script:
         - npm run lint
-    - stage: test
-      script:
-        - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
     - stage: dev
       script:
         - npm run build:ssr
+        - npm run db:up:travis:all
+        - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
+        - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - stage: stage
       script:
         - npm run build:ssr
+        - npm run db:up:travis:all
+        - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
+        - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - stage: production
       script:
         - npm run build:ssr:production
-    - stage: db
-      script:
         - npm run db:up:travis:all
-    - stage: e2e
-      script:
+        - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
         - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
 stages:
@@ -76,9 +76,6 @@ stages:
     if: branch = staging
   - name: production
     if: branch = master
-  - db
-  - test
-  - e2e
 
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
