@@ -7,8 +7,9 @@ import { MainComponent } from './main.component';
 import { MainService, Message } from './main.service';
 
 class FakeAppService {
+  message: Message;
   public getMessage(): Observable<Message> {
-    return of(message);
+    return of(this.message);
   }
 }
 
