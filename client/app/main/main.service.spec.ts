@@ -5,7 +5,8 @@ import {
 } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
-  HttpTestingController
+  HttpTestingController,
+  TestRequest
 } from '@angular/common/http/testing';
 
 import {
@@ -41,21 +42,21 @@ describe('MainService', (): void => {
     httpMock = injector.get(HttpTestingController);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should be created', (): void => {
+    expect<MainService>(service).toBeTruthy();
   });
 
   describe('#getMessage', (): void => {
     it('should return an Observable<Message>', (): void => {
       const mock: Message = message;
 
-      service.getMessage().subscribe((res) => {
-        expect(res).toBeDefined();
-        expect(res).toEqual(message);
+      service.getMessage().subscribe((res: Message): void => {
+        expect<Message>(res).toBeDefined();
+        expect<Message>(res).toEqual(message);
       });
 
-      const req = httpMock.expectOne(`${environment.origin}api/message`);
-      expect(req.request.method).toBe('GET');
+      const req: TestRequest = httpMock.expectOne(`${environment.origin}api/message`);
+      expect<string>(req.request.method).toBe('GET');
       req.flush(mock);
     });
   });

@@ -35,7 +35,7 @@ export class MainComponent implements OnInit, OnDestroy {
    */
   private getMessage(): void {
     this.mainServiceSub = this.mainService.getMessage()
-      .pipe(distinctUntilChanged())
+      .pipe<Message>(distinctUntilChanged<Message>())
       .subscribe((res: Message): void => {
         this.message = {
           message_id: res.message_id,
@@ -54,7 +54,7 @@ export class MainComponent implements OnInit, OnDestroy {
     };
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.mainServiceSub.unsubscribe();
   }
 }

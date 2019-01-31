@@ -25,12 +25,12 @@ describe('AppComponent', (): void => {
   }));
 
   beforeEach((): void => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent<AppComponent>(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create the app', (): void => {
-    expect(component).toBeDefined();
+    expect<AppComponent>(component).toBeDefined();
   });
 });
