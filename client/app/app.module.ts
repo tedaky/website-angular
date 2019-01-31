@@ -20,7 +20,9 @@ import { MainModule } from './main/main.module';
 
 const declarations = [ AppComponent ];
 
-const imports = (environment.production) ? [ ] : [ MainModule ];
+export function imports(env: boolean) {
+  return (env) ? [ ] : [ MainModule ];
+}
 
 @NgModule({
   declarations: declarations,
@@ -36,7 +38,7 @@ const imports = (environment.production) ? [ ] : [ MainModule ];
     HttpClientModule,
     AppRoutingModule,
     TransferHttpCacheModule,
-    imports
+    imports(environment.production)
   ],
   bootstrap: [
     AppComponent

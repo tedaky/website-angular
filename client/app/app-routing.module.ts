@@ -8,14 +8,14 @@ import { MainModule } from './main/main.module';
 import { MainComponent } from './main/main.component';
 import { environment } from '../../environments/environment';
 
-export function loadMainModule() {
-  if (environment.production) {
+export function loadMainModule(env) {
+  if (env) {
     return MainModule;
   }
 }
 
-const routes: Routes = (environment.production) ?
-  [
+export function appRoutes(env): Routes {
+  return (env) ? [
     {
       path: '',
       loadChildren: './main/main.module#MainModule'
@@ -27,10 +27,11 @@ const routes: Routes = (environment.production) ?
       component: MainComponent
     }
   ];
+}
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(appRoutes(environment.production))
   ],
   exports: [
     RouterModule

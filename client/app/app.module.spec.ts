@@ -10,7 +10,8 @@ import {
 import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
+import { AppModule, imports } from './app.module';
+import { appRoutes, loadMainModule } from './app-routing.module';
 
 describe('AppModule', (): void => {
 
@@ -41,6 +42,30 @@ describe('AppModule', (): void => {
     it('should create the app on browser', (): void => {
       const app: any = fixture.componentInstance;
       expect(app).toBeTruthy();
+    });
+
+    it('#imports dev', (): void => {
+      expect(imports(false).length).toBeGreaterThan(0);
+    });
+
+    it('#imports production', (): void => {
+      expect(imports(true).length).toBe(0);
+    });
+
+    it('#appRoutes dev', (): void => {
+      expect(appRoutes(false)[0].component).toBeDefined();
+    });
+
+    it('#appRoutes production', (): void => {
+      expect(appRoutes(true)[0].loadChildren).toBeDefined();
+    });
+
+    it('#loadMainModule dev', (): void => {
+      expect(loadMainModule(false)).toBeUndefined();
+    });
+
+    it('#loadMainModule production', (): void => {
+      expect(loadMainModule(true)).toBeDefined();
     });
   });
 
