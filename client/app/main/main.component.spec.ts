@@ -1,22 +1,31 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  async
+} from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable, of } from 'rxjs';
+import {
+  Observable,
+  of
+} from 'rxjs';
 
 import { MainComponent } from './main.component';
-import { MainService, Message } from './main.service';
-
-class FakeAppService {
-  message: Message;
-  public getMessage(): Observable<Message> {
-    return of(this.message);
-  }
-}
+import {
+  MainService,
+  Message
+} from './main.service';
 
 const message: Message = {
   message_id: 1,
   message_description: 'Api Works!'
 };
+
+class FakeAppService {
+  public getMessage(): Observable<Message> {
+    return of(message);
+  }
+}
 
 describe('MainComponent', (): void => {
   let component: MainComponent;
