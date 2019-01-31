@@ -5,6 +5,16 @@ language: node_js
 node_js:
   - 8
 
+git:
+  quiet: true
+
+branches:
+  only:
+    - master
+    - development
+    - staging
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+
 addons:
   apt:
     sources:
@@ -34,12 +44,41 @@ before_script:
   - sudo service mysql restart
   - mysql -e 'CREATE DATABASE IF NOT EXISTS db;'
 
-script:
-  - npm run lint
-  - npm run build:ssr
-  - npm run db:up:travis:all
-  - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
+jobs:
+  include:
+    - stage: lint
+      script:
+        - npm run lint
+    - stage: test
+      script:
+        - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
+    - stage: dev
+      script:
+        - npm run build:ssr
+    - stage: stage
+      script:
+        - npm run build:ssr
+    - stage: production
+      script:
+        - npm run build:ssr:production
+    - stage: db
+      script:
+        - npm run db:up:travis:all
+    - stage: e2e
+      script:
+        - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+
+stages:
+  - lint
+  - name: dev
+    if: branch = development
+  - name: stage
+    if: branch = staging
+  - name: production
+    if: branch = master
+  - db
+  - test
+  - e2e
 
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage

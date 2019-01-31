@@ -4,7 +4,6 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: circleci/node:8.15-browsers
       - image: circleci/mysql:latest
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
@@ -12,6 +11,7 @@ jobs:
           MYSQL_HOST: 127.0.0.1
           MYSQL_ROOT_HOST: "%"
           MYSQL_USER: root
+      - image: circleci/node:8.15-browsers
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
