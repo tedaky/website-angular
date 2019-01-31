@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import { join } from 'path';
 import {
   browser,
   logging
@@ -11,7 +13,11 @@ describe('workspace-project App', (): void => {
   beforeEach((): void => {
     page = new AppPage();
     page.navigateTo();
-    server = require('../../dist/local/server');
+    if (fs.existsSync(join(process.cwd(), 'dist/prod/server.js'))) {
+      server = require(join(process.cwd(), 'dist/prod/server'));
+    } else {
+      server = require(join(process.cwd(), 'dist/local/server'));
+    }
   });
 
   it('should display welcome message', (): void => {
