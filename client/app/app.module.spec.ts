@@ -8,10 +8,17 @@ import {
   PLATFORM_ID
 } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
+import { LoadChildren } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AppModule, imports } from './app.module';
-import { appRoutes, loadMainModule } from './app-routing.module';
+import {
+  AppModule,
+  imports
+} from './app.module';
+import {
+  appRoutes,
+  loadMainModule
+} from './app-routing.module';
 
 describe('AppModule', (): void => {
 
@@ -36,20 +43,20 @@ describe('AppModule', (): void => {
         ]
       }).compileComponents();
 
-      fixture = TestBed.createComponent(AppComponent);
+      fixture = TestBed.createComponent<AppComponent>(AppComponent);
     }));
 
     it('should create the app on browser', (): void => {
-      const app: any = fixture.componentInstance;
-      expect(app).toBeTruthy();
+      const app: AppComponent = fixture.componentInstance;
+      expect<AppComponent>(app).toBeTruthy();
     });
 
     it('#imports dev', (): void => {
-      expect(imports(false).length).toBeGreaterThan(0);
+      expect<number>(imports(false).length).toBeGreaterThan(0);
     });
 
     it('#imports production', (): void => {
-      expect(imports(true).length).toBe(0);
+      expect<number>(imports(true).length).toBe(0);
     });
 
     it('#appRoutes dev', (): void => {
@@ -57,7 +64,7 @@ describe('AppModule', (): void => {
     });
 
     it('#appRoutes production', (): void => {
-      expect(appRoutes(true)[0].loadChildren).toBeDefined();
+      expect<LoadChildren>(appRoutes(true)[0].loadChildren).toBeDefined();
     });
 
     it('#loadMainModule dev', (): void => {
@@ -90,12 +97,12 @@ describe('AppModule', (): void => {
         ]
       }).compileComponents();
 
-      fixture = TestBed.createComponent(AppComponent);
+      fixture = TestBed.createComponent<AppComponent>(AppComponent);
     }));
 
     it('should create the app on server', (): void => {
-      const app: any = fixture.componentInstance;
-      expect(app).toBeTruthy();
+      const app: AppComponent = fixture.componentInstance;
+      expect<AppComponent>(app).toBeTruthy();
     });
   });
 });

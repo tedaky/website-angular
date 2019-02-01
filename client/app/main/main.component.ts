@@ -23,15 +23,19 @@ export class MainComponent implements OnInit, OnDestroy {
   constructor(
     private mainService: MainService
   ) { }
+
   public ngOnInit(): void {
     this.title = 'angular-website';
     this.setMessage();
     this.getMessage();
   }
 
+  /**
+   * Create subscription for the Message
+   */
   private getMessage(): void {
     this.mainServiceSub = this.mainService.getMessage()
-      .pipe(distinctUntilChanged())
+      .pipe<Message>(distinctUntilChanged<Message>())
       .subscribe((res: Message): void => {
         this.message = {
           message_id: res.message_id,
@@ -40,14 +44,17 @@ export class MainComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Set the Message by default
+   */
   private setMessage(): void {
-    this.message = {
+    this.message = this.message || {
       message_id: 1,
       message_description: 'loading'
     };
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.mainServiceSub.unsubscribe();
   }
 }

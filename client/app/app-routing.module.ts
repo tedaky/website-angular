@@ -8,13 +8,13 @@ import { MainModule } from './main/main.module';
 import { MainComponent } from './main/main.component';
 import { environment } from '../../environments/environment';
 
-export function loadMainModule(env) {
+export function loadMainModule(env: boolean) {
   if (env) {
     return MainModule;
   }
 }
 
-export function appRoutes(env): Routes {
+export function appRoutes(env: boolean): Routes {
   return (env) ? [
     {
       path: '',

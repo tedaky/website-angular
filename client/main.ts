@@ -10,8 +10,8 @@ if (environment.production) {
 
 window.document.addEventListener('DOMContentLoaded', (): void => {
   platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch((err: any): void => {
+    .bootstrapModule<AppModule>(AppModule)
+    .catch<void>((err: any): void => {
       console.error(err);
     });
 });
