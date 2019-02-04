@@ -14,7 +14,12 @@ export class MessageController {
     const connect: MySQL = new MySQL();
 
     connect.connection.query(
-      'SELECT message_id, message_description FROM message where message_id = 1',
+      `SELECT
+        message_id,
+        message_description,
+        message_modified_at
+      FROM message
+      ORDER BY message_modified_at ASC;`,
       /**
        * Mysql response
        * @param err - Error {mysql.MysqlError}
@@ -26,7 +31,9 @@ export class MessageController {
           console.log('Error: ', err);
         } else {
           res.header('Access-Control-Allow-Origin', '*');
-          res.status(200).send(rows[0]);
+          res.header('Last-Modified', (rows[0].message_modified_at).toString());
+          res.header('Content-Type', 'application/json');
+          res.send(rows);
         }
       }
     );

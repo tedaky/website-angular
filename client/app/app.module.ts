@@ -14,15 +14,21 @@ import {
 } from '@angular/common';
 
 import { environment } from '../../environments/environment';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+
 import { MainModule } from './main/main.module';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { PromptUpdateComponent } from './prompt-update/prompt-update.component';
 
 import { CheckForUpdateService } from './check-for-update/check-for-update.service';
 import { PromptUpdateService } from './prompt-update/prompt-update.service';
 import { LogUpdateService } from './log-update/log-update.service';
 
-const declarations = [ AppComponent ];
+const declarations = [
+  AppComponent,
+  PromptUpdateComponent
+];
 
 export function imports(env: boolean) {
   return (env) ? [ ] : [ MainModule ];
@@ -54,7 +60,7 @@ export function imports(env: boolean) {
   ]
 })
 export class AppModule {
-  constructor(
+  public constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(APP_ID) private appId: string
   ) {

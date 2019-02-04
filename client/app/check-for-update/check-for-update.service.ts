@@ -13,7 +13,7 @@ import { first } from 'rxjs/operators';
 @Injectable()
 export class CheckForUpdateService {
 
-  constructor(
+  public constructor(
     private appRef: ApplicationRef,
     private swUpdate: SwUpdate
   ) { }

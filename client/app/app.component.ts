@@ -6,7 +6,7 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 
 import { CheckForUpdateService } from './check-for-update/check-for-update.service';
-import { PromptUpdateService } from './prompt-update/prompt-update.service';
+// import { PromptUpdateService } from './prompt-update/prompt-update.service';
 import { LogUpdateService } from './log-update/log-update.service';
 
 @Component({
@@ -19,13 +19,14 @@ export class AppComponent {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private checkForUpdateService: CheckForUpdateService,
-    private promptUpdateService: PromptUpdateService,
+    // private promptUpdateService: PromptUpdateService,
     private logUpdateService: LogUpdateService
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.loadCheckForUpdateService();
-      this.loadPromptUpdateService();
-      this.loadLogUpdateService();
+      // this.loadPromptUpdateService();
+      this.logUpdateAvailableService();
+      this.logUpdateActivatedService();
     }
   }
 
@@ -33,11 +34,15 @@ export class AppComponent {
     this.checkForUpdateService.checkForUpdate();
   }
 
-  private loadPromptUpdateService(): void {
-    this.promptUpdateService.promptUpdate();
+  // private loadPromptUpdateService(): void {
+  //   this.promptUpdateService.promptUpdate();
+  // }
+
+  private logUpdateAvailableService(): void {
+    this.logUpdateService.logUpdateAvailable();
   }
 
-  private loadLogUpdateService(): void {
-    this.logUpdateService.logUpdate();
+  private logUpdateActivatedService(): void {
+    this.logUpdateService.logUpdateActivated();
   }
 }

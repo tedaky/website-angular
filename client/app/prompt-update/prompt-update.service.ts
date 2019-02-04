@@ -3,21 +3,22 @@ import {
   SwUpdate,
   UpdateAvailableEvent
 } from '@angular/service-worker';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PromptUpdateService {
 
-  constructor(
+  public constructor(
     private swUpdate: SwUpdate
   ) { }
 
-  public promptUpdate(): void {
-    this.swUpdate.available.subscribe((event: UpdateAvailableEvent): void => {
-      if (confirm('An update is available. Please refresh the page.')) {
-        this.swUpdate.activateUpdate().then<void, never>((): void => {
-          document.location.reload();
-        });
-      }
+  public promptUpdate(): Observable<UpdateAvailableEvent> {
+    return this.swUpdate.available;
+  }
+
+  public prompt(): void {
+    this.swUpdate.activateUpdate().then<void, never>((): void => {
+      document.location.reload();
     });
   }
 }

@@ -15,10 +15,10 @@ import {
 } from './main.service';
 import { environment } from '../../../environments/environment';
 
-const message: Message = {
+const messages: Message[] = [{
   message_id: 1,
   message_description: 'Api Works!'
-};
+}];
 
 describe('MainService', (): void => {
   let injector: TestBed;
@@ -48,11 +48,11 @@ describe('MainService', (): void => {
 
   describe('#getMessage', (): void => {
     it('should return an Observable<Message>', (): void => {
-      const mock: Message = message;
+      const mock: Message[] = messages;
 
-      service.getMessage().subscribe((res: Message): void => {
+      service.getMessage().subscribe((res: Message[]): void => {
         expect<Message>(res).toBeDefined();
-        expect<Message>(res).toEqual(message);
+        expect<Message>(res).toEqual(messages);
       });
 
       const req: TestRequest = httpMock.expectOne(`${environment.origin}api/message`);

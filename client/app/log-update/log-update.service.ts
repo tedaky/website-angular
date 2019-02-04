@@ -8,15 +8,18 @@ import {
 @Injectable()
 export class LogUpdateService {
 
-  constructor(
+  public constructor(
     private swUpdate: SwUpdate
   ) { }
 
-  public logUpdate() {
+  public logUpdateAvailable() {
     this.swUpdate.available.subscribe((event: UpdateAvailableEvent): void => {
       console.log('current version is', event.current);
       console.log('available version is', event.available);
     });
+  }
+
+  public logUpdateActivated() {
     this.swUpdate.activated.subscribe((event: UpdateActivatedEvent): void => {
       console.log('old version was', event.previous);
       console.log('new version is', event.current);

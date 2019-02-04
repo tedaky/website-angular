@@ -16,14 +16,14 @@ import {
   Message
 } from './main.service';
 
-const message: Message = {
+const messages: Message[] = [{
   message_id: 1,
   message_description: 'Api Works!'
-};
+}];
 
 class FakeAppService {
-  public getMessage(): Observable<Message> {
-    return of(message);
+  public getMessage(): Observable<Message[]> {
+    return of(messages);
   }
 }
 
@@ -59,7 +59,7 @@ describe('MainComponent', (): void => {
     });
 
     it(`should set default message_description = 'loading'`, (): void => {
-      expect<string>(component.message.message_description).toEqual('loading');
+      expect<string>(component.messages[0].message_description).toEqual('loading');
     });
   });
 
@@ -90,7 +90,7 @@ describe('MainComponent', (): void => {
 
     it('should set the message_description', (): void => {
       component.ngOnInit();
-      expect<string>(component.message.message_description).not.toEqual('loading');
+      expect<string>(component.messages[0].message_description).not.toEqual('loading');
     });
   });
 });

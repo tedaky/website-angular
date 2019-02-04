@@ -21,8 +21,8 @@ export class MainService {
    *
    * returns Observable<Message>
    */
-  public getMessage(): Observable<Message> {
-    return this.httpClient.get<Message>(this.url);
+  public getMessage(): Observable<Message[]> {
+    return this.httpClient.get<Message[]>(this.url);
   }
 }
 
