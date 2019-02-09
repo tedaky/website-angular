@@ -16,8 +16,18 @@ import { distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit, OnDestroy {
+
+  /**
+   * The application main title
+   */
   public title: string;
+  /**
+   * The Messages
+   */
   public messages: Message[];
+  /**
+   * Subscribe to the Message Service
+   */
   private mainServiceSub: Subscription;
 
   public constructor(
@@ -25,7 +35,7 @@ export class MainComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.title = 'angular-website-yey';
+    this.title = 'Angular Website Yes';
     this.setMessage();
     this.getMessage();
   }

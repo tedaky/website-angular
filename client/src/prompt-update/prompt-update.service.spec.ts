@@ -55,6 +55,6 @@ describe('PromptUpdateService', (): void => {
   });
 
   it('#prompt', (): void => {
-    expect<void>(service.prompt()).not.toBeTruthy();
+    expect<void>(service.reload()).not.toBeTruthy();
   });
 });

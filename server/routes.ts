@@ -9,10 +9,13 @@ import { MessageController } from './controllers/message';
 export class Routes {
   /**
    * Set the Engine
-   * @param app - The Express Application {express.Application}
-   * @param exp - Express Core {core.Express}
+   * @param app - The `express.Application`
+   * @param exp - The `core.Express`
    */
   public set(app: any, exp: any): void {
+    /**
+     * Create the `MessageController`
+     */
     const messageController: MessageController = new MessageController();
     // Message route
     app.route('/api/message')

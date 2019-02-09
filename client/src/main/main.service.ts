@@ -8,6 +8,10 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class MainService {
+
+  /**
+   * API URL
+   */
   private url: string;
 
   constructor(
@@ -19,13 +23,17 @@ export class MainService {
   /**
    * Get the message from server API
    *
-   * returns Observable<Message>
+   * @returns `Observable<Message>`
    */
   public getMessage(): Observable<Message[]> {
     return this.httpClient.get<Message[]>(this.url);
   }
 }
-
+/**
+ * Message contains the `message_id` and `message_description`
+ *
+ * Additional information from the response is `message_modified_at`
+ */
 export interface Message {
   message_id: number;
   message_description: string;

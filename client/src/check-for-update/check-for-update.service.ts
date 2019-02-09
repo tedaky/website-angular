@@ -14,18 +14,27 @@ import { first } from 'rxjs/operators';
 export class CheckForUpdateService {
 
   public constructor(
-    private appRef: ApplicationRef,
+    private applicationRef: ApplicationRef,
     private swUpdate: SwUpdate
   ) { }
 
+  /**
+   * Check for application static updates
+   */
   public checkForUpdate(): void {
-    // Allow the app to stabilize first, before starting polling for updates with `interval()`.
-    const appIsStable$: Observable<boolean> = this.appRef.isStable.pipe<boolean>(
+    /**
+     * Allow the app to stabilize first, before starting polling for updates with `interval()`.
+     */
+    const appIsStable$: Observable<boolean> = this.applicationRef.isStable.pipe<boolean>(
       first<boolean, boolean>((isStable): boolean => {
         return isStable === true;
       })
     );
-    const everyHour$: Observable<number> = interval(60 * 60 * 1000);
+
+    /**
+     * Interval for every hour - setting is at 1 minute
+     */
+    const everyHour$: Observable<number> = interval(60 * 1000);
     const everyHourOnceAppIsStable$: Observable<number|boolean> = concat<boolean, number>(appIsStable$, everyHour$);
 
     everyHourOnceAppIsStable$.subscribe((): Promise<void> => {

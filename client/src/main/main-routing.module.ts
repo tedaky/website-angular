@@ -6,6 +6,9 @@ import {
 
 import { MainComponent } from './main.component';
 
+/**
+ * Temporary `Main` `Routes`
+ */
 const mainRoutes: Routes = [
   {
     path: '',

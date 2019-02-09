@@ -12,11 +12,17 @@ export class PromptUpdateService {
     private swUpdate: SwUpdate
   ) { }
 
+  /**
+   * Observe the `UpdateAvailableEvent`
+   */
   public promptUpdate(): Observable<UpdateAvailableEvent> {
     return this.swUpdate.available;
   }
 
-  public prompt(): void {
+  /**
+   * Activate the update then reload
+   */
+  public reload(): void {
     this.swUpdate.activateUpdate().then<void, never>((): void => {
       document.location.reload();
     });

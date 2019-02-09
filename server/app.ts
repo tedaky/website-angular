@@ -13,12 +13,24 @@ enableProdMode();
 
 /**
  * Sets the entry point of the Express application.
- * Uses Engine, View, Routes, and Listen
+ * Uses `Engine`, `View`, and `Routes`
  */
 class App {
+  /**
+   * Create the `express.Application`
+   */
   public app: express.Application;
+  /**
+   * Create the `Engine` of the `express.Application`
+   */
   private engine: Engine = new Engine();
+  /**
+   * Create the `View` of the `express.Application`
+   */
   private view: View = new View();
+  /**
+   * Create the `Routes` of the `express.Application`
+   */
   private routes: Routes = new Routes();
 
   constructor() {

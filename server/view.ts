@@ -6,7 +6,7 @@ import { join } from 'path';
 export class View {
   /**
    * Set the Engine
-   * @param app - The Express Application {express.Application}
+   * @param app - The `express.Application`
    */
   public set(app: any): void {
     app.set('view engine', 'html');

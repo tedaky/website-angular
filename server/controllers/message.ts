@@ -6,11 +6,14 @@ import { MySQL } from '../../config/db';
 export class MessageController {
   /**
    * Get the Message
-   * @param req - The Request {NextFunction}
-   * @param res - The Response {Response}
-   * @param next - Move to the Next route {Request}
+   * @param req - The Request `NextFunction`
+   * @param res - The `Response`
+   * @param next - Move to the Next route `Request`
    */
   public getMessage(req: any, res: any, next: any): void {
+    /**
+     * Create the `MySQL` connection
+     */
     const connect: MySQL = new MySQL();
 
     connect.connection.query(
@@ -22,9 +25,9 @@ export class MessageController {
       ORDER BY message_modified_at ASC;`,
       /**
        * Mysql response
-       * @param err - Error {mysql.MysqlError}
-       * @param rows - Rows {any}
-       * @param fields - Fields {mysql.FieldInfo[]}
+       * @param err - `mysql.MysqlError`
+       * @param rows - Rows `any`
+       * @param fields - `mysql.FieldInfo[]`
        */
       (err: any, rows: any, fields: any): void => {
         if (err) {

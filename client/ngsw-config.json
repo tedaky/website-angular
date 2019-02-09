@@ -32,7 +32,7 @@
         "/api/**"
       ],
       "cacheConfig": {
-        "maxSize": 2,
+        "maxSize": 1,
         "maxAge": "7d",
         "timeout": "30s",
         "strategy": "freshness"
