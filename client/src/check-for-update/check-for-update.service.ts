@@ -39,7 +39,7 @@ export class CheckForUpdateService {
     const everyHourOnceAppIsStable$: Observable<number|boolean> = concat<boolean, number>(appIsStable$, everyHour$);
 
     everyHourOnceAppIsStable$.subscribe(
-      (val: number|boolean): Promise<void> => {
+      (): Promise<void> => {
         return this.swUpdate.checkForUpdate();
       });
   }

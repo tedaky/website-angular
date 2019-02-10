@@ -25,7 +25,7 @@ export class PromptUpdateService {
   public reload(): void {
     this.swUpdate.activateUpdate().then<void, never>(
       // onfulfilled
-      (onfulfilled: void): void|PromiseLike<void> => {
+      (): void => {
         document.location.reload();
       });
   }

@@ -1,4 +1,3 @@
-import { UpdateAvailableEvent } from '@angular/service-worker';
 import {
   Component,
   OnInit,
@@ -10,6 +9,7 @@ import {
   Subscription
 } from 'rxjs';
 import { take } from 'rxjs/operators';
+
 import { PromptUpdateService } from './prompt-update.service';
 import { promptUpdateAnimations } from './prompt-update.animations';
 
@@ -59,7 +59,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
   private promptUpdate(): void {
     this.promptUpdateServiceSub = this.promptUpdateService.promptUpdate().subscribe(
       // Next
-      (next: UpdateAvailableEvent): void => {
+      (): void => {
         this.updateAvailable = true;
         // Set the schedule to clear the prompt automatically
         this.cancelUpdate();
@@ -74,13 +74,13 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
     const cancel: Observable<number> = cancelInterval$.pipe<number>(take(1));
     this.cancelSub = cancel.subscribe(
       // Next
-      (next: number): void => {
+      (): void => {
         this.updateAvailable = false;
         if (this.cancelSub) {
           this.cancelSub.unsubscribe();
-          // If the update hasn't been activated, reissue the prompt
-          this.reissueUpdate();
         }
+        // If the update hasn't been activated, reissue the prompt
+        this.reissueUpdate();
       });
   }
 
@@ -93,13 +93,13 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
     const reissue: Observable<number> = reissueUpdateInterval$.pipe<number>(take(1));
     this.reissueSub = reissue.subscribe(
       // Next
-      (next: number): void => {
+      (): void => {
         this.updateAvailable = true;
         if (this.reissueSub) {
           this.reissueSub.unsubscribe();
-          // Set the schedule to clear the prompt automatically
-          this.cancelUpdate();
         }
+        // Set the schedule to clear the prompt automatically
+        this.cancelUpdate();
       });
   }
 

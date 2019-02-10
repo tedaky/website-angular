@@ -25,6 +25,7 @@ export class MainComponent implements OnInit, OnDestroy {
    * The Messages
    */
   public messages: Message[];
+
   /**
    * Subscribe to the Message Service
    */
@@ -66,6 +67,8 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.mainServiceSub.unsubscribe();
+    if (this.mainServiceSub) {
+      this.mainServiceSub.unsubscribe();
+    }
   }
 }

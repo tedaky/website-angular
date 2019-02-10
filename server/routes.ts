@@ -25,6 +25,9 @@ export class Routes {
     app.route('*.*')
       .get(exp.static(join(process.cwd(), 'dist/local/browser')));
 
+    /**
+     * Create the `AngularController`
+     */
     const angularController: AngularController = new AngularController();
     // All regular routes use the Universal engine
     app.route('*')
