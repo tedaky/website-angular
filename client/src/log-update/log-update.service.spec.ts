@@ -9,26 +9,26 @@ import { Observable } from 'rxjs';
 import { LogUpdateService } from './log-update.service';
 
 interface UpdateAvailableEvent {
-  current: { };
-  available: { };
+  current: string;
+  available: string;
 }
 interface UpdateActivatedEvent {
-  previous: { };
-  current: { };
+  previous: string;
+  current: string;
 }
 
 const updateAvailableEvent: UpdateAvailableEvent = {
-  current: { },
-  available: { }
+  current: 'currentUpdateAvailableEvent',
+  available: 'availableUpdateAvailableEvent'
 };
 const updateActivatedEvent: UpdateActivatedEvent = {
-  previous: { },
-  current: { }
+  previous: 'previousUpdateActivatedEvent',
+  current: 'currentUpdateActivatedEvent'
 };
 
 class FakeSwUpdate {
-  public available = new Observable<UpdateAvailableEvent>(() => { });
-  public activated = new Observable<UpdateActivatedEvent>(() => { });
+  public available = new Observable<UpdateAvailableEvent>();
+  public activated = new Observable<UpdateActivatedEvent>();
 }
 
 describe('LogUpdateService', (): void => {

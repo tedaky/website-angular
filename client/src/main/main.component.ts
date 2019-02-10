@@ -35,7 +35,7 @@ export class MainComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.title = 'Angular Website Yes';
+    this.title = 'Angular Website';
     this.setMessage();
     this.getMessage();
   }
@@ -46,11 +46,13 @@ export class MainComponent implements OnInit, OnDestroy {
   private getMessage(): void {
     this.mainServiceSub = this.mainService.getMessage()
       .pipe<Message[]>(distinctUntilChanged<Message[]>())
-      .subscribe((res: Message[]): void => {
-        this.messages = res;
-      }, (err) => {
-        console.log('An error occurred: ', err);
-      });
+      .subscribe(
+        (res: Message[]): void => {
+          this.messages = res;
+        },
+        (err) => {
+          console.log('An error occurred: ', err);
+        });
   }
 
   /**

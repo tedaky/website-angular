@@ -17,11 +17,21 @@ export class LogUpdateService {
    *
    * Log the `current` and `available` versions
    */
-  public logUpdateAvailable() {
-    this.swUpdate.available.subscribe((event: UpdateAvailableEvent): void => {
-      console.log('current version is', event.current);
-      console.log('available version is', event.available);
-    });
+  public logUpdateAvailable(): void {
+    this.swUpdate.available.subscribe(
+      (event: UpdateAvailableEvent): void => {
+        this.consoleUpdateAvailable(event);
+      });
+  }
+
+  /**
+   * `console.log` the `current` and `available` versions
+   *
+   * @param event `UpdateAvailableEvent`
+   */
+  private consoleUpdateAvailable(event: UpdateAvailableEvent): void {
+    console.log('current version is', event.current);
+    console.log('available version is', event.available);
   }
 
   /**
@@ -29,10 +39,20 @@ export class LogUpdateService {
    *
    * Log the `previous` and `current` versions
    */
-  public logUpdateActivated() {
-    this.swUpdate.activated.subscribe((event: UpdateActivatedEvent): void => {
-      console.log('old version was', event.previous);
-      console.log('new version is', event.current);
-    });
+  public logUpdateActivated(): void {
+    this.swUpdate.activated.subscribe(
+      (event: UpdateActivatedEvent): void => {
+        this.consoleUpdateActivated(event);
+      });
+  }
+
+  /**
+   * `console.log` the `previous` and `available` versions
+   *
+   * @param event `UpdateActivatedEvent`
+   */
+  private consoleUpdateActivated(event: UpdateActivatedEvent): void {
+    console.log('old version was', event.previous);
+    console.log('new version is', event.current);
   }
 }

@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+import { environment } from '../../../environments/environment';
+
 import { CheckForUpdateService } from '../check-for-update/check-for-update.service';
 import { LogUpdateService } from '../log-update/log-update.service';
 
@@ -23,7 +25,11 @@ export class AppComponent {
     private checkForUpdateService: CheckForUpdateService,
     private logUpdateService: LogUpdateService
   ) {
-    if (isPlatformBrowser(this.platformId)) {
+    this.loadServices((isPlatformBrowser(this.platformId) && environment.production));
+  }
+
+  public loadServices(env: boolean): void {
+    if (env) {
       this.loadCheckForUpdateService();
       this.logUpdateAvailableService();
       this.logUpdateActivatedService();

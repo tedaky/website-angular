@@ -56,6 +56,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
     this.promptUpdateServiceSub = this.promptUpdateService.promptUpdate().subscribe(
       // Next
       (next: UpdateAvailableEvent): void => {
+        this.updateAvailable = true;
         this.cancelUpdate();
       },
       // Error
@@ -65,15 +66,13 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
       // Complete
       (): void => {
         console.log('Update Available Complete');
-      }
-    );
+      });
   }
 
   /**
    * Cancel the update request to update after 20 seconds
    */
   private cancelUpdate(): void {
-    this.updateAvailable = true;
     const cancelInterval$: Observable<number> = interval(30 * 1000);
     const cancel: Observable<number> = cancelInterval$.pipe<number>(take(1));
     this.cancelSub = cancel.subscribe(
@@ -91,8 +90,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
       // Complete
       (): void => {
         console.log('Cancel Update Available Complete');
-      }
-    );
+      });
   }
 
   /**
@@ -105,7 +103,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
   /**
    * Close the request to update
    */
-  public close() {
+  public close(): void {
     this.closeUpdate = true;
   }
 

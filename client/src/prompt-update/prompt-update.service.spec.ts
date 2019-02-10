@@ -51,10 +51,10 @@ describe('PromptUpdateService', (): void => {
   });
 
   it('#promptUpdate', (): void => {
-    expect<Observable<UpdateAvailableEvent>>(service.promptUpdate()).not.toBeTruthy();
+    expect<Observable<UpdateAvailableEvent>>(service.promptUpdate()).toBeTruthy();
   });
 
-  it('#prompt', (): void => {
+  it('#reload', (): void => {
     expect<void>(service.reload()).not.toBeTruthy();
   });
 });

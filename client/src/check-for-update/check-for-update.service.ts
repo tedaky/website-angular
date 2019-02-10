@@ -26,19 +26,21 @@ export class CheckForUpdateService {
      * Allow the app to stabilize first, before starting polling for updates with `interval()`.
      */
     const appIsStable$: Observable<boolean> = this.applicationRef.isStable.pipe<boolean>(
-      first<boolean, boolean>((isStable): boolean => {
-        return isStable === true;
-      })
+      first<boolean, boolean>(
+        (isStable): boolean => {
+          return isStable === true;
+        })
     );
 
     /**
-     * Interval for every hour - setting is at 1 minute
+     * Interval for every hour
      */
-    const everyHour$: Observable<number> = interval(60 * 1000);
+    const everyHour$: Observable<number> = interval(60 * 60 * 1000);
     const everyHourOnceAppIsStable$: Observable<number|boolean> = concat<boolean, number>(appIsStable$, everyHour$);
 
-    everyHourOnceAppIsStable$.subscribe((): Promise<void> => {
-      return this.swUpdate.checkForUpdate();
-    });
+    everyHourOnceAppIsStable$.subscribe(
+      (val: number|boolean): Promise<void> => {
+        return this.swUpdate.checkForUpdate();
+      });
   }
 }
