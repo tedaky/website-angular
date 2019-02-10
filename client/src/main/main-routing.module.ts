@@ -6,16 +6,23 @@ import {
 
 import { MainComponent } from './main.component';
 
-const routes: Routes = [
+/**
+ * Temporary `Main` `Routes`
+ */
+const mainRoutes: Routes = [
   {
     path: '',
+    component: MainComponent
+  },
+  {
+    path: 'second',
     component: MainComponent
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild(mainRoutes)
   ],
   exports: [
     RouterModule

@@ -16,16 +16,26 @@ import { distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit, OnDestroy {
+
+  /**
+   * The application main title
+   */
   public title: string;
-  public message: Message;
+  /**
+   * The Messages
+   */
+  public messages: Message[];
+  /**
+   * Subscribe to the Message Service
+   */
   private mainServiceSub: Subscription;
 
-  constructor(
+  public constructor(
     private mainService: MainService
   ) { }
 
   public ngOnInit(): void {
-    this.title = 'angular-website';
+    this.title = 'Angular Website';
     this.setMessage();
     this.getMessage();
   }
@@ -35,26 +45,27 @@ export class MainComponent implements OnInit, OnDestroy {
    */
   private getMessage(): void {
     this.mainServiceSub = this.mainService.getMessage()
-      .pipe<Message>(distinctUntilChanged<Message>())
-      .subscribe((res: Message): void => {
-        this.message = {
-          message_id: res.message_id,
-          message_description: res.message_description
-        };
-      });
+      .pipe<Message[]>(distinctUntilChanged<Message[]>())
+      .subscribe(
+        (res: Message[]): void => {
+          this.messages = res;
+        },
+        (err) => {
+          console.log('An error occurred: ', err);
+        });
   }
 
   /**
    * Set the Message by default
    */
   private setMessage(): void {
-    this.message = this.message || {
+    this.messages = this.messages || [{
       message_id: 1,
       message_description: 'loading'
-    };
+    }];
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.mainServiceSub.unsubscribe();
   }
 }

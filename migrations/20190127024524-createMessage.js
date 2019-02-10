@@ -32,6 +32,12 @@ exports.up = function(db) {
       type: 'string',
       length: 255
     },
+    message_created_at: {
+      type: 'datetime'
+    },
+    message_modified_at: {
+      type: 'datetime'
+    },
     message_seed: {
       type: 'string',
       length: 75

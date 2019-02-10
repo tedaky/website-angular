@@ -13,7 +13,7 @@ import { LoadChildren } from '@angular/router';
 import { AppComponent } from './app.component';
 import {
   AppModule,
-  imports
+  lazyImports
 } from './app.module';
 import {
   appRoutes,
@@ -52,11 +52,11 @@ describe('AppModule', (): void => {
     });
 
     it('#imports dev', (): void => {
-      expect<number>(imports(false).length).toBeGreaterThan(0);
+      expect<number>(lazyImports(false).length).toBeGreaterThan(0);
     });
 
     it('#imports production', (): void => {
-      expect<number>(imports(true).length).toBe(0);
+      expect<number>(lazyImports(true).length).toBe(0);
     });
 
     it('#appRoutes dev', (): void => {

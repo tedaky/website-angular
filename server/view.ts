@@ -1,4 +1,3 @@
-import * as express from 'express';
 import { join } from 'path';
 
 /**
@@ -7,9 +6,9 @@ import { join } from 'path';
 export class View {
   /**
    * Set the Engine
-   * @param app - The Express Application
+   * @param app - The `express.Application`
    */
-  public set(app: express.Application): void {
+  public set(app: any): void {
     app.set('view engine', 'html');
     app.set('views', join(process.cwd(), 'dist/local/browser'));
   }
