@@ -27,8 +27,14 @@ const updateActivatedEvent: UpdateActivatedEvent = {
 };
 
 class FakeSwUpdate {
-  public available = new Observable<UpdateAvailableEvent>();
-  public activated = new Observable<UpdateActivatedEvent>();
+  public available: Observable<UpdateAvailableEvent> = Observable.create(
+    (observer: any): void => {
+      observer.next(updateAvailableEvent);
+    });
+  public activated: Observable<UpdateActivatedEvent> = Observable.create(
+    (observer: any): void => {
+      observer.next(updateActivatedEvent);
+    });
 }
 
 describe('LogUpdateService', (): void => {
