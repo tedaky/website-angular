@@ -38,6 +38,10 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
    * Subscribe to the cancel count down
    */
   private cancelSub: Subscription;
+  /**
+   * Subscribe to reissue the update available prompt
+   */
+  private reissueSub: Subscription;
 
   public constructor(
     private promptUpdateService: PromptUpdateService
@@ -57,20 +61,13 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
       // Next
       (next: UpdateAvailableEvent): void => {
         this.updateAvailable = true;
+        // Set the schedule to clear the prompt automatically
         this.cancelUpdate();
-      },
-      // Error
-      (err: any): void => {
-        console.log(err);
-      },
-      // Complete
-      (): void => {
-        console.log('Update Available Complete');
       });
   }
 
   /**
-   * Cancel the update request to update after 20 seconds
+   * Cancel the update request to update after 30 seconds
    */
   private cancelUpdate(): void {
     const cancelInterval$: Observable<number> = interval(30 * 1000);
@@ -81,15 +78,28 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
         this.updateAvailable = false;
         if (this.cancelSub) {
           this.cancelSub.unsubscribe();
+          // If the update hasn't been activated, reissue the prompt
+          this.reissueUpdate();
         }
-      },
-      // Error
-      (err: any): void => {
-        console.log(err);
-      },
-      // Complete
-      (): void => {
-        console.log('Cancel Update Available Complete');
+      });
+  }
+
+  /**
+   * Reissue the update request to update
+   * after 2 minutes of the prompt disappearing
+   */
+  private reissueUpdate(): void {
+    const reissueUpdateInterval$: Observable<number> = interval(2 * 60 * 1000);
+    const reissue: Observable<number> = reissueUpdateInterval$.pipe<number>(take(1));
+    this.reissueSub = reissue.subscribe(
+      // Next
+      (next: number): void => {
+        this.updateAvailable = true;
+        if (this.reissueSub) {
+          this.reissueSub.unsubscribe();
+          // Set the schedule to clear the prompt automatically
+          this.cancelUpdate();
+        }
       });
   }
 
@@ -113,6 +123,9 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
     }
     if (this.cancelSub) {
       this.cancelSub.unsubscribe();
+    }
+    if (this.reissueSub) {
+      this.reissueSub.unsubscribe();
     }
   }
 }
