@@ -54,7 +54,7 @@ describe('MainComponent', (): void => {
       expect<MainComponent>(component).toBeDefined();
     });
 
-    it(`should have a title = 'angular-website'`, (): void => {
+    it(`should have a title`, (): void => {
       expect<number>(component.title.length).toBeGreaterThan(0);
     });
 

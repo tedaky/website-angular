@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   ComponentFixture,
   TestBed,
@@ -9,9 +10,23 @@ import { PromptUpdateComponent } from './prompt-update.component';
 
 import { PromptUpdateService } from './prompt-update.service';
 
+
+interface UpdateAvailableEvent {
+  current: string;
+  available: string;
+}
+
+const updateAvailableEvent: UpdateAvailableEvent = {
+  current: 'currentUpdateAvailableEvent',
+  available: 'availableUpdateAvailableEvent'
+};
+
 class FakePromptUpdateService {
   public promptUpdate() {
-    return new Observable();
+    return Observable.create(
+      (observer: any): void => {
+        observer.next(updateAvailableEvent);
+      });
   }
   public reload() {
     return 'reload';
@@ -24,7 +39,9 @@ describe('PromptUpdateComponent', (): void => {
 
   beforeEach(async((): void => {
     TestBed.configureTestingModule({
-      imports: [ ],
+      imports: [
+        BrowserAnimationsModule
+      ],
       declarations: [
         PromptUpdateComponent
       ],
@@ -45,12 +62,6 @@ describe('PromptUpdateComponent', (): void => {
 
   it('should create the PromptUpdateComponent', (): void => {
     expect<PromptUpdateComponent>(component).toBeDefined();
-  });
-
-  it('#ngOnInit', (): void => {
-    expect<void>(component.ngOnInit()).toBeUndefined();
-    expect<boolean>(component.updateAvailable).toBeFalsy();
-    expect<boolean>(component.closeUpdate).toBeFalsy();
   });
 
   it('#reload', (): void => {
