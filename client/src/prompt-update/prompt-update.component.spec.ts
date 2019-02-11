@@ -37,7 +37,7 @@ class FakeCancelTimerService {
   public cancel(timer: number) {
     return Observable.create(
       (observer: any): void => {
-        observer.next(true);
+        observer.next('');
       });
   }
 }

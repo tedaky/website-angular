@@ -68,7 +68,7 @@ export function browserImports(env: boolean) {
     AppRoutingModule,
     TransferHttpCacheModule,
     lazyImports(environment.production),
-    browserImports((isPlatformBrowser(PLATFORM_ID) ? true : false))
+    browserImports(isPlatformBrowser(PLATFORM_ID))
   ],
   bootstrap: [
     AppComponent

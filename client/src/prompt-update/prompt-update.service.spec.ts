@@ -10,19 +10,33 @@ import { PromptUpdateService } from './prompt-update.service';
 
 interface UpdateAvailableEvent {
   current: {
-      hash: string;
-      appData?: Object;
+    hash: string;
+    appData?: Object;
   };
   available: {
-      hash: string;
-      appData?: Object;
+    hash: string;
+    appData?: Object;
   };
 }
 
+const updateAvailableEvent: UpdateAvailableEvent = {
+  current: {
+    hash: 'currentUpdateAvailableEvent',
+    appData: {}
+  },
+  available: {
+    hash: 'availableUpdateAvailableEvent',
+    appData: {}
+  }
+};
+
 class FakeSwUpdate {
-  public available = new Observable<UpdateAvailableEvent>(() => { });
-  public activateUpdate() {
-    return new Promise(() => { });
+  public available: Observable<UpdateAvailableEvent> = Observable.create(
+    (observer: any): void => {
+      observer.next(updateAvailableEvent);
+    });
+  public activateUpdate(): Promise<void> {
+    return new Promise((resolve, reject) => { });
   }
 }
 
@@ -51,7 +65,9 @@ describe('PromptUpdateService', (): void => {
   });
 
   it('#promptUpdate', (): void => {
-    expect<Observable<UpdateAvailableEvent>>(service.promptUpdate()).toBeTruthy();
+    service.promptUpdate().subscribe((val: UpdateAvailableEvent): void => {
+      expect<UpdateAvailableEvent>(val).toBeTruthy();
+    });
   });
 
   it('#reload', (): void => {
