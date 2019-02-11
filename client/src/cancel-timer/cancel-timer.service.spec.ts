@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 import { CancelTimerService } from './cancel-timer.service';
 
-describe('PromptUpdateService', (): void => {
+describe('CancelTimerService', (): void => {
   let injector: TestBed;
   let service: CancelTimerService;
 

@@ -13,7 +13,8 @@ import { LoadChildren } from '@angular/router';
 import { AppComponent } from './app.component';
 import {
   AppModule,
-  lazyImports
+  lazyImports,
+  browserImports
 } from './app.module';
 import {
   appRoutes,
@@ -51,12 +52,20 @@ describe('AppModule', (): void => {
       expect<AppComponent>(app).toBeTruthy();
     });
 
-    it('#imports dev', (): void => {
+    it('#lazyImports dev', (): void => {
       expect<number>(lazyImports(false).length).toBeGreaterThan(0);
     });
 
-    it('#imports production', (): void => {
+    it('#lazyImports production', (): void => {
       expect<number>(lazyImports(true).length).toBe(0);
+    });
+
+    it('#browserImports browser', (): void => {
+      expect<number>(browserImports(false).length).toBeGreaterThan(0);
+    });
+
+    it('#browserImports server', (): void => {
+      expect<number>(browserImports(true).length).toBe(0);
     });
 
     it('#appRoutes dev', (): void => {
