@@ -104,7 +104,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
         if (this.reissueSub) {
           this.reissueSub.unsubscribe();
         }
-        // Keep the update available prompt open after 5 attemps
+        // Keep the update available prompt open after 5 attempts
         if (this.continueCounter < 5) {
           // Set the schedule to clear the prompt automatically
           this.cancelUpdate();
