@@ -25,6 +25,7 @@ import { PromptUpdateService } from '../prompt-update/prompt-update.service';
 import { LogUpdateService } from '../log-update/log-update.service';
 
 import { environment } from '../../../environments/environment';
+import { CancelTimerService } from '../cancel-timer/cancel-timer.service';
 
 const declarations = [
   AppComponent,
@@ -73,6 +74,7 @@ export function browserImports(env: boolean) {
     AppComponent
   ],
   providers: [
+    CancelTimerService,
     CheckForUpdateService,
     PromptUpdateService,
     LogUpdateService

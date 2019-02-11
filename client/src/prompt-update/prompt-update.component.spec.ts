@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { PromptUpdateComponent } from './prompt-update.component';
 
 import { PromptUpdateService } from './prompt-update.service';
+import { CancelTimerService } from '../cancel-timer/cancel-timer.service';
 
 
 interface UpdateAvailableEvent {
@@ -32,6 +33,14 @@ class FakePromptUpdateService {
     return 'reload';
   }
 }
+class FakeCancelTimerService {
+  public cancel(timer: number) {
+    return Observable.create(
+      (observer: any): void => {
+        observer.next(true);
+      });
+  }
+}
 
 describe('PromptUpdateComponent', (): void => {
   let component: PromptUpdateComponent;
@@ -49,6 +58,10 @@ describe('PromptUpdateComponent', (): void => {
         {
           provide: PromptUpdateService,
           useClass: FakePromptUpdateService
+        },
+        {
+          provide: CancelTimerService,
+          useClass: FakeCancelTimerService
         }
       ]
     }).compileComponents();

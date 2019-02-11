@@ -10,8 +10,10 @@ import {
 } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { PromptUpdateService } from './prompt-update.service';
 import { promptUpdateAnimations } from './prompt-update.animations';
+
+import { PromptUpdateService } from './prompt-update.service';
+import { CancelTimerService } from '../cancel-timer/cancel-timer.service';
 
 @Component({
   selector: 'app-prompt-update-component',
@@ -44,7 +46,8 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
   private reissueSub: Subscription;
 
   public constructor(
-    private promptUpdateService: PromptUpdateService
+    private promptUpdateService: PromptUpdateService,
+    private cancelTimerService: CancelTimerService
   ) { }
 
   public ngOnInit(): void {
@@ -70,9 +73,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
    * Cancel the update request to update after 30 seconds
    */
   private cancelUpdate(): void {
-    const cancelInterval$: Observable<number> = interval(30 * 1000);
-    const cancel: Observable<number> = cancelInterval$.pipe<number>(take(1));
-    this.cancelSub = cancel.subscribe(
+    this.cancelSub = this.cancelTimerService.cancel(30 * 1000).subscribe(
       // Next
       (): void => {
         this.updateAvailable = false;
@@ -89,9 +90,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
    * after 2 minutes of the prompt disappearing
    */
   private reissueUpdate(): void {
-    const reissueUpdateInterval$: Observable<number> = interval(2 * 60 * 1000);
-    const reissue: Observable<number> = reissueUpdateInterval$.pipe<number>(take(1));
-    this.reissueSub = reissue.subscribe(
+    this.reissueSub = this.cancelTimerService.cancel(2 * 60 * 1000).subscribe(
       // Next
       (): void => {
         this.updateAvailable = true;
