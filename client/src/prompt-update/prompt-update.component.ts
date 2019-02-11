@@ -45,6 +45,11 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
    */
   private reissueSub: Subscription;
 
+  /**
+   * Set the maximum loop of cancel and reissue
+   */
+  private continueCounter: number;
+
   public constructor(
     private promptUpdateService: PromptUpdateService,
     private cancelTimerService: CancelTimerService
@@ -53,6 +58,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.updateAvailable = false;
     this.closeUpdate = false;
+    this.continueCounter = 0;
     this.promptUpdate();
   }
 
@@ -94,11 +100,15 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
       // Next
       (): void => {
         this.updateAvailable = true;
+        this.continueCounter++;
         if (this.reissueSub) {
           this.reissueSub.unsubscribe();
         }
-        // Set the schedule to clear the prompt automatically
-        this.cancelUpdate();
+        // Keep the update available prompt open after 5 attemps
+        if (this.continueCounter < 5) {
+          // Set the schedule to clear the prompt automatically
+          this.cancelUpdate();
+        }
       });
   }
 

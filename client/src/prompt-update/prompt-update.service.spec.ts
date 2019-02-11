@@ -9,13 +9,25 @@ import { Observable } from 'rxjs';
 import { PromptUpdateService } from './prompt-update.service';
 
 interface UpdateAvailableEvent {
-  current: string;
-  available: string;
+  current: {
+    hash: string;
+    appData?: Object;
+  };
+  available: {
+    hash: string;
+    appData?: Object;
+  };
 }
 
 const updateAvailableEvent: UpdateAvailableEvent = {
-  current: 'currentUpdateAvailableEvent',
-  available: 'availableUpdateAvailableEvent'
+  current: {
+    hash: 'currentUpdateAvailableEvent',
+    appData: {}
+  },
+  available: {
+    hash: 'availableUpdateAvailableEvent',
+    appData: {}
+  }
 };
 
 class FakeSwUpdate {
@@ -24,7 +36,7 @@ class FakeSwUpdate {
       observer.next(updateAvailableEvent);
     });
   public activateUpdate(): Promise<void> {
-    return new Promise(() => { });
+    return new Promise((resolve, reject) => { });
   }
 }
 
@@ -53,8 +65,8 @@ describe('PromptUpdateService', (): void => {
   });
 
   it('#promptUpdate', (): void => {
-    service.promptUpdate().subscribe((val): void => {
-      expect(val).toBeTruthy();
+    service.promptUpdate().subscribe((val: UpdateAvailableEvent): void => {
+      expect<UpdateAvailableEvent>(val).toBeTruthy();
     });
   });
 
