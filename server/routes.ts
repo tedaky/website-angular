@@ -1,7 +1,8 @@
 import { join } from 'path';
 
-import { AngularController } from './controllers/angular';
 import { MessageController } from './controllers/message';
+import { SkillsController } from './controllers/skills';
+import { AngularController } from './controllers/angular';
 
 /**
  * Sets the Routes of the Express application.
@@ -9,6 +10,7 @@ import { MessageController } from './controllers/message';
 export class Routes {
   /**
    * Set the Engine
+   *
    * @param app - The `express.Application`
    * @param exp - The `core.Express`
    */
@@ -20,6 +22,14 @@ export class Routes {
     // Message route
     app.route('/api/message')
       .get(messageController.getMessage);
+
+    /**
+     * Create the `MessageController`
+     */
+    const skillsController: SkillsController = new SkillsController();
+    // skills route
+    app.route('/api/skills')
+      .get(skillsController.getSkillResults);
 
     // Server static files from /browser
     app.route('*.*')
