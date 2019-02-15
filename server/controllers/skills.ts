@@ -6,7 +6,7 @@ import {
 } from '../models/skill';
 
 /**
- * The MessageController of the Express application.
+ * The SkillsController of the Express application.
  */
 export class SkillsController {
   /**

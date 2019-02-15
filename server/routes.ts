@@ -24,7 +24,7 @@ export class Routes {
       .get(messageController.getMessage);
 
     /**
-     * Create the `MessageController`
+     * Create the `SkillsController`
      */
     const skillsController: SkillsController = new SkillsController();
     // skills route
