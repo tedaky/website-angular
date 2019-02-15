@@ -21,6 +21,10 @@ const messages: Message[] = [{
   message_description: 'Api Works!'
 }];
 
+const messagesResponse: MessagesResponse = {
+  message: messages
+};
+
 describe('MainService', (): void => {
   let injector: TestBed;
   let service: MainService;
@@ -49,14 +53,14 @@ describe('MainService', (): void => {
 
   describe('#getMessage', (): void => {
     it('should return an Observable<Message>', (): void => {
-      const mock: Message[] = messages;
+      const mock: MessagesResponse = messagesResponse;
 
       service.getMessage().subscribe((res: MessagesResponse): void => {
         expect<Message[]>(res.message).toBeDefined();
         expect<Message[]>(res.message).toEqual(messages);
       });
 
-      const req: TestRequest = httpMock.expectOne(`${environment.origin}api/message`);
+      const req: TestRequest = httpMock.expectOne(`${environment.origin}api/messages`);
       expect<string>(req.request.method).toBe('GET');
       req.flush(mock);
     });

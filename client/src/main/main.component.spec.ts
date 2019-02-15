@@ -13,7 +13,8 @@ import {
 import { MainComponent } from './main.component';
 import {
   MainService,
-  Message
+  Message,
+  MessagesResponse
 } from './main.service';
 
 const messages: Message[] = [{
@@ -21,9 +22,13 @@ const messages: Message[] = [{
   message_description: 'Api Works!'
 }];
 
+const messagesResponse: MessagesResponse = {
+  message: messages
+};
+
 class FakeAppService {
-  public getMessage(): Observable<Message[]> {
-    return of(messages);
+  public getMessage(): Observable<MessagesResponse> {
+    return of(messagesResponse);
   }
 }
 
