@@ -17,7 +17,7 @@ export class MainService {
   constructor(
     private httpClient: HttpClient
   ) {
-    this.url = environment.origin + 'api/message';
+    this.url = environment.origin + 'api/messages';
   }
 
   /**
@@ -25,10 +25,11 @@ export class MainService {
    *
    * @returns `Observable<Message>`
    */
-  public getMessage(): Observable<Message[]> {
-    return this.httpClient.get<Message[]>(this.url);
+  public getMessage(): Observable<MessagesResponse> {
+    return this.httpClient.get<MessagesResponse>(this.url);
   }
 }
+
 /**
  * Message contains the `message_id` and `message_description`
  *
@@ -37,4 +38,12 @@ export class MainService {
 export interface Message {
   message_id: number;
   message_description: string;
+  message_modified_at?: Date;
+}
+
+/**
+ * MessageResponse contains an array of `Message`
+ */
+export interface MessagesResponse {
+  message: Message[];
 }
