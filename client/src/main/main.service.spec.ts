@@ -11,7 +11,8 @@ import {
 
 import {
   MainService,
-  Message
+  Message,
+  MessagesResponse
 } from './main.service';
 import { environment } from '../../../environments/environment';
 
@@ -50,9 +51,9 @@ describe('MainService', (): void => {
     it('should return an Observable<Message>', (): void => {
       const mock: Message[] = messages;
 
-      service.getMessage().subscribe((res: Message[]): void => {
-        expect<Message>(res).toBeDefined();
-        expect<Message>(res).toEqual(messages);
+      service.getMessage().subscribe((res: MessagesResponse): void => {
+        expect<Message[]>(res.message).toBeDefined();
+        expect<Message[]>(res.message).toEqual(messages);
       });
 
       const req: TestRequest = httpMock.expectOne(`${environment.origin}api/message`);

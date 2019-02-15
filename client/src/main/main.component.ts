@@ -5,7 +5,8 @@ import {
 } from '@angular/core';
 import {
   MainService,
-  Message
+  Message,
+  MessagesResponse
 } from './main.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -46,12 +47,12 @@ export class MainComponent implements OnInit, OnDestroy {
    */
   private getMessage(): void {
     this.mainServiceSub = this.mainService.getMessage()
-      .pipe<Message[]>(distinctUntilChanged<Message[]>())
+      .pipe<MessagesResponse>(distinctUntilChanged<MessagesResponse>())
       .subscribe(
-        (res: Message[]): void => {
-          this.messages = res;
+        (res: MessagesResponse): void => {
+          this.messages = res.message;
         },
-        (err) => {
+        (err: any): any => {
           console.log('An error occurred: ', err);
         });
   }

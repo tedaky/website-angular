@@ -1,6 +1,6 @@
 import { join } from 'path';
 
-import { MessageController } from './controllers/message';
+import { MessagesController } from './controllers/messages';
 import { SkillsController } from './controllers/skills';
 import { AngularController } from './controllers/angular';
 
@@ -18,10 +18,10 @@ export class Routes {
     /**
      * Create the `MessageController`
      */
-    const messageController: MessageController = new MessageController();
+    const messagesController: MessagesController = new MessagesController();
     // Message route
-    app.route('/api/message')
-      .get(messageController.getMessage);
+    app.route('/api/messages')
+      .get(messagesController.getMessages);
 
     /**
      * Create the `MessageController`
