@@ -4,7 +4,7 @@ import {
   ISkill,
   ISkillGroup,
   ISkillResponse
-} from '../models/skill';
+} from '../../types/skill';
 
 /**
  * The SkillsController of the Express application.

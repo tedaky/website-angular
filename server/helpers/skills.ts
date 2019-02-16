@@ -2,7 +2,7 @@ import {
   ISkill,
   ISkillGroup,
   ISkillResponse
-} from '../models/skill';
+} from '../../types/skill';
 
 /**
  * Helper for skills results from MySQL

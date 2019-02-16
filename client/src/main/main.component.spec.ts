@@ -11,23 +11,24 @@ import {
 } from 'rxjs';
 
 import { MainComponent } from './main.component';
+import { MainService } from './main.service';
 import {
-  MainService,
-  Message,
-  MessagesResponse
-} from './main.service';
+  IMessageResponse,
+  MessageResponse
+} from '../../../types/message';
 
-const messages: Message[] = [{
+const messages: IMessageResponse[] = [{
   message_id: 1,
-  message_description: 'Api Works!'
+  message_description: 'Api Works!',
+  message_modified_at: new Date()
 }];
 
-const messagesResponse: MessagesResponse = {
-  message: messages
+const messagesResponse: MessageResponse = {
+  response: messages
 };
 
 class FakeAppService {
-  public getMessage(): Observable<MessagesResponse> {
+  public getMessage(): Observable<MessageResponse> {
     return of(messagesResponse);
   }
 }
