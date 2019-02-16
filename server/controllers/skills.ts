@@ -1,8 +1,9 @@
 import { SkillsModel } from '../models/skills';
 import { SkillsHelper } from '../helpers/skills';
 import {
+  ISkill,
   ISkillGroup,
-  ISkill
+  ISkillResponse
 } from '../models/skill';
 
 /**
@@ -24,42 +25,47 @@ export class SkillsController {
     let skill: ISkill[];
     // skillGroup holder
     let skillGroup: ISkillGroup[];
+    // skillResponse holder
+    let response: ISkillResponse[];
+    // newest header holder
+    let newest: Date;
 
-    // Promise skills
-    const skillAsync: Promise<ISkill[]> = new Promise((resolve: any, reject: any): void => {
-      resolve(skillsModel.skill());
-    });
-    // Promise Skill Groups
-    const skillGroupAsync: Promise<ISkillGroup[]> = new Promise((resolve: any, reject: any): void => {
-      resolve(skillsModel.skillGroup());
-    });
-
-    async function x(): Promise<void> {
+    const render = async (): Promise<void> => {};
+    render()
+    .then<void, never>(async () => {
       // Get the skills
-      await skillAsync.then<void, never>((val: ISkill[]): void => {
-        skill = val;
-      })
-      .then<void, never>(async (): Promise<void> => {
-        // Get the Skill Groups
-        await skillGroupAsync.then((val: ISkillGroup[]): void => {
+      await skillsModel.skill()
+        .then<void, never>((val: ISkill[]): void => {
+          skill = val;
+        });
+    })
+    .then<void, never>(async (): Promise<void> => {
+      // Get the `skillGroup`
+      await skillsModel.skillGroup()
+        .then<void, never>((val: ISkillGroup[]): void => {
           skillGroup = val;
         });
-      })
-      .then<void, never>(async (): Promise<void> => {
-        // Send Skill Groups and Skills for processing
-        await skillsHelper.superme(skill, skillGroup);
-      })
-      .then<void, never>((): void => {
-        // Send
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Last-Modified', (skillGroup[0].skill_group_modified_at).toString());
-        res.header('Content-Type', 'application/json');
-        res.send({
-          skill: skill,
-          skill_group: skillGroup
+    })
+    .then<void, never>(async (): Promise<void> => {
+      // Send `skill` and `skillGroup` for `JSON` processing
+      await skillsHelper.jsonify(skill, skillGroup)
+        .then<void, never>((val: ISkillResponse[]): void => {
+          response = val;
         });
-      });
-    }
-    x();
+    })
+    .then<void, never>(async (): Promise<void> => {
+      // Send `skill` and `skillGroup` for newest processing
+      await skillsHelper.getNewest(skill, skillGroup)
+        .then<void, never>((val: Date): void => {
+          newest = val;
+        });
+    })
+    .then<void, never>((): void => {
+      // Send
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Last-Modified', newest.toString());
+      res.header('Content-Type', 'application/json');
+      res.send({ response });
+    });
   }
 }
