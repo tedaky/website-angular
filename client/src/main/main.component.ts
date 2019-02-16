@@ -3,13 +3,14 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import {
-  MainService,
-  Message,
-  MessagesResponse
-} from './main.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { distinctUntilChanged } from 'rxjs/operators';
+
+import { MainService } from './main.service';
+import {
+  IMessageResponse,
+  MessageResponse
+} from '../../../types/message';
 
 @Component({
   selector: 'app-main-component',
@@ -25,7 +26,7 @@ export class MainComponent implements OnInit, OnDestroy {
   /**
    * The Messages
    */
-  public messages: Message[];
+  public messages: IMessageResponse[];
 
   /**
    * Subscribe to the Message Service
@@ -47,10 +48,10 @@ export class MainComponent implements OnInit, OnDestroy {
    */
   private getMessage(): void {
     this.mainServiceSub = this.mainService.getMessage()
-      .pipe<MessagesResponse>(distinctUntilChanged<MessagesResponse>())
+      .pipe<MessageResponse>(distinctUntilChanged<MessageResponse>())
       .subscribe(
-        (res: MessagesResponse): void => {
-          this.messages = res.message;
+        (res: MessageResponse): void => {
+          this.messages = res.response;
         },
         (err: any): any => {
           console.log('An error occurred: ', err);
@@ -62,8 +63,9 @@ export class MainComponent implements OnInit, OnDestroy {
    */
   private setMessage(): void {
     this.messages = this.messages || [{
-      message_id: 1,
-      message_description: 'loading'
+      message_id: 0,
+      message_description: 'loading',
+      message_modified_at: new Date()
     }];
   }
 

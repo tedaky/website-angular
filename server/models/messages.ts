@@ -1,5 +1,5 @@
 import { MySQL } from '../../config/db';
-import { IMessage } from './message';
+import { IMessageResponse } from '../../types/message';
 
 /**
  * Model for the Messages
@@ -8,9 +8,9 @@ export class MessagesModel {
   /**
    * Fetch the results from MySQL `message` table
    *
-   * @return `Promise<IMessage[]>` - message Results
+   * @return `Promise<IMessageResponse[]>` - message Results
    */
-  public async message(): Promise<IMessage[]> {
+  public async message(): Promise<IMessageResponse[]> {
     /**
      * Create the `MySQL` connection
      */
@@ -19,7 +19,7 @@ export class MessagesModel {
     /**
      * Create a promise for MySQL Fetch
      */
-    const a: Promise<IMessage[]> = new Promise((resolve: any, reject: any): void => {
+    const a: Promise<IMessageResponse[]> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
           message_id,
@@ -33,7 +33,7 @@ export class MessagesModel {
          * @param rows - Rows `any`
          * @param fields - `mysql.FieldInfo[]`
          */
-        (err: any, rows: IMessage[], fields: any): void => {
+        (err: any, rows: IMessageResponse[], fields: any): void => {
           if (err) {
             reject(err);
           }
@@ -45,7 +45,7 @@ export class MessagesModel {
     /**
      * Return the results from MySQL
      */
-    return a.then((val: IMessage[]): IMessage[] => {
+    return a.then((val: IMessageResponse[]): IMessageResponse[] => {
       // End the current connection
       connect.connection.end();
       return val;

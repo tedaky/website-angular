@@ -9,20 +9,23 @@ import {
   TestRequest
 } from '@angular/common/http/testing';
 
-import {
-  MainService,
-  Message,
-  MessagesResponse
-} from './main.service';
 import { environment } from '../../../environments/environment';
 
-const messages: Message[] = [{
+import { MainService } from './main.service';
+
+import {
+  IMessageResponse,
+  MessageResponse
+} from '../../../types/message';
+
+const messages: IMessageResponse[] = [{
   message_id: 1,
-  message_description: 'Api Works!'
+  message_description: 'Api Works!',
+  message_modified_at: new Date()
 }];
 
-const messagesResponse: MessagesResponse = {
-  message: messages
+const messagesResponse: MessageResponse = {
+  response: messages
 };
 
 describe('MainService', (): void => {
@@ -53,11 +56,11 @@ describe('MainService', (): void => {
 
   describe('#getMessage', (): void => {
     it('should return an Observable<Message>', (): void => {
-      const mock: MessagesResponse = messagesResponse;
+      const mock: MessageResponse = messagesResponse;
 
-      service.getMessage().subscribe((res: MessagesResponse): void => {
-        expect<Message[]>(res.message).toBeDefined();
-        expect<Message[]>(res.message).toEqual(messages);
+      service.getMessage().subscribe((res: MessageResponse): void => {
+        expect<IMessageResponse[]>(res.response).toBeDefined();
+        expect<IMessageResponse[]>(res.response).toEqual(messages);
       });
 
       const req: TestRequest = httpMock.expectOne(`${environment.origin}api/messages`);

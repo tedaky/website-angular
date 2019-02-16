@@ -1,5 +1,5 @@
 import { MessagesModel } from '../models/messages';
-import { IMessage } from '../models/message';
+import { IMessageResponse } from '../../types/message';
 
 /**
  * The MessageController of the Express application.
@@ -15,10 +15,10 @@ export class MessagesController {
     const messagesModel: MessagesModel = new MessagesModel();
 
     // skill holder
-    let message: IMessage[];
+    let message: IMessageResponse[];
 
     // Promise skills
-    const messageAsync: Promise<IMessage[]> = new Promise((resolve: any, reject: any): void => {
+    const messageAsync: Promise<IMessageResponse[]> = new Promise((resolve: any, reject: any): void => {
       resolve(messagesModel.message());
     });
 
@@ -26,7 +26,7 @@ export class MessagesController {
     render()
     .then<void, never>(async () => {
       // Get the skills
-      await messageAsync.then<void, never>((val: IMessage[]): void => {
+      await messageAsync.then<void, never>((val: IMessageResponse[]): void => {
         message = val;
       });
     })
@@ -35,7 +35,7 @@ export class MessagesController {
       res.header('Last-Modified', (message[0].message_modified_at).toString());
       res.header('Content-Type', 'application/json');
       res.send({
-        message: message
+        response: message
       });
     });
   }

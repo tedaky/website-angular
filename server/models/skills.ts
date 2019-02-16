@@ -2,7 +2,7 @@ import { MySQL } from '../../config/db';
 import {
   ISkill,
   ISkillGroup
-} from './skill';
+} from '../../types/skill';
 
 /**
  * Model for the Skills
