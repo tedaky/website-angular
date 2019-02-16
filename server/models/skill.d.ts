@@ -13,3 +13,8 @@ export interface ISkill {
   skill_skill_group_id: number;
   skill_modified_at: Date;
 }
+
+export interface ISkillResponse {
+  skill_group: ISkillGroup;
+  skill: ISkill[];
+}
