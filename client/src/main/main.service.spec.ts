@@ -11,6 +11,7 @@ import {
 
 import { environment } from '../../../environments/environment';
 
+import { SkillsModule } from '../skills/skills.module';
 import { MainService } from './main.service';
 
 import {
@@ -36,7 +37,8 @@ describe('MainService', (): void => {
   beforeEach(async((): void => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        SkillsModule
       ],
       providers: [
         MainService

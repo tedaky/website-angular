@@ -1,7 +1,7 @@
 export interface ISkillGroup {
   skill_group_id: number;
   skill_group_name: string;
-  skill_group_order: Date;
+  skill_group_order: number;
   skill_group_modified_at: Date;
 }
 
@@ -20,5 +20,5 @@ export interface ISkillResponse {
 }
 
 export interface SkillResponse {
-  response: ISkillGroup[];
+  response: ISkillResponse[];
 }

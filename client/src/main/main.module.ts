@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MainComponent } from './main.component';
+
 import { MainRoutingModule } from './main-routing.module';
+
+import { SkillsModule } from '../skills/skills.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,8 @@ import { MainRoutingModule } from './main-routing.module';
   imports: [
     CommonModule,
     HttpClientModule,
-    MainRoutingModule
+    MainRoutingModule,
+    SkillsModule
   ]
 })
 export class MainModule { }

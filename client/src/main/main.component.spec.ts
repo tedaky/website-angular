@@ -12,6 +12,7 @@ import {
 
 import { MainComponent } from './main.component';
 import { MainService } from './main.service';
+import { SkillsModule } from '../skills/skills.module';
 import {
   IMessageResponse,
   MessageResponse
@@ -42,7 +43,8 @@ describe('MainComponent', (): void => {
       TestBed.configureTestingModule({
         imports: [
           RouterTestingModule,
-          HttpClientTestingModule
+          HttpClientTestingModule,
+          SkillsModule
         ],
         declarations: [
           MainComponent
@@ -74,7 +76,8 @@ describe('MainComponent', (): void => {
       TestBed.configureTestingModule({
         imports: [
           RouterTestingModule,
-          HttpClientTestingModule
+          HttpClientTestingModule,
+          SkillsModule
         ],
         declarations: [
           MainComponent
