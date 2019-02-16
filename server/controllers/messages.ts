@@ -22,20 +22,21 @@ export class MessagesController {
       resolve(messagesModel.message());
     });
 
-    async function x(): Promise<void> {
+    const render = async (): Promise<void> => {};
+    render()
+    .then<void, never>(async () => {
       // Get the skills
       await messageAsync.then<void, never>((val: IMessage[]): void => {
         message = val;
-      })
-      .then<void, never>((): void => {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Last-Modified', (message[0].message_modified_at).toString());
-        res.header('Content-Type', 'application/json');
-        res.send({
-          message: message
-        });
       });
-    }
-    x();
+    })
+    .then<void, never>((): void => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Last-Modified', (message[0].message_modified_at).toString());
+      res.header('Content-Type', 'application/json');
+      res.send({
+        message: message
+      });
+    });
   }
 }
