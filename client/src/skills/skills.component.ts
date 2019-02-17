@@ -64,13 +64,13 @@ export class SkillsComponent implements OnInit, OnDestroy {
         skill_group_order: 0,
         skill_group_modified_at: new Date()
       },
-      skill: [{
-        skill_id: 0,
-        skill_name: 'loading',
-        skill_level: 0,
-        skill_order: 0,
-        skill_skill_group_id: 0,
-        skill_modified_at: new Date()
+      skill_item: [{
+        skill_item_id: 0,
+        skill_item_name: 'loading',
+        skill_item_level: 0,
+        skill_item_order: 0,
+        skill_item_skill_group_id: 0,
+        skill_item_modified_at: new Date()
       }]
     }];
   }

@@ -1,7 +1,7 @@
 import { SkillsModel } from '../models/skills';
 import { SkillsHelper } from '../helpers/skills';
 import {
-  ISkill,
+  ISkillItem,
   ISkillGroup,
   ISkillResponse
 } from '../../types/skill';
@@ -11,7 +11,7 @@ import {
  */
 export class SkillsController {
   /**
-   * Get the Skills and Skill Groups Results
+   * Get the Skill Items and Skill Groups Results
    *
    * @param req - The Request `NextFunction`
    * @param res - The `Response`
@@ -21,8 +21,8 @@ export class SkillsController {
     const skillsModel: SkillsModel = new SkillsModel();
     const skillsHelper: SkillsHelper = new SkillsHelper();
 
-    // skill holder
-    let skill: ISkill[];
+    // skillItem holder
+    let skillItem: ISkillItem[];
     // skillGroup holder
     let skillGroup: ISkillGroup[];
     // skillResponse holder
@@ -33,10 +33,10 @@ export class SkillsController {
     const render = async (): Promise<void> => {};
     render()
     .then<void, never>(async () => {
-      // Get the skills
-      await skillsModel.skill()
-        .then<void, never>((val: ISkill[]): void => {
-          skill = val;
+      // Get the `skillItem`
+      await skillsModel.skillItem()
+        .then<void, never>((val: ISkillItem[]): void => {
+          skillItem = val;
         });
     })
     .then<void, never>(async (): Promise<void> => {
@@ -47,15 +47,15 @@ export class SkillsController {
         });
     })
     .then<void, never>(async (): Promise<void> => {
-      // Send `skill` and `skillGroup` for `JSON` processing
-      await skillsHelper.jsonify(skill, skillGroup)
+      // Send `skillItem` and `skillGroup` for `JSON` processing
+      await skillsHelper.jsonify(skillItem, skillGroup)
         .then<void, never>((val: ISkillResponse[]): void => {
           response = val;
         });
     })
     .then<void, never>(async (): Promise<void> => {
-      // Send `skill` and `skillGroup` for newest processing
-      await skillsHelper.getNewest(skill, skillGroup)
+      // Send `skillItem` and `skillGroup` for newest processing
+      await skillsHelper.getNewest(skillItem, skillGroup)
         .then<void, never>((val: Date): void => {
           newest = val;
         });
