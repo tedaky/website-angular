@@ -1,0 +1,49 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558 
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Server Side Rendering Local",
+      "type": "shell",
+      "command": "npm run build:ssr",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Server Side Rendering Production",
+      "type": "shell",
+      "command": "npm run build:ssr:production",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tests | No Watch | Headless | Coverage",
+      "type": "shell",
+      "command": "npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tests | Watch",
+      "type": "shell",
+      "command": "npm run test",
+      "problemMatcher": []
+    },
+    {
+      "label": "E2E",
+      "type": "shell",
+      "command": "npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js",
+      "problemMatcher": []
+    },
+    {
+      "label": "DB:UP:ALL",
+      "type": "shell",
+      "command": "npm run db:up:local:all",
+      "problemMatcher": []
+    },
+    {
+      "label": "DB:DOWN",
+      "type": "shell",
+      "command": "npm run db:down:local",
+      "problemMatcher": []
+    }
+  ]
+}
