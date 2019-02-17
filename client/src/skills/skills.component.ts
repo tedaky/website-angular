@@ -20,12 +20,12 @@ import {
 export class SkillsComponent implements OnInit, OnDestroy {
 
   /**
-   * The Messages
+   * The Skills
    */
   public skills: ISkillResponse[];
 
   /**
-   * Subscribe to the Message Service
+   * Subscribe to the Skills Service
    */
   private skillsServiceSub: Subscription;
 
@@ -43,7 +43,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
    */
   private getSkills(): void {
     this.skillsServiceSub = this.skillsService.getSkills()
-      .pipe(distinctUntilChanged())
+      .pipe<SkillResponse>(distinctUntilChanged<SkillResponse>())
       .subscribe(
         (res: SkillResponse): void => {
           this.skills = res.response;

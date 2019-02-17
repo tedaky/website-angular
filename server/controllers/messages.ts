@@ -14,23 +14,20 @@ export class MessagesController {
   public getMessages(req: any, res: any, next: any): void {
     const messagesModel: MessagesModel = new MessagesModel();
 
-    // skill holder
+    // message holder
     let message: IMessageResponse[];
-
-    // Promise skills
-    const messageAsync: Promise<IMessageResponse[]> = new Promise((resolve: any, reject: any): void => {
-      resolve(messagesModel.message());
-    });
 
     const render = async (): Promise<void> => {};
     render()
     .then<void, never>(async () => {
-      // Get the skills
-      await messageAsync.then<void, never>((val: IMessageResponse[]): void => {
-        message = val;
-      });
+      // Get the message
+      await messagesModel.message()
+        .then<void, never>((val: IMessageResponse[]): void => {
+          message = val;
+        });
     })
     .then<void, never>((): void => {
+      // Send
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Last-Modified', (message[0].message_modified_at).toString());
       res.header('Content-Type', 'application/json');
