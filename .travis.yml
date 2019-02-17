@@ -19,11 +19,8 @@ addons:
   apt:
     sources:
       - google-chrome
-      - mysql-5.7-trusty
     packages:
       - google-chrome-stable
-      - mysql-server
-      - mysql-client
 
 services:
   - mysql
@@ -34,6 +31,7 @@ cache:
 
 before_install:
   - sudo apt-get update
+  - sudo apt-get install mysql-server mysql-client --allow-unauthorized -y
 
 install:
   - npm install
