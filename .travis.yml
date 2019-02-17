@@ -31,7 +31,7 @@ cache:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install mysql-server mysql-client --allow-unauthorized -y
+  - sudo apt-get install mysql-server mysql-client -y
 
 install:
   - npm install
