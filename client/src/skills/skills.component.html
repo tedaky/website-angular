@@ -1,22 +1,26 @@
-<div *ngFor="let set of skills">
-  <div>
-    <span>{{ set.skill_group.skill_group_id }}</span>
-    <span>-</span>
-    <span>{{ set.skill_group.skill_group_name }}</span>
-    <span>-</span>
-    <span>{{ set.skill_group.skill_group_order }}</span>
-    <span>-</span>
-    <span>{{ set.skill_group.skill_group_modified_at }}</span>
-  </div>
-  <div *ngFor="let skill of set.skill">
-    <span>{{ skill.skill_id }}</span>
-    <span>-</span>
-    <span>{{ skill.skill_name }}</span>
-    <span>-</span>
-    <span>{{ skill.skill_order }}</span>
-    <span>-</span>
-    <span>{{ skill.skill_skill_group_id }}</span>
-    <span>-</span>
-    <span>{{ skill.skill_modified_at }}</span>
-  </div>
-</div>
+<ul>
+  <li *ngFor="let set of skills">
+    <div>
+      <span>{{ set.skill_group.skill_group_id }}</span>
+      <span> - </span>
+      <span>{{ set.skill_group.skill_group_name }}</span>
+      <span> - </span>
+      <span>{{ set.skill_group.skill_group_order }}</span>
+      <span> - </span>
+      <span>{{ set.skill_group.skill_group_modified_at }}</span>
+    </div>
+    <ul>
+      <li *ngFor="let skill of set.skill">
+        <span>{{ skill.skill_id }}</span>
+        <span> - </span>
+        <span>{{ skill.skill_name }}</span>
+        <span> - </span>
+        <span>{{ skill.skill_order }}</span>
+        <span> - </span>
+        <span>{{ skill.skill_skill_group_id }}</span>
+        <span> - </span>
+        <span>{{ skill.skill_modified_at }}</span>
+      </li>
+    </ul>
+  </li>
+</ul>

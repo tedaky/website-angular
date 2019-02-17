@@ -45,7 +45,7 @@ export class MessagesModel {
     /**
      * Return the results from MySQL
      */
-    return a.then((val: IMessageResponse[]): IMessageResponse[] => {
+    return a.then<IMessageResponse[], never>((val: IMessageResponse[]): IMessageResponse[] => {
       // End the current connection
       connect.connection.end();
       return val;

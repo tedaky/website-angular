@@ -51,7 +51,7 @@ export class SkillsModel {
     /**
      * Return the results from MySQL
      */
-    return a.then((val: ISkill[]): ISkill[] => {
+    return a.then<ISkill[], never>((val: ISkill[]): ISkill[] => {
       // End the current connection
       connect.connection.end();
       return val;
@@ -99,7 +99,7 @@ export class SkillsModel {
     /**
      * Return the results from MySQL
      */
-    return a.then((val: ISkillGroup[]): ISkillGroup[] => {
+    return a.then<ISkillGroup[], never>((val: ISkillGroup[]): ISkillGroup[] => {
       // End the current connection
       connect.connection.end();
       return val;

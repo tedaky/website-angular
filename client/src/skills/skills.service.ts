@@ -23,7 +23,7 @@ export class SkillsService {
   }
 
   /**
-   * Get the message from server API
+   * Get the SkillsResponse from server API
    *
    * @returns `Observable<SkillsResponse>`
    */

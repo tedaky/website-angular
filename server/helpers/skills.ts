@@ -100,6 +100,13 @@ export class SkillsHelper {
     return 0;
   }
 
+  /**
+   * Sorts the date of the `Skill`s
+   *
+   * @param a - `ISkill`
+   * @param b - `ISkill`
+   * @return `1 | -1 | 0`
+   */
   public compareSkillDate(a: ISkill, b: ISkill): 1 | -1 | 0 {
     const aDate: Date = new Date(a.skill_modified_at);
     const bDate: Date = new Date(b.skill_modified_at);
@@ -112,6 +119,13 @@ export class SkillsHelper {
     return 0;
   }
 
+  /**
+   * Sorts the date of the `SkillGroup`s
+   *
+   * @param a - `ISkillGroup`
+   * @param b - `ISkillGroup`
+   * @return `1 | -1 | 0`
+   */
   public compareSkillGroupDate(a: ISkillGroup, b: ISkillGroup): 1 | -1 | 0 {
     const aDate: Date = new Date(a.skill_group_modified_at);
     const bDate: Date = new Date(b.skill_group_modified_at);
@@ -125,6 +139,13 @@ export class SkillsHelper {
     return 0;
   }
 
+  /**
+   * Sorts the date of the newest `SkillGroup` and `Skill`
+   *
+   * @param a - `Date`
+   * @param b - `Date`
+   * @return `1 | -1 | 0`
+   */
   public compareNewestDate(a: Date, b: Date): 1 | -1 | 0 {
     const aDate: Date = new Date(a);
     const bDate: Date = new Date(b);
