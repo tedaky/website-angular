@@ -18,6 +18,15 @@ const skill_group: ISkillGroup = {
   skill_group_modified_at: new Date()
 };
 
+@Component({
+  selector: 'app-test-host-component',
+  template: '<app-skill-group-component></app-skill-group-component>'
+})
+class TestHostComponent {
+  @ViewChild(SkillGroupComponent)
+  public skillGroupComponent: SkillGroupComponent;
+}
+
 describe('SkillGroupComponent', (): void => {
   let testHostComponent: TestHostComponent;
   let testHostFixture: ComponentFixture<TestHostComponent>;
@@ -41,13 +50,4 @@ describe('SkillGroupComponent', (): void => {
     testHostFixture.detectChanges();
     expect<string>(testHostComponent.skillGroupComponent.skillGroup.skill_group_name).toEqual('loaded');
   });
-
-  @Component({
-    selector: 'app-test-host-component',
-    template: '<app-skill-group-component></app-skill-group-component>'
-  })
-  class TestHostComponent {
-    @ViewChild(SkillGroupComponent)
-    public skillGroupComponent: SkillGroupComponent;
-  }
 });

@@ -20,6 +20,15 @@ const skill: ISkill = {
   skill_modified_at: new Date()
 };
 
+@Component({
+  selector: 'app-test-host-component',
+  template: '<app-skill-component></app-skill-component>'
+})
+class TestHostComponent {
+  @ViewChild(SkillComponent)
+  public skillComponent: SkillComponent;
+}
+
 describe('SkillComponent', (): void => {
   let testHostComponent: TestHostComponent;
   let testHostFixture: ComponentFixture<TestHostComponent>;
@@ -43,13 +52,4 @@ describe('SkillComponent', (): void => {
     testHostFixture.detectChanges();
     expect<string>(testHostComponent.skillComponent.skill.skill_name).toEqual('loaded');
   });
-
-  @Component({
-    selector: 'app-test-host-component',
-    template: '<app-skill-component></app-skill-component>'
-  })
-  class TestHostComponent {
-    @ViewChild(SkillComponent)
-    public skillComponent: SkillComponent;
-  }
 });
