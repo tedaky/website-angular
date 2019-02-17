@@ -19,14 +19,12 @@ addons:
   apt:
     sources:
       - google-chrome
-      - mysql-5.7-trusty
+      - mariadb-10.0
     packages:
       - google-chrome-stable
-      - mysql-server
-      - mysql-client
-
-services:
-  - mysql
+      - mariadb-server
+      - mariadb-client
+      - libmariadbclient-dev
 
 cache:
   directories:
