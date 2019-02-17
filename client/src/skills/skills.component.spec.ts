@@ -11,6 +11,8 @@ import {
 } from 'rxjs';
 
 import { SkillsComponent } from './skills.component';
+import { SkillGroupComponent } from './skill-group/skill-group.component';
+import { SkillComponent } from './skill/skill.component';
 import { SkillsService } from './skills.service';
 import {
   ISkillResponse,
@@ -56,7 +58,9 @@ describe('MainComponent', (): void => {
           HttpClientTestingModule
         ],
         declarations: [
-          SkillsComponent
+          SkillsComponent,
+          SkillGroupComponent,
+          SkillComponent
         ]
       }).compileComponents();
     }));
@@ -84,7 +88,9 @@ describe('MainComponent', (): void => {
           HttpClientTestingModule
         ],
         declarations: [
-          SkillsComponent
+          SkillsComponent,
+          SkillGroupComponent,
+          SkillComponent
         ],
         providers: [
           {
