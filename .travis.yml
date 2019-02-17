@@ -31,7 +31,7 @@ cache:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install mysql-server mysql-client -y
+  - $ sudo -E apt-get -yq --no-install-suggests --no-install-recommends --allow-unauthenticated $(travis_apt_get_options) install google-chrome-stable mysql-server mysql-client
 
 install:
   - npm install
