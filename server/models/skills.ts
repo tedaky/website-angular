@@ -1,6 +1,6 @@
 import { MySQL } from '../../config/db';
 import {
-  ISkill,
+  ISkillItem,
   ISkillGroup
 } from '../../types/skill';
 
@@ -9,11 +9,11 @@ import {
  */
 export class SkillsModel {
   /**
-   * Fetch the results from MySQL `skill` table
+   * Fetch the results from MySQL `skill_item` table
    *
-   * @return `Promise<ISkill[]>` - skill Results
+   * @return `Promise<ISkillItem[]>` - skill_item Results
    */
-  public async skill(): Promise<ISkill[]> {
+  public async skillItem(): Promise<ISkillItem[]> {
     /**
      * Create the `MySQL` connection
      */
@@ -22,24 +22,24 @@ export class SkillsModel {
     /**
      * Create a promise for MySQL Fetch
      */
-    const a: Promise<ISkill[]> = new Promise((resolve: any, reject: any): void => {
+    const a: Promise<ISkillItem[]> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
-          skill_id,
-          skill_name,
-          skill_level,
-          skill_order,
-          skill_skill_group_id,
-          skill_modified_at
-        FROM skill
-        ORDER BY skill_order ASC;`,
+          skill_item_id,
+          skill_item_name,
+          skill_item_level,
+          skill_item_order,
+          skill_item_skill_group_id,
+          skill_item_modified_at
+        FROM skill_item
+        ORDER BY skill_item_order ASC;`,
         /**
          * Mysql response
          * @param err - `mysql.MysqlError`
          * @param rows - Rows `any`
          * @param fields - `mysql.FieldInfo[]`
          */
-        (err: any, rows: ISkill[], fields: any): void => {
+        (err: any, rows: ISkillItem[], fields: any): void => {
           if (err) {
             reject(err);
           }
@@ -51,7 +51,7 @@ export class SkillsModel {
     /**
      * Return the results from MySQL
      */
-    return a.then<ISkill[], never>((val: ISkill[]): ISkill[] => {
+    return a.then<ISkillItem[], never>((val: ISkillItem[]): ISkillItem[] => {
       // End the current connection
       connect.connection.end();
       return val;

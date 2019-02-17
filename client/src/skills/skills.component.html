@@ -2,8 +2,8 @@
   <li *ngFor="let set of skills">
     <app-skill-group-component [skillGroup]="set.skill_group"></app-skill-group-component>
     <ul>
-      <li *ngFor="let skill of set.skill">
-        <app-skill-component [skill]="skill"></app-skill-component>
+      <li *ngFor="let skill_item of set.skill_item">
+        <app-skill-item-component [skillItem]="skill_item"></app-skill-item-component>
       </li>
     </ul>
   </li>

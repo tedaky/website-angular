@@ -4,13 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SkillsComponent } from './skills.component';
 import { SkillGroupComponent } from './skill-group/skill-group.component';
-import { SkillComponent } from './skill/skill.component';
+import { SkillItemComponent } from './skill-item/skill-item.component';
 
 @NgModule({
   declarations: [
     SkillsComponent,
     SkillGroupComponent,
-    SkillComponent
+    SkillItemComponent
   ],
   imports: [
     CommonModule,

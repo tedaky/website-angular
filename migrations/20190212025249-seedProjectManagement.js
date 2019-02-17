@@ -39,55 +39,55 @@ exports.setup = function (options, seedLink) {
  */
 exports.up = function (db) {
   var today = new Date().toMysqlFormat();
-  return db.insert('skill',
-      ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+  return db.insert('skill_item',
+      ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
       ['Git', 80, 1, 1, today, today, '20190212025249-seedProjectManagement']
     )
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['GitHub', 74, 2, 1, today, today, '20190212025249-seedProjectManagement']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['Bitbucket', 74, 3, 1, today, today, '20190212025249-seedProjectManagement']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['Team Foundation Server (TFS)', 68, 4, 1, today, today, '20190212025249-seedProjectManagement']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['NodeJS', 78, 5, 1, today, today, '20190212025249-seedProjectManagement']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['Composer', 62, 6, 1, today, today, '20190212025249-seedProjectManagement']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['Homebrew', 60, 7, 1, today, today, '20190212025249-seedProjectManagement']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['Trello', 78, 8, 1, today, today, '20190212025249-seedProjectManagement']);
     }, function (err) {
       return err;

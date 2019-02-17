@@ -39,55 +39,55 @@ exports.setup = function (options, seedLink) {
  */
 exports.up = function (db) {
   var today = new Date().toMysqlFormat();
-  return db.insert('skill',
-      ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+  return db.insert('skill_item',
+      ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
       ['TypeScript', 70, 1, 5, today, today, '20190212030852-seedLanguages']
     )
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['JavaScript (Vanilla/ES5+)', 80, 2, 5, today, today, '20190212030852-seedLanguages']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['SASS', 85, 3, 5, today, today, '20190212030852-seedLanguages']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['CSS', 95, 4, 5, today, today, '20190212030852-seedLanguages']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['HTML', 95, 5, 5, today, today, '20190212030852-seedLanguages']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['PHP 5/7', 66, 6, 5, today, today, '20190212030852-seedLanguages']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['ASP.NET', 60, 7, 5, today, today, '20190212030852-seedLanguages']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill',
-        ['skill_name', 'skill_level', 'skill_order', 'skill_skill_group_id', 'skill_created_at', 'skill_modified_at', 'skill_seed'],
+      return db.insert('skill_item',
+        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
         ['Relational Databases (SQL Server / MySQL / Oracle)', 65, 8, 5, today, today, '20190212030852-seedLanguages']);
     }, function (err) {
       return err;

@@ -12,7 +12,7 @@ import {
 
 import { SkillsComponent } from './skills.component';
 import { SkillGroupComponent } from './skill-group/skill-group.component';
-import { SkillComponent } from './skill/skill.component';
+import { SkillItemComponent } from './skill-item/skill-item.component';
 import { SkillsService } from './skills.service';
 import {
   ISkillResponse,
@@ -26,13 +26,13 @@ const skills: ISkillResponse[] = [{
     skill_group_order: 0,
     skill_group_modified_at: new Date()
   },
-  skill: [{
-    skill_id: 0,
-    skill_name: 'loaded',
-    skill_level: 0,
-    skill_order: 0,
-    skill_skill_group_id: 0,
-    skill_modified_at: new Date()
+  skill_item: [{
+    skill_item_id: 0,
+    skill_item_name: 'loaded',
+    skill_item_level: 0,
+    skill_item_order: 0,
+    skill_item_skill_group_id: 0,
+    skill_item_modified_at: new Date()
   }]
 }];
 
@@ -46,7 +46,7 @@ class FakeAppService {
   }
 }
 
-describe('MainComponent', (): void => {
+describe('SkillsComponent', (): void => {
   let component: SkillsComponent;
   let fixture: ComponentFixture<SkillsComponent>;
 
@@ -60,7 +60,7 @@ describe('MainComponent', (): void => {
         declarations: [
           SkillsComponent,
           SkillGroupComponent,
-          SkillComponent
+          SkillItemComponent
         ]
       }).compileComponents();
     }));
@@ -90,7 +90,7 @@ describe('MainComponent', (): void => {
         declarations: [
           SkillsComponent,
           SkillGroupComponent,
-          SkillComponent
+          SkillItemComponent
         ],
         providers: [
           {

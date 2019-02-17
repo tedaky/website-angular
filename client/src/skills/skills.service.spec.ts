@@ -24,13 +24,13 @@ const skills: ISkillResponse[] = [{
     skill_group_order: 0,
     skill_group_modified_at: new Date()
   },
-  skill: [{
-    skill_id: 0,
-    skill_name: 'loaded',
-    skill_level: 0,
-    skill_order: 0,
-    skill_skill_group_id: 0,
-    skill_modified_at: new Date()
+  skill_item: [{
+    skill_item_id: 0,
+    skill_item_name: 'loaded',
+    skill_item_level: 0,
+    skill_item_order: 0,
+    skill_item_skill_group_id: 0,
+    skill_item_modified_at: new Date()
   }]
 }];
 
@@ -38,7 +38,7 @@ const skillsResponse: SkillResponse = {
   response: skills
 };
 
-describe('MainService', (): void => {
+describe('SkillsService', (): void => {
   let injector: TestBed;
   let service: SkillsService;
   let httpMock: HttpTestingController;

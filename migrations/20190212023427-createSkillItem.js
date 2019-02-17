@@ -19,8 +19,8 @@ exports.setup = function (options, seedLink) {
  * Create and set columns for the table 'skill'
  */
 exports.up = function (db) {
-  return db.createTable('skill', {
-      skill_id: {
+  return db.createTable('skill_item', {
+      skill_item_id: {
         type: 'int',
         length: 11,
         notNull: true,
@@ -28,24 +28,24 @@ exports.up = function (db) {
         primaryKey: true,
         autoIncrement: true
       },
-      skill_name: {
+      skill_item_name: {
         type: 'string',
         length: 255,
         notNull: true
       },
-      skill_level: {
+      skill_item_level: {
         type: 'decimal',
         length: [11, 2]
       },
-      skill_order: {
+      skill_item_order: {
         type: 'int',
         length: 11
       },
-      skill_skill_group_id: {
+      skill_item_skill_group_id: {
         type: 'int',
         length: 11,
         foreignKey: {
-          name: 'skill_group_id_skill_id_fk',
+          name: 'skill_group_id_skill_item_id_fk',
           table: 'skill_group',
           rules: {
             onDelete: 'CASCADE',
@@ -54,13 +54,13 @@ exports.up = function (db) {
           mapping: 'skill_group_id'
         }
       },
-      skill_created_at: {
+      skill_item_created_at: {
         type: 'datetime'
       },
-      skill_modified_at: {
+      skill_item_modified_at: {
         type: 'datetime'
       },
-      skill_seed: {
+      skill_item_seed: {
         type: 'string',
         length: 75
       }
@@ -74,7 +74,7 @@ exports.up = function (db) {
  * Drop the table 'skill'
  */
 exports.down = function (db) {
-  return db.dropTable('skill')
+  return db.dropTable('skill_item')
     .then([], function (err) {
       return err;
     });

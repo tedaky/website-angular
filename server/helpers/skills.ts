@@ -1,5 +1,5 @@
 import {
-  ISkill,
+  ISkillItem,
   ISkillGroup,
   ISkillResponse
 } from '../../types/skill';
@@ -11,39 +11,39 @@ export class SkillsHelper {
   /**
    * JSONify the skills
    *
-   * @param skill - The Skills results
+   * @param skillItem - The Skill Items results
    * @param skillGroup - The Skill Groups results
    * @return `Promise<ISkillResponse[]>`
    */
-  public async jsonify(skill: ISkill[], skillGroup: ISkillGroup[]): Promise<ISkillResponse[]> {
+  public async jsonify(skillItem: ISkillItem[], skillGroup: ISkillGroup[]): Promise<ISkillResponse[]> {
     // Sort the `SkillGroup`s
     skillGroup.sort(this.compareSkillGroupOrder);
     const response: ISkillResponse[] = [];
     for (const tmpSkillGroup of skillGroup) {
-      // filter the `Skill`s that only match `skill_group_id`
-      const tmpSkill: ISkill[] = skill.filter((val: ISkill): boolean => {
-        return (val.skill_skill_group_id === tmpSkillGroup.skill_group_id);
+      // filter the `SkillItem`s that only match `skill_group_id`
+      const tmpSkillItem: ISkillItem[] = skillItem.filter((val: ISkillItem): boolean => {
+        return (val.skill_item_skill_group_id === tmpSkillGroup.skill_group_id);
       });
-      // Sort the remaining `Skill`s
-      tmpSkill.sort(this.compareSkillOrder);
+      // Sort the remaining `SkillItem`s
+      tmpSkillItem.sort(this.compareSkillOrder);
       // Add the result to the response
       response.push({
         skill_group: tmpSkillGroup,
-        skill: tmpSkill
+        skill_item: tmpSkillItem
       });
     }
     return response;
   }
 
   /**
-   * Get the newest entry of `skill` and `skill_group`
+   * Get the newest entry of `skill_item` and `skill_group`
    *
-   * @param skill - `ISkill[]`
+   * @param skill - `ISkillItem[]`
    * @param skillGroup - `ISkillGroup[]`
    * @return `Promise<Date>`
    */
-  public async getNewest(skill: ISkill[], skillGroup: ISkillGroup[]): Promise<Date> {
-    // newest holder for `skillGroup` and `skill`
+  public async getNewest(skillItem: ISkillItem[], skillGroup: ISkillGroup[]): Promise<Date> {
+    // newest holder for `skillGroup` and `skillItem`
     const tmp: Date[] = [];
 
     // Ascending sort of `skillGroup` by `skill_group_modified_at`
@@ -51,14 +51,14 @@ export class SkillsHelper {
     // Reverse the order so newest is at the beginning
     skillGroup.reverse();
 
-    // Ascending sort of `skill` by `skill_modified_at`
-    skill.sort(this.compareSkillDate);
+    // Ascending sort of `skillItem` by `skill_item_modified_at`
+    skillItem.sort(this.compareSkillDate);
     // Reverse the order so newest is at the beginning
-    skill.reverse();
+    skillItem.reverse();
 
-    // Add the newest `skillGroup` and `skill` for easy processing
-    tmp.push(skillGroup[0].skill_group_modified_at, skill[0].skill_modified_at);
-    // Ascending sort of newest `skillGroup` and newest `skill`
+    // Add the newest `skillGroup` and `skillItem` for easy processing
+    tmp.push(skillGroup[0].skill_group_modified_at, skillItem[0].skill_item_modified_at);
+    // Ascending sort of newest `skillGroup` and newest `skillItem`
     tmp.sort(this.compareNewestDate);
     // Reverse the order so newest is at the beginning
     tmp.reverse();
@@ -67,17 +67,17 @@ export class SkillsHelper {
   }
 
   /**
-   * Sorts the order of the `Skill`s
+   * Sorts the order of the `SkillItem`s
    *
-   * @param a - `ISkill`
-   * @param b - `ISkill`
+   * @param a - `ISkillItem`
+   * @param b - `ISkillItem`
    * @return `1 | -1 | 0`
    */
-  public compareSkillOrder(a: ISkill, b: ISkill): 1 | -1 | 0 {
-    if (a.skill_order > b.skill_order) {
+  public compareSkillOrder(a: ISkillItem, b: ISkillItem): 1 | -1 | 0 {
+    if (a.skill_item_order > b.skill_item_order) {
       return - 1;
     }
-    if (a.skill_order > b.skill_order) {
+    if (a.skill_item_order > b.skill_item_order) {
       return 1;
     }
     return 0;
@@ -101,15 +101,15 @@ export class SkillsHelper {
   }
 
   /**
-   * Sorts the date of the `Skill`s
+   * Sorts the date of the `SkillItems`s
    *
-   * @param a - `ISkill`
-   * @param b - `ISkill`
+   * @param a - `ISkillItem`
+   * @param b - `ISkillItem`
    * @return `1 | -1 | 0`
    */
-  public compareSkillDate(a: ISkill, b: ISkill): 1 | -1 | 0 {
-    const aDate: Date = new Date(a.skill_modified_at);
-    const bDate: Date = new Date(b.skill_modified_at);
+  public compareSkillDate(a: ISkillItem, b: ISkillItem): 1 | -1 | 0 {
+    const aDate: Date = new Date(a.skill_item_modified_at);
+    const bDate: Date = new Date(b.skill_item_modified_at);
     if (aDate > bDate) {
       return - 1;
     }
@@ -140,7 +140,7 @@ export class SkillsHelper {
   }
 
   /**
-   * Sorts the date of the newest `SkillGroup` and `Skill`
+   * Sorts the date of the newest `SkillGroup` and `SkillItem`
    *
    * @param a - `Date`
    * @param b - `Date`

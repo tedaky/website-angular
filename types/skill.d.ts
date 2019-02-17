@@ -5,18 +5,18 @@ export interface ISkillGroup {
   skill_group_modified_at: Date;
 }
 
-export interface ISkill {
-  skill_id: number;
-  skill_name: string;
-  skill_level: number;
-  skill_order: number;
-  skill_skill_group_id: number;
-  skill_modified_at: Date;
+export interface ISkillItem {
+  skill_item_id: number;
+  skill_item_name: string;
+  skill_item_level: number;
+  skill_item_order: number;
+  skill_item_skill_group_id: number;
+  skill_item_modified_at: Date;
 }
 
 export interface ISkillResponse {
   skill_group: ISkillGroup;
-  skill: ISkill[];
+  skill_item: ISkillItem[];
 }
 
 export interface SkillResponse {
