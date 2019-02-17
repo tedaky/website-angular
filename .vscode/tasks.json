@@ -7,43 +7,50 @@
       "label": "Build Server Side Rendering Local",
       "type": "shell",
       "command": "npm run build:ssr",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "group": "build"
     },
     {
       "label": "Build Server Side Rendering Production",
       "type": "shell",
       "command": "npm run build:ssr:production",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "group": "build"
     },
     {
       "label": "Tests | No Watch | Headless | Coverage",
       "type": "shell",
       "command": "npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "group": "test"
     },
     {
       "label": "Tests | Watch",
       "type": "shell",
       "command": "npm run test",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "group": "test"
     },
     {
       "label": "E2E",
       "type": "shell",
       "command": "npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "group": "test"
     },
     {
       "label": "DB:UP:ALL",
       "type": "shell",
       "command": "npm run db:up:local:all",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "group": "none"
     },
     {
       "label": "DB:DOWN",
       "type": "shell",
       "command": "npm run db:down:local",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "group": "none"
     }
   ]
 }
