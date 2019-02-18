@@ -39,8 +39,9 @@ exports.setup = function (options, seedLink) {
  */
 exports.up = function (db) {
   var today = new Date().toMysqlFormat();
+  var columns = ['message_description', 'message_created_at', 'message_modified_at', 'message_seed'];
   return db.insert('message',
-      ['message_description', 'message_created_at', 'message_modified_at', 'message_seed'],
+      columns,
       ['API Message!', today, today, '20190127031010-seedMessage']
     )
     .then([], function (err) {

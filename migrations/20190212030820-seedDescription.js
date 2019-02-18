@@ -15,7 +15,7 @@ function twoDigits(d) {
   return d.toString();
 }
 
-Date.prototype.toMysqlFormat = function () {
+Date.prototype.toMysqlDateTimeFormat = function () {
   return this.getUTCFullYear() + '-' +
     twoDigits(1 + this.getUTCMonth()) + '-' +
     twoDigits(this.getUTCDate()) + ' ' +
@@ -38,70 +38,71 @@ exports.setup = function (options, seedLink) {
  * Seed 'Description'
  */
 exports.up = function (db) {
-  var today = new Date().toMysqlFormat();
+  var today = new Date().toMysqlDateTimeFormat();
+  var columns = ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'];
   return db.insert('skill_item',
-      ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+      columns,
       ['Texture Art', 70, 1, 3, today, today, '20190212030820-seedDescription']
     )
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['3D Art', 73, 2, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Environment Design', 78, 3, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Game Design', 80, 4, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Game Development', 80, 5, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Web Development', 82, 6, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Web Design', 82, 7, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Web Performance', 84, 8, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Web Analytics', 78, 9, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['User Interface Design', 82, 10, 3, today, today, '20190212030820-seedDescription']);
     }, function (err) {
       return err;
@@ -115,7 +116,7 @@ exports.up = function (db) {
  * Remove Seed 'Description'
  */
 exports.down = function (db) {
-  return db.runSql('DELETE FROM `skill` WHERE `skill_seed` = ?', ['20190212030820-seedDescription'])
+  return db.runSql('DELETE FROM `skill_item` WHERE `skill_item_seed` = ?', ['20190212030820-seedDescription'])
     .then([], function (err) {
       return err;
     });
