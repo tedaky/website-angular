@@ -15,7 +15,7 @@ function twoDigits(d) {
   return d.toString();
 }
 
-Date.prototype.toMysqlFormat = function () {
+Date.prototype.toMysqlDateTimeFormat = function () {
   return this.getUTCFullYear() + '-' +
     twoDigits(1 + this.getUTCMonth()) + '-' +
     twoDigits(this.getUTCDate()) + ' ' +
@@ -38,35 +38,36 @@ exports.setup = function (options, seedLink) {
  * Seed 'Skill Group'
  */
 exports.up = function (db) {
-  var today = new Date().toMysqlFormat();
+  var today = new Date().toMysqlDateTimeFormat();
+  var columns = ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'];
   return db.insert('skill_group',
-      ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'],
+      columns,
       ['Project Management', 1, today, today, '20190212010535-seedSkillGroup']
     )
     .then(function () {
       return db.insert('skill_group',
-        ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'],
+        columns,
         ['Software', 2, today, today, '20190212010535-seedSkillGroup']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_group',
-        ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'],
+        columns,
         ['Description', 3, today, today, '20190212010535-seedSkillGroup']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_group',
-        ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'],
+        columns,
         ['Frameworks', 4, today, today, '20190212010535-seedSkillGroup']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_group',
-        ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'],
+        columns,
         ['Languages', 5, today, today, '20190212010535-seedSkillGroup']);
     }, function (err) {
       return err;

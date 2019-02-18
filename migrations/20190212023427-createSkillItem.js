@@ -16,7 +16,7 @@ exports.setup = function (options, seedLink) {
 };
 
 /**
- * Create and set columns for the table 'skill'
+ * Create and set columns for the table 'skill_item'
  */
 exports.up = function (db) {
   return db.createTable('skill_item', {

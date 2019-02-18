@@ -15,7 +15,7 @@ function twoDigits(d) {
   return d.toString();
 }
 
-Date.prototype.toMysqlFormat = function () {
+Date.prototype.toMysqlDateTimeFormat = function () {
   return this.getUTCFullYear() + '-' +
     twoDigits(1 + this.getUTCMonth()) + '-' +
     twoDigits(this.getUTCDate()) + ' ' +
@@ -38,70 +38,71 @@ exports.setup = function (options, seedLink) {
  * Seed 'Software'
  */
 exports.up = function (db) {
-  var today = new Date().toMysqlFormat();
+  var today = new Date().toMysqlDateTimeFormat();
+  var columns = ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'];
   return db.insert('skill_item',
-      ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+      columns,
       ['Unreal Engine', 66, 1, 2, today, today, '20190212030801-seedSoftware']
     )
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Unity', 60, 2, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Photoshop', 77, 3, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['xNormal', 80, 4, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['3DS Max', 75, 5, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Blender', 55, 6, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Substance Designer', 73, 7, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['VS Code', 74, 8, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Visual Studio', 60, 9, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
-        ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'],
+        columns,
         ['Xcode', 55, 10, 2, today, today, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
@@ -115,7 +116,7 @@ exports.up = function (db) {
  * Remove Seed 'Software'
  */
 exports.down = function (db) {
-  return db.runSql('DELETE FROM `skill` WHERE `skill_seed` = ?', ['20190212030801-seedSoftware'])
+  return db.runSql('DELETE FROM `skill_item` WHERE `skill_item_seed` = ?', ['20190212030801-seedSoftware'])
     .then([], function (err) {
       return err;
     });
