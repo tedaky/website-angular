@@ -40,7 +40,7 @@ const leave: AnimationTransitionMetadata =
 /**
  * Animations for `prompt-update`
  */
-export const promptUpdateAnimations: AnimationTriggerMetadata[] = [
+export const promptUpdateAnimations: Array<AnimationTriggerMetadata> = [
   trigger('openClose', [
     enter,
     leave

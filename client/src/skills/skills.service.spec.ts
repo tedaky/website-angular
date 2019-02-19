@@ -13,11 +13,11 @@ import { environment } from '../../../environments/environment';
 
 import { SkillsService } from './skills.service';
 import {
-  ISkillResponse,
-  SkillResponse
+  SkillGroupItem,
+  Response
 } from '../../../types/skill';
 
-const skills: ISkillResponse[] = [{
+const skills: Array<SkillGroupItem> = [{
   skill_group: {
     skill_group_id: 0,
     skill_group_name: 'loaded',
@@ -34,7 +34,7 @@ const skills: ISkillResponse[] = [{
   }]
 }];
 
-const skillsResponse: SkillResponse = {
+const response: Response = {
   response: skills
 };
 
@@ -66,11 +66,11 @@ describe('SkillsService', (): void => {
 
   describe('#getSkills', (): void => {
     it('should return an Observable<Message>', (): void => {
-      const mock: SkillResponse = skillsResponse;
+      const mock: Response = response;
 
-      service.getSkills().subscribe((res: SkillResponse): void => {
-        expect<ISkillResponse[]>(res.response).toBeDefined();
-        expect<ISkillResponse[]>(res.response).toEqual(skills);
+      service.getSkills().subscribe((res: Response): void => {
+        expect<Array<SkillGroupItem>>(res.response).toBeDefined();
+        expect<Array<SkillGroupItem>>(res.response).toEqual(skills);
       });
 
       const req: TestRequest = httpMock.expectOne(`${environment.origin}api/skills`);

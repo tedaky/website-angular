@@ -27,7 +27,7 @@ export class CheckForUpdateService {
      */
     const appIsStable$: Observable<boolean> = this.applicationRef.isStable.pipe<boolean>(
       first<boolean, boolean>(
-        (isStable): boolean => {
+        (isStable: boolean): boolean => {
           return isStable === true;
         })
     );

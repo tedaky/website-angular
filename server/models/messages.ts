@@ -1,5 +1,5 @@
 import { MySQL } from '../../config/db';
-import { IMessageResponse } from '../../types/message';
+import { Message } from '../../types/message';
 
 /**
  * Model for the Messages
@@ -8,9 +8,9 @@ export class MessagesModel {
   /**
    * Fetch the results from MySQL `message` table
    *
-   * @return `Promise<IMessageResponse[]>` - message Results
+   * @return `Promise<Array<Message>>` - message Results
    */
-  public async message(): Promise<IMessageResponse[]> {
+  public async message(): Promise<Array<Message>> {
     /**
      * Create the `MySQL` connection
      */
@@ -19,7 +19,7 @@ export class MessagesModel {
     /**
      * Create a promise for MySQL Fetch
      */
-    const a: Promise<IMessageResponse[]> = new Promise((resolve: any, reject: any): void => {
+    const a: Promise<Array<Message>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
           message_id,
@@ -33,7 +33,7 @@ export class MessagesModel {
          * @param rows - Rows `any`
          * @param fields - `mysql.FieldInfo[]`
          */
-        (err: any, rows: IMessageResponse[], fields: any): void => {
+        (err: any, rows: Array<Message>, fields: any): void => {
           if (err) {
             reject(err);
           }
@@ -45,7 +45,7 @@ export class MessagesModel {
     /**
      * Return the results from MySQL
      */
-    return a.then<IMessageResponse[], never>((val: IMessageResponse[]): IMessageResponse[] => {
+    return a.then<Array<Message>, never>((val: Array<Message>): Array<Message> => {
       // End the current connection
       connect.connection.end();
       return val;

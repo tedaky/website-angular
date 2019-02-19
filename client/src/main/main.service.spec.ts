@@ -15,17 +15,17 @@ import { SkillsModule } from '../skills/skills.module';
 import { MainService } from './main.service';
 
 import {
-  IMessageResponse,
-  MessageResponse
+  Message,
+  Response
 } from '../../../types/message';
 
-const messages: IMessageResponse[] = [{
+const messages: Array<Message> = [{
   message_id: 1,
   message_description: 'Api Works!',
   message_modified_at: new Date()
 }];
 
-const messagesResponse: MessageResponse = {
+const messagesResponse: Response = {
   response: messages
 };
 
@@ -58,11 +58,11 @@ describe('MainService', (): void => {
 
   describe('#getMessage', (): void => {
     it('should return an Observable<Message>', (): void => {
-      const mock: MessageResponse = messagesResponse;
+      const mock: Response = messagesResponse;
 
-      service.getMessage().subscribe((res: MessageResponse): void => {
-        expect<IMessageResponse[]>(res.response).toBeDefined();
-        expect<IMessageResponse[]>(res.response).toEqual(messages);
+      service.getMessage().subscribe((res: Response): void => {
+        expect<Array<Message>>(res.response).toBeDefined();
+        expect<Array<Message>>(res.response).toEqual(messages);
       });
 
       const req: TestRequest = httpMock.expectOne(`${environment.origin}api/messages`);

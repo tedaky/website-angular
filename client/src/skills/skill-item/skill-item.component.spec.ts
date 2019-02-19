@@ -9,9 +9,9 @@ import {
 } from '@angular/core/testing';
 
 import { SkillItemComponent } from './skill-item.component';
-import { ISkillItem } from '../../../../types/skill';
+import { SkillItem } from '../../../../types/skill';
 
-const skillItem: ISkillItem = {
+const skillItem: SkillItem = {
   skill_item_id: 0,
   skill_item_name: 'loaded',
   skill_item_level: 0,

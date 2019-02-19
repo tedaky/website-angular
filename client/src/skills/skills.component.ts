@@ -8,8 +8,8 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 import { SkillsService } from './skills.service';
 import {
-  ISkillResponse,
-  SkillResponse
+  SkillGroupItem,
+  Response
 } from '../../../types/skill';
 
 @Component({
@@ -22,7 +22,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
   /**
    * The Skills
    */
-  public skills: ISkillResponse[];
+  public skills: Array<SkillGroupItem>;
 
   /**
    * Subscribe to the Skills Service
@@ -43,9 +43,9 @@ export class SkillsComponent implements OnInit, OnDestroy {
    */
   private getSkills(): void {
     this.skillsServiceSub = this.skillsService.getSkills()
-      .pipe<SkillResponse>(distinctUntilChanged<SkillResponse>())
+      .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
-        (res: SkillResponse): void => {
+        (res: Response): void => {
           this.skills = res.response;
         },
         (err: any): any => {

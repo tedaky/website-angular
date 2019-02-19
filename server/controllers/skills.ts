@@ -1,9 +1,9 @@
 import { SkillsModel } from '../models/skills';
 import { SkillsHelper } from '../helpers/skills';
 import {
-  ISkillItem,
-  ISkillGroup,
-  ISkillResponse
+  SkillItem,
+  SkillGroup,
+  SkillGroupItem
 } from '../../types/skill';
 
 /**
@@ -22,34 +22,34 @@ export class SkillsController {
     const skillsHelper: SkillsHelper = new SkillsHelper();
 
     // skillItem holder
-    let skillItem: ISkillItem[];
+    let skillItem: Array<SkillItem>;
     // skillGroup holder
-    let skillGroup: ISkillGroup[];
+    let skillGroup: Array<SkillGroup>;
     // skillResponse holder
-    let response: ISkillResponse[];
+    let response: Array<SkillGroupItem>;
     // newest header holder
     let newest: Date;
 
-    const render = async (): Promise<void> => {};
+    const render = async (): Promise<void> => { };
     render()
     .then<void, never>(async () => {
       // Get the `skillItem`
       await skillsModel.skillItem()
-        .then<void, never>((val: ISkillItem[]): void => {
+        .then<void, never>((val: Array<SkillItem>): void => {
           skillItem = val;
         });
     })
     .then<void, never>(async (): Promise<void> => {
       // Get the `skillGroup`
       await skillsModel.skillGroup()
-        .then<void, never>((val: ISkillGroup[]): void => {
+        .then<void, never>((val: Array<SkillGroup>): void => {
           skillGroup = val;
         });
     })
     .then<void, never>(async (): Promise<void> => {
       // Send `skillItem` and `skillGroup` for `JSON` processing
       await skillsHelper.jsonify(skillItem, skillGroup)
-        .then<void, never>((val: ISkillResponse[]): void => {
+        .then<void, never>((val: Array<SkillGroupItem>): void => {
           response = val;
         });
     })

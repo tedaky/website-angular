@@ -9,9 +9,9 @@ import {
 } from '@angular/core/testing';
 
 import { SkillGroupComponent } from './skill-group.component';
-import { ISkillGroup } from '../../../../types/skill';
+import { SkillGroup } from '../../../../types/skill';
 
-const skill_group: ISkillGroup = {
+const skill_group: SkillGroup = {
   skill_group_id: 0,
   skill_group_name: 'loaded',
   skill_group_order: 0,
