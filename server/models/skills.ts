@@ -1,7 +1,7 @@
 import { MySQL } from '../../config/db';
 import {
-  ISkillItem,
-  ISkillGroup
+  SkillItem,
+  SkillGroup
 } from '../../types/skill';
 
 /**
@@ -11,9 +11,9 @@ export class SkillsModel {
   /**
    * Fetch the results from MySQL `skill_item` table
    *
-   * @return `Promise<ISkillItem[]>` - skill_item Results
+   * @return `Promise<Array<SkillItem>>` - skill_item Results
    */
-  public async skillItem(): Promise<ISkillItem[]> {
+  public async skillItem(): Promise<Array<SkillItem>> {
     /**
      * Create the `MySQL` connection
      */
@@ -22,7 +22,7 @@ export class SkillsModel {
     /**
      * Create a promise for MySQL Fetch
      */
-    const a: Promise<ISkillItem[]> = new Promise((resolve: any, reject: any): void => {
+    const a: Promise<Array<SkillItem>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
           skill_item_id,
@@ -39,7 +39,7 @@ export class SkillsModel {
          * @param rows - Rows `any`
          * @param fields - `mysql.FieldInfo[]`
          */
-        (err: any, rows: ISkillItem[], fields: any): void => {
+        (err: any, rows: Array<SkillItem>, fields: any): void => {
           if (err) {
             reject(err);
           }
@@ -51,7 +51,7 @@ export class SkillsModel {
     /**
      * Return the results from MySQL
      */
-    return a.then<ISkillItem[], never>((val: ISkillItem[]): ISkillItem[] => {
+    return a.then<Array<SkillItem>, never>((val: Array<SkillItem>): Array<SkillItem> => {
       // End the current connection
       connect.connection.end();
       return val;
@@ -61,9 +61,9 @@ export class SkillsModel {
   /**
    * Fetch the results from MySQL `skill_group` table
    *
-   * @return `Promise<ISkillGroup[]>` - skill_group Results
+   * @return `Promise<Array<SkillGroup>>` - skill_group Results
    */
-  public async skillGroup(): Promise<ISkillGroup[]> {
+  public async skillGroup(): Promise<Array<SkillGroup>> {
     /**
      * Create the `MySQL` connection
      */
@@ -72,7 +72,7 @@ export class SkillsModel {
     /**
      * Create a promise for MySQL Fetch
      */
-    const a: Promise<ISkillGroup[]> = new Promise((resolve: any, reject: any): void => {
+    const a: Promise<Array<SkillGroup>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
           skill_group_id,
@@ -87,7 +87,7 @@ export class SkillsModel {
          * @param rows - Rows `any`
          * @param fields - `mysql.FieldInfo[]`
          */
-        (err: any, rows: ISkillGroup[], fields: any): void => {
+        (err: any, rows: Array<SkillGroup>, fields: any): void => {
           if (err) {
             reject(err);
           }
@@ -99,7 +99,7 @@ export class SkillsModel {
     /**
      * Return the results from MySQL
      */
-    return a.then<ISkillGroup[], never>((val: ISkillGroup[]): ISkillGroup[] => {
+    return a.then<Array<SkillGroup>, never>((val: Array<SkillGroup>): Array<SkillGroup> => {
       // End the current connection
       connect.connection.end();
       return val;

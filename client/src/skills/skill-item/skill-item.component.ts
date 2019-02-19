@@ -3,7 +3,7 @@ import {
   Input
 } from '@angular/core';
 
-import { ISkillItem } from '../../../../types/skill';
+import { SkillItem } from '../../../../types/skill';
 
 @Component({
   selector: 'app-skill-item-component',
@@ -12,6 +12,6 @@ import { ISkillItem } from '../../../../types/skill';
 })
 export class SkillItemComponent {
 
-  @Input() public skillItem: ISkillItem;
+  @Input() public skillItem: SkillItem;
 
 }

@@ -15,11 +15,11 @@ import { SkillGroupComponent } from './skill-group/skill-group.component';
 import { SkillItemComponent } from './skill-item/skill-item.component';
 import { SkillsService } from './skills.service';
 import {
-  ISkillResponse,
-  SkillResponse
+  SkillGroupItem,
+  Response
 } from '../../../types/skill';
 
-const skills: ISkillResponse[] = [{
+const skills: Array<SkillGroupItem> = [{
   skill_group: {
     skill_group_id: 0,
     skill_group_name: 'loaded',
@@ -36,12 +36,12 @@ const skills: ISkillResponse[] = [{
   }]
 }];
 
-const skillsResponse: SkillResponse = {
+const skillsResponse: Response = {
   response: skills
 };
 
 class FakeAppService {
-  public getSkills(): Observable<SkillResponse> {
+  public getSkills(): Observable<Response> {
     return of(skillsResponse);
   }
 }

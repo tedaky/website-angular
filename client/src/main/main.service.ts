@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 
-import { MessageResponse } from '../../../types/message';
+import { Response } from '../../../types/message';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +25,9 @@ export class MainService {
   /**
    * Get the message from server API
    *
-   * @returns `Observable<Message>`
+   * @returns `Observable<Response>`
    */
-  public getMessage(): Observable<MessageResponse> {
-    return this.httpClient.get<MessageResponse>(this.url);
+  public getMessage(): Observable<Response> {
+    return this.httpClient.get<Response>(this.url);
   }
 }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 
-import { SkillResponse } from '../../../types/skill';
+import { Response } from '../../../types/skill';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +23,11 @@ export class SkillsService {
   }
 
   /**
-   * Get the SkillsResponse from server API
+   * Get the Response from server API
    *
-   * @returns `Observable<SkillsResponse>`
+   * @returns `Observable<Response>`
    */
-  public getSkills(): Observable<SkillResponse> {
-    return this.httpClient.get<SkillResponse>(this.url);
+  public getSkills(): Observable<Response> {
+    return this.httpClient.get<Response>(this.url);
   }
 }

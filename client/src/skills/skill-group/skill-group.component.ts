@@ -3,7 +3,7 @@ import {
   Input
 } from '@angular/core';
 
-import { ISkillGroup } from '../../../../types/skill';
+import { SkillGroup } from '../../../../types/skill';
 
 @Component({
   selector: 'app-skill-group-component',
@@ -12,6 +12,6 @@ import { ISkillGroup } from '../../../../types/skill';
 })
 export class SkillGroupComponent {
 
-  @Input() public skillGroup: ISkillGroup;
+  @Input() public skillGroup: SkillGroup;
 
 }

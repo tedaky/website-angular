@@ -8,8 +8,8 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 import { MainService } from './main.service';
 import {
-  IMessageResponse,
-  MessageResponse
+  Message,
+  Response
 } from '../../../types/message';
 
 @Component({
@@ -26,7 +26,7 @@ export class MainComponent implements OnInit, OnDestroy {
   /**
    * The Messages
    */
-  public messages: IMessageResponse[];
+  public messages: Array<Message>;
 
   /**
    * Subscribe to the Message Service
@@ -48,9 +48,9 @@ export class MainComponent implements OnInit, OnDestroy {
    */
   private getMessage(): void {
     this.mainServiceSub = this.mainService.getMessage()
-      .pipe<MessageResponse>(distinctUntilChanged<MessageResponse>())
+      .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
-        (res: MessageResponse): void => {
+        (res: Response): void => {
           this.messages = res.response;
         },
         (err: any): any => {

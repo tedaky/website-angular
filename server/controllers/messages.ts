@@ -1,5 +1,5 @@
 import { MessagesModel } from '../models/messages';
-import { IMessageResponse } from '../../types/message';
+import { Message } from '../../types/message';
 
 /**
  * The MessageController of the Express application.
@@ -15,14 +15,14 @@ export class MessagesController {
     const messagesModel: MessagesModel = new MessagesModel();
 
     // message holder
-    let message: IMessageResponse[];
+    let message: Array<Message>;
 
     const render = async (): Promise<void> => {};
     render()
     .then<void, never>(async () => {
       // Get the message
       await messagesModel.message()
-        .then<void, never>((val: IMessageResponse[]): void => {
+        .then<void, never>((val: Array<Message>): void => {
           message = val;
         });
     })

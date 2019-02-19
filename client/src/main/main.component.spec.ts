@@ -14,22 +14,22 @@ import { MainComponent } from './main.component';
 import { MainService } from './main.service';
 import { SkillsModule } from '../skills/skills.module';
 import {
-  IMessageResponse,
-  MessageResponse
+  Message,
+  Response
 } from '../../../types/message';
 
-const messages: IMessageResponse[] = [{
+const messages: Array<Message> = [{
   message_id: 1,
   message_description: 'Api Works!',
   message_modified_at: new Date()
 }];
 
-const messagesResponse: MessageResponse = {
+const messagesResponse: Response = {
   response: messages
 };
 
 class FakeAppService {
-  public getMessage(): Observable<MessageResponse> {
+  public getMessage(): Observable<Response> {
     return of(messagesResponse);
   }
 }
