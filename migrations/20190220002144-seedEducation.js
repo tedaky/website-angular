@@ -15,6 +15,12 @@ function twoDigits(d) {
   return d.toString();
 }
 
+Date.prototype.toMysqlDateFormat = function () {
+  return this.getUTCFullYear() + '-' +
+    twoDigits(1 + this.getUTCMonth()) + '-' +
+    twoDigits(this.getUTCDate());
+};
+
 Date.prototype.toMysqlDateTimeFormat = function () {
   return this.getUTCFullYear() + '-' +
     twoDigits(1 + this.getUTCMonth()) + '-' +
@@ -35,40 +41,26 @@ exports.setup = function (options, seedLink) {
 };
 
 /**
- * Seed 'skill_group'
+ * Seed 'education'
  */
 exports.up = function (db) {
   var today = new Date().toMysqlDateTimeFormat();
-  var columns = ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'];
-  return db.insert('skill_group',
+  var columns = ['education_degree', 'education_field', 'education_cgpa', 'education_order', 'education_school_id', 'education_start_date', 'education_end_date', 'education_created_at', 'education_modified_at', 'education_seed'];
+  return db.insert('education',
       columns,
-      ['Project Management', 1, today, today, '20190212010535-seedSkillGroup']
+      ['Master of Science', 'Information Technology', 3.87, 1, 1, new Date('August 2016').toMysqlDateFormat(), new Date('June 2018').toMysqlDateFormat(), today, today, '20190220001849-seedEducation']
     )
     .then(function () {
-      return db.insert('skill_group',
+      return db.insert('education',
         columns,
-        ['Software', 2, today, today, '20190212010535-seedSkillGroup']);
+        ['Graduate Certificate', 'Database Technology', null, 2, 1, new Date('August 2016').toMysqlDateFormat(), new Date('June 2018').toMysqlDateFormat(), today, today, '20190220001849-seedEducation']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill_group',
+      return db.insert('education',
         columns,
-        ['Description', 3, today, today, '20190212010535-seedSkillGroup']);
-    }, function (err) {
-      return err;
-    })
-    .then(function () {
-      return db.insert('skill_group',
-        columns,
-        ['Frameworks', 4, today, today, '20190212010535-seedSkillGroup']);
-    }, function (err) {
-      return err;
-    })
-    .then(function () {
-      return db.insert('skill_group',
-        columns,
-        ['Languages', 5, today, today, '20190212010535-seedSkillGroup']);
+        ['Bachelor of Science', 'Game Design and Development', 3.46, 3, 2, new Date('July 2008').toMysqlDateFormat(), new Date('July 2011').toMysqlDateFormat(), today, today, '20190220001849-seedEducation']);
     }, function (err) {
       return err;
     })
@@ -78,10 +70,10 @@ exports.up = function (db) {
 };
 
 /**
- * Remove Seed 'skill_group'
+ * Remove Seed 'education'
  */
 exports.down = function (db) {
-  return db.runSql('DELETE FROM `skill_group` WHERE `skill_seed` = ?', ['20190212010535-seedSkillGroup'])
+  return db.runSql('DELETE FROM `education` WHERE `education_seed` = ?', ['20190220001849-seedEducation'])
     .then([], function (err) {
       return err;
     });

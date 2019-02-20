@@ -15,9 +15,12 @@ exports.setup = function (options, seedLink) {
   seed = seedLink;
 };
 
+/**
+ * Create and set columns for the table 'company'
+ */
 exports.up = function (db) {
-  return db.createTable('experience', {
-      experience_id: {
+  return db.createTable('company', {
+      company_id: {
         type: 'int',
         length: 11,
         notNull: true,
@@ -25,48 +28,30 @@ exports.up = function (db) {
         primaryKey: true,
         autoIncrement: true
       },
-      experience_title: {
+      company_name: {
         type: 'string',
         length: 255,
         notNull: true
       },
-      experience_company: {
+      company_link: {
         type: 'string',
-        length: 255,
-        notNull: true
+        length: 75
       },
-      experience_link: {
+      company_logo: {
         type: 'string',
-        length: 75,
-        notNull: true
+        length: 75
       },
-      experience_logo_src: {
-        type: 'string',
-        length: 255,
-        notNull: true
-      },
-      experience_description: {
+      company_description: {
         type: 'text',
-        length: 65535,
-        notNull: true
+        length: 65535
       },
-      experience_order: {
-        type: 'int',
-        length: 11
-      },
-      experience_start_date: {
-        type: 'date'
-      },
-      experience_end_date: {
-        type: 'date'
-      },
-      experience_created_at: {
+      company_created_at: {
         type: 'datetime'
       },
-      experience_modified_at: {
+      company_modified_at: {
         type: 'datetime'
       },
-      experience_seed: {
+      company_seed: {
         type: 'string',
         length: 75
       }
@@ -76,8 +61,11 @@ exports.up = function (db) {
     });
 };
 
+/**
+ * Drop the table 'company'
+ */
 exports.down = function (db) {
-  return db.dropTable('experience')
+  return db.dropTable('company')
     .then([], function (err) {
       return err;
     });
