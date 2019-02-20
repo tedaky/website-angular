@@ -15,6 +15,12 @@ function twoDigits(d) {
   return d.toString();
 }
 
+Date.prototype.toMysqlDateFormat = function () {
+  return this.getUTCFullYear() + '-' +
+    twoDigits(1 + this.getUTCMonth()) + '-' +
+    twoDigits(this.getUTCDate());
+};
+
 Date.prototype.toMysqlDateTimeFormat = function () {
   return this.getUTCFullYear() + '-' +
     twoDigits(1 + this.getUTCMonth()) + '-' +
@@ -25,50 +31,50 @@ Date.prototype.toMysqlDateTimeFormat = function () {
 };
 
 /**
- * We receive the dbmigrate dependency from dbmigrate initially.
- * This enables us to not have to rely on NODE_PATH.
- */
-exports.setup = function (options, seedLink) {
+  * We receive the dbmigrate dependency from dbmigrate initially.
+  * This enables us to not have to rely on NODE_PATH.
+  */
+exports.setup = function(options, seedLink) {
   dbm = options.dbmigrate;
   type = dbm.dataType;
   seed = seedLink;
 };
 
 /**
- * Seed 'skill_group'
+ * Seed 'position'
  */
-exports.up = function (db) {
+exports.up = function(db) {
   var today = new Date().toMysqlDateTimeFormat();
-  var columns = ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'];
-  return db.insert('skill_group',
+  var columns = ['position_title', 'position_created_at', 'position_modified_at', 'position_seed'];
+  return db.insert('position',
       columns,
-      ['Project Management', 1, today, today, '20190212010535-seedSkillGroup']
+      ['Web Developer', today, today, '20190218002405-seedPosition']
     )
     .then(function () {
-      return db.insert('skill_group',
+      return db.insert('position',
         columns,
-        ['Software', 2, today, today, '20190212010535-seedSkillGroup']);
+        ['Front End Team Leader', today, today, '20190218002405-seedPosition']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill_group',
+      return db.insert('position',
         columns,
-        ['Description', 3, today, today, '20190212010535-seedSkillGroup']);
+        ['Image Detailer', today, today, '20190218002405-seedPosition']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill_group',
+      return db.insert('position',
         columns,
-        ['Frameworks', 4, today, today, '20190212010535-seedSkillGroup']);
+        ['QA Lead', today, today, '20190218002405-seedPosition']);
     }, function (err) {
       return err;
     })
     .then(function () {
-      return db.insert('skill_group',
+      return db.insert('position',
         columns,
-        ['Languages', 5, today, today, '20190212010535-seedSkillGroup']);
+        ['UX Developer', today, today, '20190218002405-seedPosition']);
     }, function (err) {
       return err;
     })
@@ -78,10 +84,10 @@ exports.up = function (db) {
 };
 
 /**
- * Remove Seed 'skill_group'
+ * Remove Seed 'position'
  */
-exports.down = function (db) {
-  return db.runSql('DELETE FROM `skill_group` WHERE `skill_seed` = ?', ['20190212010535-seedSkillGroup'])
+exports.down = function(db) {
+  return db.runSql('DELETE FROM `position` WHERE `position_seed` = ?', ['20190218002405-seedPosition'])
     .then([], function (err) {
       return err;
     });

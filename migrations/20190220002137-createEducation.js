@@ -16,11 +16,11 @@ exports.setup = function (options, seedLink) {
 };
 
 /**
- * Create and set columns for the table 'skill_item'
+ * Create and set columns for the table 'education'
  */
 exports.up = function (db) {
-  return db.createTable('skill_item', {
-      skill_item_id: {
+  return db.createTable('education', {
+      education_id: {
         type: 'int',
         length: 11,
         notNull: true,
@@ -28,39 +28,49 @@ exports.up = function (db) {
         primaryKey: true,
         autoIncrement: true
       },
-      skill_item_name: {
+      education_degree: {
         type: 'string',
-        length: 255,
-        notNull: true
+        length: 255
       },
-      skill_item_level: {
+      education_field: {
+        type: 'string',
+        length: 255
+      },
+      education_cgpa: {
         type: 'decimal',
         length: [11, 2]
       },
-      skill_item_order: {
+      education_order: {
         type: 'int',
         length: 11
       },
-      skill_item_skill_group_id: {
+      education_school_id: {
         type: 'int',
         length: 11,
+        notNull: true,
         foreignKey: {
-          name: 'skill_item_skill_group_id_fk',
-          table: 'skill_group',
+          name: 'education_school_id_fk',
+          table: 'school',
           rules: {
             onDelete: 'CASCADE',
             onUpdate: 'RESTRICT'
           },
-          mapping: 'skill_group_id'
+          mapping: 'school_id'
         }
       },
-      skill_item_created_at: {
+      education_start_date: {
+        type: 'date'
+      },
+      education_end_date: {
+        type: 'date'
+      },
+      education_created_at: {
         type: 'datetime'
       },
-      skill_item_modified_at: {
+      education_modified_at: {
         type: 'datetime'
       },
-      skill_item_seed: {
+      education_seed: {
         type: 'string',
         length: 75
       }
@@ -71,10 +81,10 @@ exports.up = function (db) {
 };
 
 /**
- * Drop the table 'skill_item'
+ * Drop the table 'education'
  */
 exports.down = function (db) {
-  return db.dropTable('skill_item')
+  return db.dropTable('education')
     .then([], function (err) {
       return err;
     });

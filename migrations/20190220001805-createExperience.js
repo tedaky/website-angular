@@ -16,11 +16,11 @@ exports.setup = function (options, seedLink) {
 };
 
 /**
- * Create and set columns for the table 'skill_item'
+ * Create and set columns for the table 'experience'
  */
 exports.up = function (db) {
-  return db.createTable('skill_item', {
-      skill_item_id: {
+  return db.createTable('experience', {
+      experience_id: {
         type: 'int',
         length: 11,
         notNull: true,
@@ -28,39 +28,56 @@ exports.up = function (db) {
         primaryKey: true,
         autoIncrement: true
       },
-      skill_item_name: {
-        type: 'string',
-        length: 255,
-        notNull: true
+      experience_description: {
+        type: 'text',
+        length: 65535
       },
-      skill_item_level: {
-        type: 'decimal',
-        length: [11, 2]
-      },
-      skill_item_order: {
+      experience_order: {
         type: 'int',
         length: 11
       },
-      skill_item_skill_group_id: {
+      experience_position_id: {
         type: 'int',
         length: 11,
+        notNull: true,
         foreignKey: {
-          name: 'skill_item_skill_group_id_fk',
-          table: 'skill_group',
+          name: 'experience_position_id_fk',
+          table: 'position',
           rules: {
             onDelete: 'CASCADE',
             onUpdate: 'RESTRICT'
           },
-          mapping: 'skill_group_id'
+          mapping: 'position_id'
         }
       },
-      skill_item_created_at: {
+      experience_company_id: {
+        type: 'int',
+        length: 11,
+        notNull: true,
+        foreignKey: {
+          name: 'experience_company_id_fk',
+          table: 'company',
+          rules: {
+            onDelete: 'CASCADE',
+            onUpdate: 'RESTRICT'
+          },
+          mapping: 'company_id'
+        }
+      },
+      experience_start_date: {
+        type: 'date',
+        notNull: true
+      },
+      experience_end_date: {
+        type: 'date'
+      },
+      experience_created_at: {
         type: 'datetime'
       },
-      skill_item_modified_at: {
+      experience_modified_at: {
         type: 'datetime'
       },
-      skill_item_seed: {
+      experience_seed: {
         type: 'string',
         length: 75
       }
@@ -71,10 +88,10 @@ exports.up = function (db) {
 };
 
 /**
- * Drop the table 'skill_item'
+ * Drop the table 'experience'
  */
 exports.down = function (db) {
-  return db.dropTable('skill_item')
+  return db.dropTable('experience')
     .then([], function (err) {
       return err;
     });
