@@ -1,4 +1,4 @@
-export const host = 'localhost';
-export const user = 'root';
-export const pass = '';
-export const db = 'db';
+export const host = (<string>'localhost');
+export const user = (<string>'root');
+export const pass = (<string>'');
+export const db = (<string>'db');

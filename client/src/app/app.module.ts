@@ -101,7 +101,7 @@ export class AppModule {
     /**
      * Set the string of the `platform` being used
      */
-    const platform = isPlatformBrowser(this.platformId) ? 'in the browser' : 'on the server';
+    const platform: string = isPlatformBrowser(this.platformId) ? 'in the browser' : 'on the server';
     console.log(`Running ${platform} with appId=${this.appId}`);
   }
 }
