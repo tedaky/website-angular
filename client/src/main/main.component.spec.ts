@@ -17,6 +17,8 @@ import {
   Message,
   Response
 } from '../../../types/message';
+import { ExperienceModule } from '../experience/experience.module';
+import { EducationModule } from '../education/education.module';
 
 const message: Array<Message> = [{
   message_id: 1,
@@ -44,7 +46,9 @@ describe('MainComponent', (): void => {
         imports: [
           RouterTestingModule,
           HttpClientTestingModule,
-          SkillModule
+          SkillModule,
+          ExperienceModule,
+          EducationModule
         ],
         declarations: [
           MainComponent
@@ -77,7 +81,9 @@ describe('MainComponent', (): void => {
         imports: [
           RouterTestingModule,
           HttpClientTestingModule,
-          SkillModule
+          SkillModule,
+          ExperienceModule,
+          EducationModule
         ],
         declarations: [
           MainComponent
