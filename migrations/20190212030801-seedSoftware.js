@@ -5,25 +5,6 @@ var dbm;
 var type;
 var seed;
 
-function twoDigits(d) {
-  if (0 <= d && d < 10) {
-    return '0' + d.toString();
-  }
-  if (-10 < d && d < 10) {
-    return '-0' + (-1 * d).toString();
-  }
-  return d.toString();
-}
-
-Date.prototype.toMysqlDateTimeFormat = function () {
-  return this.getUTCFullYear() + '-' +
-    twoDigits(1 + this.getUTCMonth()) + '-' +
-    twoDigits(this.getUTCDate()) + ' ' +
-    twoDigits(this.getUTCHours()) + ':' +
-    twoDigits(this.getUTCMinutes()) + ':' +
-    twoDigits(this.getUTCSeconds());
-};
-
 /**
  * We receive the dbmigrate dependency from dbmigrate initially.
  * This enables us to not have to rely on NODE_PATH.
@@ -38,72 +19,71 @@ exports.setup = function (options, seedLink) {
  * Seed 'Software'
  */
 exports.up = function (db) {
-  var today = new Date().toMysqlDateTimeFormat();
-  var columns = ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_created_at', 'skill_item_modified_at', 'skill_item_seed'];
+  var columns = ['skill_item_name', 'skill_item_level', 'skill_item_order', 'skill_item_skill_group_id', 'skill_item_seed'];
   return db.insert('skill_item',
       columns,
-      ['Unreal Engine', 66, 1, 2, today, today, '20190212030801-seedSoftware']
+      ['Unreal Engine', 66, 1, 2, '20190212030801-seedSoftware']
     )
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['Unity', 60, 2, 2, today, today, '20190212030801-seedSoftware']);
+        ['Unity', 60, 2, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['Photoshop', 77, 3, 2, today, today, '20190212030801-seedSoftware']);
+        ['Photoshop', 77, 3, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['xNormal', 80, 4, 2, today, today, '20190212030801-seedSoftware']);
+        ['xNormal', 80, 4, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['3DS Max', 75, 5, 2, today, today, '20190212030801-seedSoftware']);
+        ['3DS Max', 75, 5, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['Blender', 55, 6, 2, today, today, '20190212030801-seedSoftware']);
+        ['Blender', 55, 6, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['Substance Designer', 73, 7, 2, today, today, '20190212030801-seedSoftware']);
+        ['Substance Designer', 73, 7, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['VS Code', 74, 8, 2, today, today, '20190212030801-seedSoftware']);
+        ['VS Code', 74, 8, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['Visual Studio', 60, 9, 2, today, today, '20190212030801-seedSoftware']);
+        ['Visual Studio', 60, 9, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_item',
         columns,
-        ['Xcode', 55, 10, 2, today, today, '20190212030801-seedSoftware']);
+        ['Xcode', 55, 10, 2, '20190212030801-seedSoftware']);
     }, function (err) {
       return err;
     })

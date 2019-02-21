@@ -10,16 +10,16 @@ import {
   of
 } from 'rxjs';
 
-import { SkillsComponent } from './skills.component';
+import { SkillComponent } from './skill.component';
 import { SkillGroupComponent } from './skill-group/skill-group.component';
 import { SkillItemComponent } from './skill-item/skill-item.component';
-import { SkillsService } from './skills.service';
+import { SkillService } from './skill.service';
 import {
   SkillGroupItem,
   Response
 } from '../../../types/skill';
 
-const skills: Array<SkillGroupItem> = [{
+const skill: Array<SkillGroupItem> = [{
   skill_group: {
     skill_group_id: 0,
     skill_group_name: 'loaded',
@@ -36,19 +36,19 @@ const skills: Array<SkillGroupItem> = [{
   }]
 }];
 
-const skillsResponse: Response = {
-  response: skills
+const response: Response = {
+  response: skill
 };
 
 class FakeAppService {
   public getSkills(): Observable<Response> {
-    return of(skillsResponse);
+    return of(response);
   }
 }
 
-describe('SkillsComponent', (): void => {
-  let component: SkillsComponent;
-  let fixture: ComponentFixture<SkillsComponent>;
+describe('SkillComponent', (): void => {
+  let component: SkillComponent;
+  let fixture: ComponentFixture<SkillComponent>;
 
   describe('Before API Request', (): void => {
     beforeEach(async((): void => {
@@ -58,7 +58,7 @@ describe('SkillsComponent', (): void => {
           HttpClientTestingModule
         ],
         declarations: [
-          SkillsComponent,
+          SkillComponent,
           SkillGroupComponent,
           SkillItemComponent
         ]
@@ -66,17 +66,17 @@ describe('SkillsComponent', (): void => {
     }));
 
     beforeEach((): void => {
-      fixture = TestBed.createComponent<SkillsComponent>(SkillsComponent);
+      fixture = TestBed.createComponent<SkillComponent>(SkillComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
 
     it('should create the app', (): void => {
-      expect<SkillsComponent>(component).toBeDefined();
+      expect<SkillComponent>(component).toBeDefined();
     });
 
     it(`should set default skill_group_name = 'loading'`, (): void => {
-      expect<string>(component.skills[0].skill_group.skill_group_name).toEqual('loading');
+      expect<string>(component.skill[0].skill_group.skill_group_name).toEqual('loading');
     });
   });
 
@@ -88,13 +88,13 @@ describe('SkillsComponent', (): void => {
           HttpClientTestingModule
         ],
         declarations: [
-          SkillsComponent,
+          SkillComponent,
           SkillGroupComponent,
           SkillItemComponent
         ],
         providers: [
           {
-            provide: SkillsService,
+            provide: SkillService,
             useClass: FakeAppService
           }
         ]
@@ -102,14 +102,14 @@ describe('SkillsComponent', (): void => {
     }));
 
     beforeEach((): void => {
-      fixture = TestBed.createComponent<SkillsComponent>(SkillsComponent);
+      fixture = TestBed.createComponent<SkillComponent>(SkillComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
 
     it('should set the skill_group_name', (): void => {
       component.ngOnInit();
-      expect<string>(component.skills[0].skill_group.skill_group_name).not.toEqual('loading');
+      expect<string>(component.skill[0].skill_group.skill_group_name).not.toEqual('loading');
     });
   });
 });

@@ -5,31 +5,6 @@ var dbm;
 var type;
 var seed;
 
-function twoDigits(d) {
-  if (0 <= d && d < 10) {
-    return '0' + d.toString();
-  }
-  if (-10 < d && d < 10) {
-    return '-0' + (-1 * d).toString();
-  }
-  return d.toString();
-}
-
-Date.prototype.toMysqlDateFormat = function () {
-  return this.getUTCFullYear() + '-' +
-    twoDigits(1 + this.getUTCMonth()) + '-' +
-    twoDigits(this.getUTCDate());
-};
-
-Date.prototype.toMysqlDateTimeFormat = function () {
-  return this.getUTCFullYear() + '-' +
-    twoDigits(1 + this.getUTCMonth()) + '-' +
-    twoDigits(this.getUTCDate()) + ' ' +
-    twoDigits(this.getUTCHours()) + ':' +
-    twoDigits(this.getUTCMinutes()) + ':' +
-    twoDigits(this.getUTCSeconds());
-};
-
 /**
  * We receive the dbmigrate dependency from dbmigrate initially.
  * This enables us to not have to rely on NODE_PATH.
@@ -44,51 +19,50 @@ exports.setup = function (options, seedLink) {
  * Seed 'company'
  */
 exports.up = function (db) {
-  var today = new Date().toMysqlDateTimeFormat();
-  var columns = ['company_name', 'company_link', 'company_logo', 'company_description', 'company_created_at', 'company_modified_at', 'company_seed'];
+  var columns = ['company_name', 'company_link', 'company_logo', 'company_description', 'company_seed'];
   return db.insert('company',
       columns,
-      ['company_name', 'company_link', 'company_logo', 'company_description', today, today, '20190219124023-seedCompany']
+      ['Encore Software, LLC', 'https://www.encore.com/', 'encore.png', 'Encore provides software titles that improve the quality of life for customers worldwide.', '20190219124023-seedCompany']
     )
     .then(function () {
       return db.insert('company',
         columns,
-        ['company_name', 'company_link', 'company_logo', 'company_description', today, today, '20190219124023-seedCompany']);
+        ['B507', 'https://www.b507.us/', 'b507.png', 'B507 is a group of student professionals solving problems through media, design and technology.', '20190219124023-seedCompany']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('company',
         columns,
-        ['company_name', 'company_link', 'company_logo', 'company_description', today, today, '20190219124023-seedCompany']);
+        ['ValuSoft Cosmi', 'https://www.mastercook.com/', 'valusoft_cosmi.png', null, '20190219124023-seedCompany']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('company',
         columns,
-        ['company_name', 'company_link', 'company_logo', 'company_description', today, today, '20190219124023-seedCompany']);
+        ['Theory.io', 'http://theory.io/', 'theoryio.png', null, '20190219124023-seedCompany']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('company',
         columns,
-        ['company_name', 'company_link', 'company_logo', 'company_description', today, today, '20190219124023-seedCompany']);
+        ['Preferred Interactive LLC', 'https://www.yourpersonaldesigner.com/', 'preferred_interactive.png', null, '20190219124023-seedCompany']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('company',
         columns,
-        ['company_name', 'company_link', 'company_logo', 'company_description', today, today, '20190219124023-seedCompany']);
+        ['ValuSoft', 'https://www.thqnordic.com/', 'valusoft_thq.png', 'THQ is meant to represent a core approach of doing much more than “owning” a highly competitive portfolio of IPs. It revolves around cherishing them, and aligning them with the very best development resources to expand upon them with the level of experience that communities and established fan bases expect and deserve.', '20190219124023-seedCompany']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('company',
         columns,
-        ['company_name', 'company_link', 'company_logo', 'company_description', today, today, '20190219124023-seedCompany']);
+        ['Haworth Marketing + Media', 'http://www.haworthmedia.com/', 'haworth.png', 'Haworth Marketing + Media is an employee-owned collective of individuals who share an unrelenting devotion for taking on the age-old media challenge: driving consumer behavior through marketing + media.', '20190219124023-seedCompany']);
     }, function (err) {
       return err;
     })

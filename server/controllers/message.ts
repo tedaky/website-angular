@@ -1,10 +1,10 @@
-import { MessagesModel } from '../models/messages';
+import { MessageModel } from '../models/message';
 import { Message } from '../../types/message';
 
 /**
  * The MessageController of the Express application.
  */
-export class MessagesController {
+export class MessageController {
   /**
    * Get the Message
    * @param req - The Request `NextFunction`
@@ -12,7 +12,7 @@ export class MessagesController {
    * @param next - Move to the Next route `Request`
    */
   public getMessages(req: any, res: any, next: any): void {
-    const messagesModel: MessagesModel = new MessagesModel();
+    const messageModel: MessageModel = new MessageModel();
 
     // message holder
     let message: Array<Message>;
@@ -21,7 +21,7 @@ export class MessagesController {
     render()
     .then<void, never>(async () => {
       // Get the message
-      await messagesModel.message()
+      await messageModel.message()
         .then<void, never>((val: Array<Message>): void => {
           message = val;
         });

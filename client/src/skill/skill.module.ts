@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { SkillsComponent } from './skills.component';
+import { SkillComponent } from './skill.component';
 import { SkillGroupComponent } from './skill-group/skill-group.component';
 import { SkillItemComponent } from './skill-item/skill-item.component';
 
 @NgModule({
   declarations: [
-    SkillsComponent,
+    SkillComponent,
     SkillGroupComponent,
     SkillItemComponent
   ],
@@ -17,7 +17,7 @@ import { SkillItemComponent } from './skill-item/skill-item.component';
     HttpClientModule
   ],
   exports: [
-    SkillsComponent
+    SkillComponent
   ]
 })
-export class SkillsModule { }
+export class SkillModule { }

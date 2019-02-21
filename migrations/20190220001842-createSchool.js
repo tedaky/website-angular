@@ -30,17 +30,26 @@ exports.up = function(db) {
     },
     school_name: {
       type: 'string',
-      length: 255
+      length: 255,
+      notNull: true
     },
     school_link: {
       type: 'string',
       length: 255
     },
+    school_logo: {
+      type: 'string',
+      length: 255
+    },
     school_created_at: {
-      type: 'datetime'
+      type: 'datetime',
+      notNull: true,
+      defaultValue: 'CURRENT_TIMESTAMP'
     },
     school_modified_at: {
-      type: 'datetime'
+      type: 'datetime',
+      notNull: true,
+      defaultValue: 'CURRENT_TIMESTAMP'
     },
     school_seed: {
       type: 'string',

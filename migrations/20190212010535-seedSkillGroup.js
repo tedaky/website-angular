@@ -5,25 +5,6 @@ var dbm;
 var type;
 var seed;
 
-function twoDigits(d) {
-  if (0 <= d && d < 10) {
-    return '0' + d.toString();
-  }
-  if (-10 < d && d < 10) {
-    return '-0' + (-1 * d).toString();
-  }
-  return d.toString();
-}
-
-Date.prototype.toMysqlDateTimeFormat = function () {
-  return this.getUTCFullYear() + '-' +
-    twoDigits(1 + this.getUTCMonth()) + '-' +
-    twoDigits(this.getUTCDate()) + ' ' +
-    twoDigits(this.getUTCHours()) + ':' +
-    twoDigits(this.getUTCMinutes()) + ':' +
-    twoDigits(this.getUTCSeconds());
-};
-
 /**
  * We receive the dbmigrate dependency from dbmigrate initially.
  * This enables us to not have to rely on NODE_PATH.
@@ -38,37 +19,36 @@ exports.setup = function (options, seedLink) {
  * Seed 'skill_group'
  */
 exports.up = function (db) {
-  var today = new Date().toMysqlDateTimeFormat();
-  var columns = ['skill_group_name', 'skill_group_order', 'skill_group_created_at', 'skill_group_modified_at', 'skill_group_seed'];
+  var columns = ['skill_group_name', 'skill_group_order', 'skill_group_seed'];
   return db.insert('skill_group',
       columns,
-      ['Project Management', 1, today, today, '20190212010535-seedSkillGroup']
+      ['Project Management', 1, '20190212010535-seedSkillGroup']
     )
     .then(function () {
       return db.insert('skill_group',
         columns,
-        ['Software', 2, today, today, '20190212010535-seedSkillGroup']);
+        ['Software', 2, '20190212010535-seedSkillGroup']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_group',
         columns,
-        ['Description', 3, today, today, '20190212010535-seedSkillGroup']);
+        ['Description', 3, '20190212010535-seedSkillGroup']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_group',
         columns,
-        ['Frameworks', 4, today, today, '20190212010535-seedSkillGroup']);
+        ['Frameworks', 4, '20190212010535-seedSkillGroup']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('skill_group',
         columns,
-        ['Languages', 5, today, today, '20190212010535-seedSkillGroup']);
+        ['Languages', 5, '20190212010535-seedSkillGroup']);
     }, function (err) {
       return err;
     })

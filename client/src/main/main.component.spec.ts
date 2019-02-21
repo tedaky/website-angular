@@ -12,25 +12,27 @@ import {
 
 import { MainComponent } from './main.component';
 import { MainService } from './main.service';
-import { SkillsModule } from '../skills/skills.module';
+import { SkillModule } from '../skill/skill.module';
 import {
   Message,
   Response
 } from '../../../types/message';
+import { ExperienceModule } from '../experience/experience.module';
+import { EducationModule } from '../education/education.module';
 
-const messages: Array<Message> = [{
+const message: Array<Message> = [{
   message_id: 1,
   message_description: 'Api Works!',
   message_modified_at: new Date()
 }];
 
-const messagesResponse: Response = {
-  response: messages
+const response: Response = {
+  response: message
 };
 
 class FakeAppService {
-  public getMessage(): Observable<Response> {
-    return of(messagesResponse);
+  public getMessages(): Observable<Response> {
+    return of(response);
   }
 }
 
@@ -44,7 +46,9 @@ describe('MainComponent', (): void => {
         imports: [
           RouterTestingModule,
           HttpClientTestingModule,
-          SkillsModule
+          SkillModule,
+          ExperienceModule,
+          EducationModule
         ],
         declarations: [
           MainComponent
@@ -67,7 +71,7 @@ describe('MainComponent', (): void => {
     });
 
     it(`should set default message_description = 'loading'`, (): void => {
-      expect<string>(component.messages[0].message_description).toEqual('loading');
+      expect<string>(component.message[0].message_description).toEqual('loading');
     });
   });
 
@@ -77,7 +81,9 @@ describe('MainComponent', (): void => {
         imports: [
           RouterTestingModule,
           HttpClientTestingModule,
-          SkillsModule
+          SkillModule,
+          ExperienceModule,
+          EducationModule
         ],
         declarations: [
           MainComponent
@@ -99,7 +105,7 @@ describe('MainComponent', (): void => {
 
     it('should set the message_description', (): void => {
       component.ngOnInit();
-      expect<string>(component.messages[0].message_description).not.toEqual('loading');
+      expect<string>(component.message[0].message_description).not.toEqual('loading');
     });
   });
 });

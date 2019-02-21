@@ -11,13 +11,13 @@ import {
 
 import { environment } from '../../../environments/environment';
 
-import { SkillsService } from './skills.service';
+import { SkillService } from './skill.service';
 import {
   SkillGroupItem,
   Response
 } from '../../../types/skill';
 
-const skills: Array<SkillGroupItem> = [{
+const skill: Array<SkillGroupItem> = [{
   skill_group: {
     skill_group_id: 0,
     skill_group_name: 'loaded',
@@ -35,12 +35,12 @@ const skills: Array<SkillGroupItem> = [{
 }];
 
 const response: Response = {
-  response: skills
+  response: skill
 };
 
 describe('SkillsService', (): void => {
   let injector: TestBed;
-  let service: SkillsService;
+  let service: SkillService;
   let httpMock: HttpTestingController;
 
   beforeEach(async((): void => {
@@ -49,19 +49,19 @@ describe('SkillsService', (): void => {
         HttpClientTestingModule
       ],
       providers: [
-        SkillsService
+        SkillService
       ]
     });
   }));
 
   beforeEach((): void => {
     injector = getTestBed();
-    service = injector.get(SkillsService);
+    service = injector.get(SkillService);
     httpMock = injector.get(HttpTestingController);
   });
 
   it('should be created', (): void => {
-    expect<SkillsService>(service).toBeTruthy();
+    expect<SkillService>(service).toBeTruthy();
   });
 
   describe('#getSkills', (): void => {
@@ -70,7 +70,7 @@ describe('SkillsService', (): void => {
 
       service.getSkills().subscribe((res: Response): void => {
         expect<Array<SkillGroupItem>>(res.response).toBeDefined();
-        expect<Array<SkillGroupItem>>(res.response).toEqual(skills);
+        expect<Array<SkillGroupItem>>(res.response).toEqual(skill);
       });
 
       const req: TestRequest = httpMock.expectOne(`${environment.origin}api/skills`);

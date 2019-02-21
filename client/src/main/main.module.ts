@@ -6,7 +6,9 @@ import { MainComponent } from './main.component';
 
 import { MainRoutingModule } from './main-routing.module';
 
-import { SkillsModule } from '../skills/skills.module';
+import { SkillModule } from '../skill/skill.module';
+import { ExperienceModule } from '../experience/experience.module';
+import { EducationModule } from '../education/education.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { SkillsModule } from '../skills/skills.module';
     CommonModule,
     HttpClientModule,
     MainRoutingModule,
-    SkillsModule
+    SkillModule,
+    ExperienceModule,
+    EducationModule
   ]
 })
 export class MainModule { }

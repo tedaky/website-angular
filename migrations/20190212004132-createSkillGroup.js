@@ -35,13 +35,18 @@ exports.up = function (db) {
       },
       skill_group_order: {
         type: 'int',
-        length: 11
+        length: 11,
+        notNull: true
       },
       skill_group_created_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       skill_group_modified_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       skill_group_seed: {
         type: 'string',

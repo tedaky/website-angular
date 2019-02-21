@@ -34,7 +34,8 @@ exports.up = function (db) {
       },
       experience_order: {
         type: 'int',
-        length: 11
+        length: 11,
+        notNull: true
       },
       experience_position_id: {
         type: 'int',
@@ -72,10 +73,14 @@ exports.up = function (db) {
         type: 'date'
       },
       experience_created_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       experience_modified_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       experience_seed: {
         type: 'string',

@@ -17,6 +17,10 @@ const mainRoutes: Routes = [
   {
     path: 'second',
     component: MainComponent
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

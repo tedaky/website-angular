@@ -6,31 +6,31 @@ import {
 import { Subscription } from 'rxjs/internal/Subscription';
 import { distinctUntilChanged } from 'rxjs/operators';
 
-import { SkillsService } from './skills.service';
+import { SkillService } from './skill.service';
 import {
   SkillGroupItem,
   Response
 } from '../../../types/skill';
 
 @Component({
-  selector: 'app-skills-component',
-  templateUrl: './skills.component.html',
-  styleUrls: ['./skills.component.sass']
+  selector: 'app-skill-component',
+  templateUrl: './skill.component.html',
+  styleUrls: ['./skill.component.sass']
 })
-export class SkillsComponent implements OnInit, OnDestroy {
+export class SkillComponent implements OnInit, OnDestroy {
 
   /**
    * The Skills
    */
-  public skills: Array<SkillGroupItem>;
+  public skill: Array<SkillGroupItem>;
 
   /**
    * Subscribe to the Skills Service
    */
-  private skillsServiceSub: Subscription;
+  private skillServiceSub: Subscription;
 
   public constructor(
-    private skillsService: SkillsService
+    private skillService: SkillService
   ) { }
 
   public ngOnInit(): void {
@@ -42,11 +42,11 @@ export class SkillsComponent implements OnInit, OnDestroy {
    * Create subscription for the Skills
    */
   private getSkills(): void {
-    this.skillsServiceSub = this.skillsService.getSkills()
+    this.skillServiceSub = this.skillService.getSkills()
       .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
         (res: Response): void => {
-          this.skills = res.response;
+          this.skill = res.response;
         },
         (err: any): any => {
           console.log('An error occurred: ', err);
@@ -57,7 +57,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
    * Set the Skills by default
    */
   private setSkills(): void {
-    this.skills = this.skills || [{
+    this.skill = this.skill || [{
       skill_group: {
         skill_group_id: 0,
         skill_group_name: 'loading',
@@ -76,8 +76,8 @@ export class SkillsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.skillsServiceSub) {
-      this.skillsServiceSub.unsubscribe();
+    if (this.skillServiceSub) {
+      this.skillServiceSub.unsubscribe();
     }
   }
 }

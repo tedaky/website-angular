@@ -45,22 +45,22 @@ exports.setup = function (options, seedLink) {
  */
 exports.up = function (db) {
   var today = new Date().toMysqlDateTimeFormat();
-  var columns = ['education_degree', 'education_field', 'education_cgpa', 'education_order', 'education_school_id', 'education_start_date', 'education_end_date', 'education_created_at', 'education_modified_at', 'education_seed'];
+  var columns = ['education_degree', 'education_field', 'education_cgpa', 'education_order', 'education_school_id', 'education_start_date', 'education_end_date', 'education_seed'];
   return db.insert('education',
       columns,
-      ['Master of Science', 'Information Technology', 3.87, 1, 1, new Date('August 2016').toMysqlDateFormat(), new Date('June 2018').toMysqlDateFormat(), today, today, '20190220001849-seedEducation']
+      ['Master of Science', 'Information Technology', 3.87, 1, 1, new Date('August 2016').toMysqlDateFormat(), new Date('June 2018').toMysqlDateFormat(), '20190220001849-seedEducation']
     )
     .then(function () {
       return db.insert('education',
         columns,
-        ['Graduate Certificate', 'Database Technology', null, 2, 1, new Date('August 2016').toMysqlDateFormat(), new Date('June 2018').toMysqlDateFormat(), today, today, '20190220001849-seedEducation']);
+        ['Graduate Certificate', 'Database Technology', null, 2, 1, new Date('August 2016').toMysqlDateFormat(), new Date('June 2018').toMysqlDateFormat(), '20190220001849-seedEducation']);
     }, function (err) {
       return err;
     })
     .then(function () {
       return db.insert('education',
         columns,
-        ['Bachelor of Science', 'Game Design and Development', 3.46, 3, 2, new Date('July 2008').toMysqlDateFormat(), new Date('July 2011').toMysqlDateFormat(), today, today, '20190220001849-seedEducation']);
+        ['Bachelor of Science', 'Game Design and Development', 3.46, 3, 2, new Date('July 2008').toMysqlDateFormat(), new Date('July 2011').toMysqlDateFormat(), '20190220001849-seedEducation']);
     }, function (err) {
       return err;
     })
