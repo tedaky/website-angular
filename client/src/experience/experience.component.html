@@ -1,0 +1,27 @@
+<ul>
+  <li *ngFor="let item of experience">
+    <div [innerText]="item.experience_order"></div>
+    <span> - </span>
+    <div [innerText]="item.experience_description"></div>
+    <span> - </span>
+    <div [innerText]="item.position_title"></div>
+    <span> - </span>
+    <div [innerText]="item.company_name"></div>
+    <span> - </span>
+    <div [innerText]="item.company_link"></div>
+    <span> - </span>
+    <div [innerText]="item.company_logo"></div>
+    <span> - </span>
+    <div [innerText]="item.company_description"></div>
+    <span> - </span>
+    <div [innerText]="item.experience_start_date"></div>
+    <span> - </span>
+    <div [innerText]="item.experience_end_date"></div>
+    <span> - </span>
+    <div [innerText]="item.experience_modified_at"></div>
+    <span> - </span>
+    <div [innerText]="item.company_modified_at"></div>
+    <span> - </span>
+    <div [innerText]="item.position_modified_at"></div>
+  </li>
+</ul>

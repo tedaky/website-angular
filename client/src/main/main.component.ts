@@ -26,7 +26,7 @@ export class MainComponent implements OnInit, OnDestroy {
   /**
    * The Messages
    */
-  public messages: Array<Message>;
+  public message: Array<Message>;
 
   /**
    * Subscribe to the Message Service
@@ -39,19 +39,19 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.title = 'Angular Website';
-    this.setMessage();
-    this.getMessage();
+    this.setMessages();
+    this.getMessages();
   }
 
   /**
    * Create subscription for the Message
    */
-  private getMessage(): void {
-    this.mainServiceSub = this.mainService.getMessage()
+  private getMessages(): void {
+    this.mainServiceSub = this.mainService.getMessages()
       .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
         (res: Response): void => {
-          this.messages = res.response;
+          this.message = res.response;
         },
         (err: any): any => {
           console.log('An error occurred: ', err);
@@ -61,8 +61,8 @@ export class MainComponent implements OnInit, OnDestroy {
   /**
    * Set the Message by default
    */
-  private setMessage(): void {
-    this.messages = this.messages || [{
+  private setMessages(): void {
+    this.message = this.message || [{
       message_id: 0,
       message_description: 'loading',
       message_modified_at: new Date()

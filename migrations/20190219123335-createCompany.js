@@ -46,10 +46,14 @@ exports.up = function (db) {
         length: 65535
       },
       company_created_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       company_modified_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       company_seed: {
         type: 'string',

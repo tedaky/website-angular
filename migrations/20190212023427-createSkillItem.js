@@ -55,10 +55,14 @@ exports.up = function (db) {
         }
       },
       skill_item_created_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       skill_item_modified_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       skill_item_seed: {
         type: 'string',

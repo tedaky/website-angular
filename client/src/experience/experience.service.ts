@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 
-import { Response } from '../../../types/skill';
+import { Response } from '../../../types/experience';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SkillsService {
+export class ExperienceService {
 
   /**
    * API URL
@@ -19,15 +19,15 @@ export class SkillsService {
   constructor(
     private httpClient: HttpClient
   ) {
-    this.url = environment.origin + 'api/skills';
+    this.url = environment.origin + 'api/experiences';
   }
 
   /**
-   * Get the Response from server API
+   * Get the experience from server API
    *
    * @returns `Observable<Response>`
    */
-  public getSkills(): Observable<Response> {
+  public getExperiences(): Observable<Response> {
     return this.httpClient.get<Response>(this.url);
   }
 }

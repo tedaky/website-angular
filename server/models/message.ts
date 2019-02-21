@@ -2,9 +2,9 @@ import { MySQL } from '../../config/db';
 import { Message } from '../../types/message';
 
 /**
- * Model for the Messages
+ * Model for the Message
  */
-export class MessagesModel {
+export class MessageModel {
   /**
    * Fetch the results from MySQL `message` table
    *

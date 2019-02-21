@@ -7,9 +7,9 @@ import {
 /**
  * Helper for skills results from MySQL
  */
-export class SkillsHelper {
+export class SkillHelper {
   /**
-   * JSONify the skills
+   * JSONify the skill
    *
    * @param skillItem - The Skill Items results
    * @param skillGroup - The Skill Groups results

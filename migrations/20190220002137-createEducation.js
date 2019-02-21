@@ -30,11 +30,13 @@ exports.up = function (db) {
       },
       education_degree: {
         type: 'string',
-        length: 255
+        length: 255,
+        notNull: true
       },
       education_field: {
         type: 'string',
-        length: 255
+        length: 255,
+        notNull: true
       },
       education_cgpa: {
         type: 'decimal',
@@ -42,7 +44,8 @@ exports.up = function (db) {
       },
       education_order: {
         type: 'int',
-        length: 11
+        length: 11,
+        notNull: true
       },
       education_school_id: {
         type: 'int',
@@ -59,16 +62,21 @@ exports.up = function (db) {
         }
       },
       education_start_date: {
-        type: 'date'
+        type: 'date',
+        notNull: true
       },
       education_end_date: {
         type: 'date'
       },
       education_created_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       education_modified_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       education_seed: {
         type: 'string',

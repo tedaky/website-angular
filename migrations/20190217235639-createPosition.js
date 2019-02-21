@@ -34,10 +34,14 @@ exports.up = function (db) {
         notNull: true
       },
       position_created_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       position_modified_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       position_seed: {
         type: 'string',

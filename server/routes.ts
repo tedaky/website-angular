@@ -1,7 +1,9 @@
 import { join } from 'path';
 
-import { MessagesController } from './controllers/messages';
-import { SkillsController } from './controllers/skills';
+import { MessageController } from './controllers/message';
+import { SkillController } from './controllers/skill';
+import { ExperienceController } from './controllers/experience';
+import { EducationController } from './controllers/education';
 import { AngularController } from './controllers/angular';
 
 /**
@@ -18,18 +20,34 @@ export class Routes {
     /**
      * Create the `MessageController`
      */
-    const messagesController: MessagesController = new MessagesController();
+    const messageController: MessageController = new MessageController();
     // Message route
     app.route('/api/messages')
-      .get(messagesController.getMessages);
+      .get(messageController.getMessages);
 
     /**
-     * Create the `SkillsController`
+     * Create the `SkillController`
      */
-    const skillsController: SkillsController = new SkillsController();
+    const skillController: SkillController = new SkillController();
     // skills route
     app.route('/api/skills')
-      .get(skillsController.getSkillResults);
+      .get(skillController.getSkillResults);
+
+    /**
+     * Create the `ExperienceController`
+     */
+    const experienceController: ExperienceController = new ExperienceController();
+    // experiences route
+    app.route('/api/experiences')
+      .get(experienceController.getExperienceResults);
+
+    /**
+     * Create the `EducationController`
+     */
+    const educationController: EducationController = new EducationController();
+    // education route
+    app.route('/api/education')
+      .get(educationController.getEducationResults);
 
     // Server static files from /browser
     app.route('*.*')

@@ -1,0 +1,10 @@
+<ul>
+  <li *ngFor="let item of skill">
+    <app-skill-group-component [skillGroup]="item.skill_group"></app-skill-group-component>
+    <ul>
+      <li *ngFor="let skill_item of item.skill_item">
+        <app-skill-item-component [skillItem]="skill_item"></app-skill-item-component>
+      </li>
+    </ul>
+  </li>
+</ul>

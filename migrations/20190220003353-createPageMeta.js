@@ -37,10 +37,14 @@ exports.up = function (db) {
         length: 255,
       },
       page_meta_created_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       page_meta_modified_at: {
-        type: 'datetime'
+        type: 'datetime',
+        notNull: true,
+        defaultValue: 'CURRENT_TIMESTAMP'
       },
       page_meta_seed: {
         type: 'string',

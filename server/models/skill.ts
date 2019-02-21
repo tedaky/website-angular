@@ -5,9 +5,9 @@ import {
 } from '../../types/skill';
 
 /**
- * Model for the Skills
+ * Model for the Skill
  */
-export class SkillsModel {
+export class SkillModel {
   /**
    * Fetch the results from MySQL `skill_item` table
    *

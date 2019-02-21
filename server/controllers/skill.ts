@@ -1,5 +1,5 @@
-import { SkillsModel } from '../models/skills';
-import { SkillsHelper } from '../helpers/skills';
+import { SkillModel } from '../models/skill';
+import { SkillHelper } from '../helpers/skill';
 import {
   SkillItem,
   SkillGroup,
@@ -9,7 +9,7 @@ import {
 /**
  * The SkillsController of the Express application.
  */
-export class SkillsController {
+export class SkillController {
   /**
    * Get the Skill Items and Skill Groups Results
    *
@@ -18,8 +18,8 @@ export class SkillsController {
    * @param next - Move to the Next route `Request`
    */
   public getSkillResults(req: any, res: any, next: any): void {
-    const skillsModel: SkillsModel = new SkillsModel();
-    const skillsHelper: SkillsHelper = new SkillsHelper();
+    const skillsModel: SkillModel = new SkillModel();
+    const skillsHelper: SkillHelper = new SkillHelper();
 
     // skillItem holder
     let skillItem: Array<SkillItem>;

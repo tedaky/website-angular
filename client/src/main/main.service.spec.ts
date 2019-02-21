@@ -11,7 +11,7 @@ import {
 
 import { environment } from '../../../environments/environment';
 
-import { SkillsModule } from '../skills/skills.module';
+import { SkillModule } from '../skill/skill.module';
 import { MainService } from './main.service';
 
 import {
@@ -25,7 +25,7 @@ const messages: Array<Message> = [{
   message_modified_at: new Date()
 }];
 
-const messagesResponse: Response = {
+const response: Response = {
   response: messages
 };
 
@@ -38,7 +38,7 @@ describe('MainService', (): void => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        SkillsModule
+        SkillModule
       ],
       providers: [
         MainService
@@ -56,11 +56,11 @@ describe('MainService', (): void => {
     expect<MainService>(service).toBeTruthy();
   });
 
-  describe('#getMessage', (): void => {
+  describe('#getMessages', (): void => {
     it('should return an Observable<Message>', (): void => {
-      const mock: Response = messagesResponse;
+      const mock: Response = response;
 
-      service.getMessage().subscribe((res: Response): void => {
+      service.getMessages().subscribe((res: Response): void => {
         expect<Array<Message>>(res.response).toBeDefined();
         expect<Array<Message>>(res.response).toEqual(messages);
       });
