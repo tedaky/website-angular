@@ -44,8 +44,7 @@ exports.up = function (db) {
       },
       education_order: {
         type: 'int',
-        length: 11,
-        notNull: true
+        length: 11
       },
       education_school_id: {
         type: 'int',
