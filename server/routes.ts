@@ -4,6 +4,7 @@ import { MessageController } from './controllers/message';
 import { SkillController } from './controllers/skill';
 import { ExperienceController } from './controllers/experience';
 import { EducationController } from './controllers/education';
+import { VersionController } from './controllers/version';
 import { AngularController } from './controllers/angular';
 
 /**
@@ -48,6 +49,14 @@ export class Routes {
     // education route
     app.route('/api/education')
       .get(educationController.getEducationResults);
+
+    /**
+     * Create the `VersionController`
+     */
+    const versionController: VersionController = new VersionController();
+    // versions route
+    app.route('/api/versions')
+      .get(versionController.getVersionResults);
 
     // Server static files from /browser
     app.route('*.*')

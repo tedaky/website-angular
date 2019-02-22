@@ -19,6 +19,7 @@ import {
 } from '../../../types/message';
 import { ExperienceModule } from '../experience/experience.module';
 import { EducationModule } from '../education/education.module';
+import { VersionModule } from '../version/version.module';
 
 const message: Array<Message> = [{
   message_id: 1,
@@ -48,7 +49,8 @@ describe('MainComponent', (): void => {
           HttpClientTestingModule,
           SkillModule,
           ExperienceModule,
-          EducationModule
+          EducationModule,
+          VersionModule
         ],
         declarations: [
           MainComponent
@@ -83,7 +85,8 @@ describe('MainComponent', (): void => {
           HttpClientTestingModule,
           SkillModule,
           ExperienceModule,
-          EducationModule
+          EducationModule,
+          VersionModule
         ],
         declarations: [
           MainComponent

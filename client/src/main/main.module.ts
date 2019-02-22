@@ -9,6 +9,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { SkillModule } from '../skill/skill.module';
 import { ExperienceModule } from '../experience/experience.module';
 import { EducationModule } from '../education/education.module';
+import { VersionModule } from '../version/version.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EducationModule } from '../education/education.module';
     MainRoutingModule,
     SkillModule,
     ExperienceModule,
-    EducationModule
+    EducationModule,
+    VersionModule
   ]
 })
 export class MainModule { }
