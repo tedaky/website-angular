@@ -16,4 +16,4 @@ import { VersionComponent } from './version.component';
     VersionComponent
   ]
 })
-export class EducationModule { }
+export class VersionModule { }
