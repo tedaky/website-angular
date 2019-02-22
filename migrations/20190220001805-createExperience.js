@@ -34,8 +34,7 @@ exports.up = function (db) {
       },
       experience_order: {
         type: 'int',
-        length: 11,
-        notNull: true
+        length: 11
       },
       experience_position_id: {
         type: 'int',
