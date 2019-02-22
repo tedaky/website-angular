@@ -51,6 +51,20 @@
       "command": "npm run db:down:local",
       "problemMatcher": [],
       "group": "none"
+    },
+    {
+      "label": "DB:RESET",
+      "type": "shell",
+      "command": "npm run db:local:reset",
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "Remove Local Git Branches",
+      "type": "shell",
+      "command": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done",
+      "problemMatcher": [],
+      "group": "none"
     }
   ]
 }
