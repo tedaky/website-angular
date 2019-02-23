@@ -4,7 +4,6 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 import { VersionService } from './version.service';
 import {
@@ -43,7 +42,6 @@ export class VersionComponent implements OnInit, OnDestroy {
    */
   private getVersions(): void {
     this.versionServiceSub = this.versionService.getVersions()
-      .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
         (res: Response): void => {
           this.version = res.response;

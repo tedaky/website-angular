@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {
+  distinctUntilChanged,
+  timeout
+} from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 
@@ -28,6 +32,8 @@ export class MainService {
    * @returns `Observable<Response>`
    */
   public getMessages(): Observable<Response> {
-    return this.httpClient.get<Response>(this.url);
+    return this.httpClient.get<Response>(this.url)
+      .pipe<Response>(timeout<Response>(4000))
+      .pipe<Response>(distinctUntilChanged<Response>());
   }
 }

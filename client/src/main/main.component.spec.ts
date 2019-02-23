@@ -6,8 +6,8 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
-  Observable,
-  of
+  of,
+  throwError
 } from 'rxjs';
 
 import { MainComponent } from './main.component';
@@ -31,15 +31,10 @@ const response: Response = {
   response: message
 };
 
-class FakeAppService {
-  public getMessages(): Observable<Response> {
-    return of(response);
-  }
-}
-
 describe('MainComponent', (): void => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
+  let ms: any;
 
   describe('Before API Request', (): void => {
     beforeEach(async((): void => {
@@ -77,7 +72,7 @@ describe('MainComponent', (): void => {
     });
   });
 
-  describe('After API Request', (): void => {
+  describe('After API Request Success', (): void => {
     beforeEach(async((): void => {
       TestBed.configureTestingModule({
         imports: [
@@ -92,10 +87,7 @@ describe('MainComponent', (): void => {
           MainComponent
         ],
         providers: [
-          {
-            provide: MainService,
-            useClass: FakeAppService
-          }
+          MainService
         ]
       }).compileComponents();
     }));
@@ -103,12 +95,48 @@ describe('MainComponent', (): void => {
     beforeEach((): void => {
       fixture = TestBed.createComponent<MainComponent>(MainComponent);
       component = fixture.componentInstance;
+      ms = TestBed.get(MainService);
+      spyOn(ms, 'getMessages').and.returnValue(of(response));
       fixture.detectChanges();
     });
 
     it('should set the message_description', (): void => {
       component.ngOnInit();
       expect<string>(component.message[0].message_description).not.toEqual('loading');
+    });
+  });
+
+  describe('After API Request Fail', (): void => {
+    beforeEach(async((): void => {
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          HttpClientTestingModule,
+          SkillModule,
+          ExperienceModule,
+          EducationModule,
+          VersionModule
+        ],
+        declarations: [
+          MainComponent
+        ],
+        providers: [
+          MainService
+        ]
+      }).compileComponents();
+    }));
+
+    beforeEach((): void => {
+      fixture = TestBed.createComponent<MainComponent>(MainComponent);
+      component = fixture.componentInstance;
+      ms = TestBed.get(MainService);
+      spyOn(ms, 'getMessages').and.returnValue(throwError('Test Error'));
+      fixture.detectChanges();
+    });
+
+    it('should fail', (): void => {
+      component.ngOnInit();
+      expect<MainComponent>(component).toBeDefined();
     });
   });
 });

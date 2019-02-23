@@ -4,7 +4,6 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 import { ExperienceService } from './experience.service';
 import {
@@ -43,7 +42,6 @@ export class ExperienceComponent implements OnInit, OnDestroy {
    */
   private getExperiences(): void {
     this.experienceServiceSub = this.experienceService.getExperiences()
-      .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
         (res: Response): void => {
           this.experience = res.response;
