@@ -6,8 +6,8 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
-  Observable,
-  of
+  of,
+  throwError
 } from 'rxjs';
 
 import { SkillComponent } from './skill.component';
@@ -40,15 +40,10 @@ const response: Response = {
   response: skill
 };
 
-class FakeAppService {
-  public getSkills(): Observable<Response> {
-    return of(response);
-  }
-}
-
 describe('SkillComponent', (): void => {
   let component: SkillComponent;
   let fixture: ComponentFixture<SkillComponent>;
+  let ss: any;
 
   describe('Before API Request', (): void => {
     beforeEach(async((): void => {
@@ -80,7 +75,7 @@ describe('SkillComponent', (): void => {
     });
   });
 
-  describe('After API Request', (): void => {
+  describe('After API Request Success', (): void => {
     beforeEach(async((): void => {
       TestBed.configureTestingModule({
         imports: [
@@ -93,10 +88,7 @@ describe('SkillComponent', (): void => {
           SkillItemComponent
         ],
         providers: [
-          {
-            provide: SkillService,
-            useClass: FakeAppService
-          }
+          SkillService
         ]
       }).compileComponents();
     }));
@@ -104,12 +96,46 @@ describe('SkillComponent', (): void => {
     beforeEach((): void => {
       fixture = TestBed.createComponent<SkillComponent>(SkillComponent);
       component = fixture.componentInstance;
+      ss = TestBed.get(SkillService);
+      spyOn(ss, 'getSkills').and.returnValue(of(response));
       fixture.detectChanges();
     });
 
     it('should set the skill_group_name', (): void => {
       component.ngOnInit();
       expect<string>(component.skill[0].skill_group.skill_group_name).not.toEqual('loading');
+    });
+  });
+
+  describe('After API Request Fail', (): void => {
+    beforeEach(async((): void => {
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          HttpClientTestingModule
+        ],
+        declarations: [
+          SkillComponent,
+          SkillGroupComponent,
+          SkillItemComponent
+        ],
+        providers: [
+          SkillService
+        ]
+      }).compileComponents();
+    }));
+
+    beforeEach((): void => {
+      fixture = TestBed.createComponent<SkillComponent>(SkillComponent);
+      component = fixture.componentInstance;
+      ss = TestBed.get(SkillService);
+      spyOn(ss, 'getSkills').and.returnValue(throwError('Test Error'));
+      fixture.detectChanges();
+    });
+
+    it('should fail', (): void => {
+      component.ngOnInit();
+      expect<SkillComponent>(component).toBeDefined();
     });
   });
 });

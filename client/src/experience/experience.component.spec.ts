@@ -6,8 +6,8 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
-  Observable,
-  of
+  of,
+  throwError
 } from 'rxjs';
 
 import { ExperienceComponent } from './experience.component';
@@ -38,15 +38,10 @@ const response: Response = {
   response: experience
 };
 
-class FakeAppService {
-  public getExperiences(): Observable<Response> {
-    return of(response);
-  }
-}
-
 describe('ExperienceComponent', (): void => {
   let component: ExperienceComponent;
   let fixture: ComponentFixture<ExperienceComponent>;
+  let es: any;
 
   describe('Before API Request', (): void => {
     beforeEach(async((): void => {
@@ -76,7 +71,7 @@ describe('ExperienceComponent', (): void => {
     });
   });
 
-  describe('After API Request', (): void => {
+  describe('After API Request Success', (): void => {
     beforeEach(async((): void => {
       TestBed.configureTestingModule({
         imports: [
@@ -87,10 +82,7 @@ describe('ExperienceComponent', (): void => {
           ExperienceComponent
         ],
         providers: [
-          {
-            provide: ExperienceService,
-            useClass: FakeAppService
-          }
+          ExperienceService
         ]
       }).compileComponents();
     }));
@@ -98,12 +90,44 @@ describe('ExperienceComponent', (): void => {
     beforeEach((): void => {
       fixture = TestBed.createComponent<ExperienceComponent>(ExperienceComponent);
       component = fixture.componentInstance;
+      es = TestBed.get(ExperienceService);
+      spyOn(es, 'getExperiences').and.returnValue(of(response));
       fixture.detectChanges();
     });
 
     it('should set the experience_description', (): void => {
       component.ngOnInit();
       expect<string>(component.experience[0].experience_description).not.toEqual('loading');
+    });
+  });
+
+  describe('After API Request Fail', (): void => {
+    beforeEach(async((): void => {
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          HttpClientTestingModule
+        ],
+        declarations: [
+          ExperienceComponent
+        ],
+        providers: [
+          ExperienceService
+        ]
+      }).compileComponents();
+    }));
+
+    beforeEach((): void => {
+      fixture = TestBed.createComponent<ExperienceComponent>(ExperienceComponent);
+      component = fixture.componentInstance;
+      es = TestBed.get(ExperienceService);
+      spyOn(es, 'getExperiences').and.returnValue(throwError('Test Error'));
+      fixture.detectChanges();
+    });
+
+    it('should fail', (): void => {
+      component.ngOnInit();
+      expect<ExperienceComponent>(component).toBeDefined();
     });
   });
 });
