@@ -4,7 +4,6 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 import { MainService } from './main.service';
 import {
@@ -48,7 +47,6 @@ export class MainComponent implements OnInit, OnDestroy {
    */
   private getMessages(): void {
     this.mainServiceSub = this.mainService.getMessages()
-      .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
         (res: Response): void => {
           this.message = res.response;

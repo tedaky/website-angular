@@ -4,7 +4,6 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 import { SkillService } from './skill.service';
 import {
@@ -43,7 +42,6 @@ export class SkillComponent implements OnInit, OnDestroy {
    */
   private getSkills(): void {
     this.skillServiceSub = this.skillService.getSkills()
-      .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
         (res: Response): void => {
           this.skill = res.response;

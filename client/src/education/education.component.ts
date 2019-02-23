@@ -4,7 +4,6 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 import { EducationService } from './education.service';
 import {
@@ -43,7 +42,6 @@ export class EducationComponent implements OnInit, OnDestroy {
    */
   private getEducation(): void {
     this.educationServiceSub = this.educationService.getEducation()
-      .pipe<Response>(distinctUntilChanged<Response>())
       .subscribe(
         (res: Response): void => {
           this.education = res.response;
