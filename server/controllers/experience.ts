@@ -3,7 +3,7 @@ import { ExperienceHelper } from '../helpers/experience';
 import { Experience } from '../../types/experience';
 
 /**
- * The SkillsController of the Express application.
+ * The ExperienceController of the Express application.
  */
 export class ExperienceController {
   /**
