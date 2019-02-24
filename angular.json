@@ -59,6 +59,33 @@
               ],
               "ngswConfigPath": "./client/ngsw-config.json",
               "serviceWorker": true
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.dev.ts"
+                }
+              ],
+              "outputPath": "dist/dev/browser",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "ngswConfigPath": "./client/ngsw-config.json",
+              "serviceWorker": false
             }
           }
         },
@@ -80,6 +107,20 @@
               "outputPath": "dist/prod/server",
               "optimization": true,
               "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.dev.ts"
+                }
+              ],
+              "outputPath": "dist/dev/server",
+              "optimization": true,
+              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false
