@@ -55,12 +55,12 @@ describe('VersionComponent', (): void => {
       fixture.detectChanges();
     });
 
-    it('should create the app', (): void => {
+    it('should create VersionComponent', (): void => {
       expect<VersionComponent>(component).toBeDefined();
     });
 
-    it(`should set default version_name = 'loading'`, (): void => {
-      expect<string>(component.version[0].version_name).toEqual('loading');
+    it('should set default version to an empty Array', (): void => {
+      expect<number>(component.version.length).toEqual(0);
     });
   });
 

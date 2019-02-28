@@ -55,21 +55,7 @@ export class EducationComponent implements OnInit, OnDestroy {
    * Set the Education by default
    */
   private setEducation(): void {
-    const date = new Date();
-    const string = 'loading';
-    this.education = this.education || [{
-      education_order: 0,
-      education_degree: string,
-      education_field: string,
-      education_cgpa: 0,
-      school_name: string,
-      school_link: string,
-      school_logo: string,
-      education_start_date: date,
-      education_end_date: date,
-      education_modified_at: date,
-      school_modified_at: date
-    }];
+    this.education = this.education || [];
   }
 
   public ngOnDestroy(): void {

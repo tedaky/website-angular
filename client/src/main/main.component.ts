@@ -60,11 +60,7 @@ export class MainComponent implements OnInit, OnDestroy {
    * Set the Message by default
    */
   private setMessages(): void {
-    this.message = this.message || [{
-      message_id: 0,
-      message_description: 'loading',
-      message_modified_at: new Date()
-    }];
+    this.message = this.message || [];
   }
 
   public ngOnDestroy(): void {

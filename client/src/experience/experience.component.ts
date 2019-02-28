@@ -55,22 +55,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
    * Set the Message by default
    */
   private setExperiences(): void {
-    const date = new Date();
-    const string = 'loading';
-    this.experience = this.experience || [{
-      experience_order: 0,
-      experience_description: string,
-      position_title: string,
-      company_name: string,
-      company_link: string,
-      company_logo: string,
-      company_description: string,
-      experience_start_date: date,
-      experience_end_date: date,
-      experience_modified_at: date,
-      company_modified_at: date,
-      position_modified_at: date
-    }];
+    this.experience = this.experience || [];
   }
 
   public ngOnDestroy(): void {
