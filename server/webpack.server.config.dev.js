@@ -18,10 +18,21 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    rules: [{
-      test: /\.ts$/,
-      loader: 'ts-loader'
-    }]
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: 'string-replace-loader',
+        options: {
+          search: 'dist/local',
+          replace: 'dist/dev',
+          flags: 'g'
+        }
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader'
+      }
+    ]
   },
   plugins: [
     // Temporary Fix for issue: https://github.com/angular/angular/issues/11580
@@ -34,6 +45,10 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       /(.+)?express(\\|\/)(.+)?/,
       path.join(__dirname, '../client'), {}
+    ),
+    new webpack.NormalModuleReplacementPlugin(
+      /..\/dist\/local\/server\/main/,
+      '../dist/dev/server/main'
     )
   ]
 };
