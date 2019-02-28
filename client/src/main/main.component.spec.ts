@@ -59,7 +59,7 @@ describe('MainComponent', (): void => {
       fixture.detectChanges();
     });
 
-    it('should create the app', (): void => {
+    it('should create MainComponent', (): void => {
       expect<MainComponent>(component).toBeDefined();
     });
 
@@ -67,8 +67,8 @@ describe('MainComponent', (): void => {
       expect<number>(component.title.length).toBeGreaterThan(0);
     });
 
-    it(`should set default message_description = 'loading'`, (): void => {
-      expect<string>(component.message[0].message_description).toEqual('loading');
+    it('should set default message to an empty Array', (): void => {
+      expect<number>(component.message.length).toBe(0);
     });
   });
 
