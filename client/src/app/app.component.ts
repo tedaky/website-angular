@@ -12,7 +12,7 @@ import { LogUpdateService } from '../log-update/log-update.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.pug',
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {

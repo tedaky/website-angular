@@ -17,7 +17,7 @@ import { CancelTimerService } from '../cancel-timer/cancel-timer.service';
 
 @Component({
   selector: 'app-prompt-update-component',
-  templateUrl: './prompt-update.component.html',
+  templateUrl: './prompt-update.component.pug',
   styleUrls: ['./prompt-update.component.sass'],
   animations: promptUpdateAnimations
 })

@@ -13,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-skill-component',
-  templateUrl: './skill.component.html',
+  templateUrl: './skill.component.pug',
   styleUrls: ['./skill.component.sass']
 })
 export class SkillComponent implements OnInit, OnDestroy {
