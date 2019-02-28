@@ -62,12 +62,12 @@ describe('ExperienceComponent', (): void => {
       fixture.detectChanges();
     });
 
-    it('should create the app', (): void => {
+    it('should create ExperienceComponent', (): void => {
       expect<ExperienceComponent>(component).toBeDefined();
     });
 
-    it(`should set default experience_description = 'loading'`, (): void => {
-      expect<string>(component.experience[0].experience_description).toEqual('loading');
+    it('should set default experience to an empty Array', (): void => {
+      expect<number>(component.experience.length).toBe(0);
     });
   });
 

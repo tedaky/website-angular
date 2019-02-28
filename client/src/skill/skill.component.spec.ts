@@ -66,12 +66,12 @@ describe('SkillComponent', (): void => {
       fixture.detectChanges();
     });
 
-    it('should create the app', (): void => {
+    it('should create SkillComponent', (): void => {
       expect<SkillComponent>(component).toBeDefined();
     });
 
-    it(`should set default skill_group_name = 'loading'`, (): void => {
-      expect<string>(component.skill[0].skill_group.skill_group_name).toEqual('loading');
+    it('should set default skill to an empty Array', (): void => {
+      expect<number>(component.skill.length).toBe(0);
     });
   });
 

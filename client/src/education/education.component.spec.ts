@@ -61,12 +61,12 @@ describe('ExperienceComponent', (): void => {
       fixture.detectChanges();
     });
 
-    it('should create the app', (): void => {
+    it('should create EducationComponent', (): void => {
       expect<EducationComponent>(component).toBeDefined();
     });
 
-    it(`should set default education_degree = 'loading'`, (): void => {
-      expect<string>(component.education[0].education_degree).toEqual('loading');
+    it('should set default education to an empty Array', (): void => {
+      expect<number>(component.education.length).toBe(0);
     });
   });
 

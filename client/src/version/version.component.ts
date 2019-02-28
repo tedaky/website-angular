@@ -55,15 +55,7 @@ export class VersionComponent implements OnInit, OnDestroy {
    * Set the Version by default
    */
   private setVersions(): void {
-    const date = new Date();
-    const string = 'loading';
-    this.version = this.version || [{
-      version_name: string,
-      version_image: string,
-      version_link: string,
-      version_order: 0,
-      version_modified_at: date
-    }];
+    this.version = this.version || [];
   }
 
   public ngOnDestroy(): void {

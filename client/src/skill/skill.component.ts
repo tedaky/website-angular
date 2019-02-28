@@ -55,22 +55,7 @@ export class SkillComponent implements OnInit, OnDestroy {
    * Set the Skills by default
    */
   private setSkills(): void {
-    this.skill = this.skill || [{
-      skill_group: {
-        skill_group_id: 0,
-        skill_group_name: 'loading',
-        skill_group_order: 0,
-        skill_group_modified_at: new Date()
-      },
-      skill_item: [{
-        skill_item_id: 0,
-        skill_item_name: 'loading',
-        skill_item_level: 0,
-        skill_item_order: 0,
-        skill_item_skill_group_id: 0,
-        skill_item_modified_at: new Date()
-      }]
-    }];
+    this.skill = this.skill || [];
   }
 
   public ngOnDestroy(): void {
