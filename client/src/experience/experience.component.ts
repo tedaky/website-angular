@@ -13,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-experience-component',
-  templateUrl: './experience.component.html',
+  templateUrl: './experience.component.pug',
   styleUrls: ['./experience.component.sass']
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
