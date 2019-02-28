@@ -52,18 +52,21 @@ jobs:
         - npm run lint
     - stage: dev
       script:
+        - npm run pugpostinstall
         - npm run build:ssr
         - npm run db:up:travis:all
         - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
         - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - stage: stage
       script:
+        - npm run pugpostinstall
         - npm run build:ssr:production
         - npm run db:up:travis:all
         - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
         - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - stage: production
       script:
+        - npm run pugpostinstall
         - npm run build:ssr:production
         - npm run db:up:travis:all
         - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
