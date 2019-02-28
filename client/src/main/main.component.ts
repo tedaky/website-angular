@@ -13,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-main-component',
-  templateUrl: './main.component.html',
+  templateUrl: './main.component.pug',
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit, OnDestroy {

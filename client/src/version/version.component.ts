@@ -13,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-version-component',
-  templateUrl: './version.component.html',
+  templateUrl: './version.component.pug',
   styleUrls: ['./version.component.sass']
 })
 export class VersionComponent implements OnInit, OnDestroy {
