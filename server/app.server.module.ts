@@ -5,8 +5,8 @@ import {
 } from '@angular/platform-server';
 import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 
-import { AppModule } from '../client/src/app/app.module';
-import { AppComponent } from '../client/src/app/app.component';
+import { AppModule } from '../browser/src/app/app.module';
+import { AppComponent } from '../browser/src/app/app.component';
 
 @NgModule({
   imports: [
