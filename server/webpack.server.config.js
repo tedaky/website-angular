@@ -28,12 +28,12 @@ module.exports = {
     // for "WARNING Critical dependency: the request of a dependency is an expression"
     new webpack.ContextReplacementPlugin(
       /(.+)?angular(\\|\/)core(.+)?/,
-      path.join(__dirname, '../client'), // location of your src
+      path.join(__dirname, '../browser'), // location of your src
       {} // a map of your routes
     ),
     new webpack.ContextReplacementPlugin(
       /(.+)?express(\\|\/)(.+)?/,
-      path.join(__dirname, '../client'), {}
+      path.join(__dirname, '../browser'), {}
     )
   ]
 };
