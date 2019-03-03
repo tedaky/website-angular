@@ -29,7 +29,8 @@
     "build:ssr:production": "npm run build:browser-and-server-bundles-production && npm run webpack:server:production",
     "webpack:server:production": "webpack --config server/webpack.server.config.prod.js --progress --colors",
     "build:browser-and-server-bundles-production": "ng build --prod --aot --optimization --buildOptimizer && ng run angular-website:server:production",
-    "pugpostinstall": "node ./browser/ng-add-pug-loader.js"
+    "pugpostinstall": "node ./browser/ng-add-pug-loader.js",
+    "changelog": "./node_modules/.bin/gulp release"
   },
   "pre-commit": [
     "ng lint",
@@ -80,9 +81,12 @@
     "apply-loader": "^2.0.0",
     "babel-register": "^6.26.0",
     "codelyzer": "~4.5.0",
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.0.1",
+    "gulp-conventional-changelog": "^2.0.10",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^4.0.0",
+    "karma": "^4.0.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
