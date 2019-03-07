@@ -19,13 +19,38 @@ import {
 export class MainComponent implements OnInit, OnDestroy {
 
   /**
-   * The application main title
+   * Title Holder
    */
-  public title: string;
+  private _title: string;
   /**
-   * The Messages
+   * Get the title
    */
-  public message: Array<Message>;
+  public get title(): string {
+    return this._title;
+  }
+  /**
+   * Set the title
+   */
+  public set title(val: string) {
+    this._title = val;
+  }
+
+  /**
+   * Message Holder
+   */
+  private _message: Array<Message>;
+  /**
+   * Get the message
+   */
+  public get message(): Array<Message> {
+    return this._message;
+  }
+  /**
+   * Set the message
+   */
+  public set message(val: Array<Message>) {
+    this._message = val;
+  }
 
   /**
    * Subscribe to the Message Service
@@ -38,15 +63,15 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.title = 'Angular Website';
-    this.setMessages();
-    this.getMessages();
+    this.message = this.message || [];
+    this.subToMessage();
   }
 
   /**
    * Create subscription for the Message
    */
-  private getMessages(): void {
-    this.mainServiceSub = this.mainService.getMessages()
+  private subToMessage(): void {
+    this.mainServiceSub = this.mainService.message
       .subscribe(
         (res: Response): void => {
           this.message = res.response;
@@ -54,13 +79,6 @@ export class MainComponent implements OnInit, OnDestroy {
         (err: any): any => {
           console.log('An error occurred: ', err);
         });
-  }
-
-  /**
-   * Set the Message by default
-   */
-  private setMessages(): void {
-    this.message = this.message || [];
   }
 
   public ngOnDestroy(): void {
