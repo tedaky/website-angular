@@ -19,9 +19,21 @@ import {
 export class EducationComponent implements OnInit, OnDestroy {
 
   /**
-   * The Education
+   * Education Holder
    */
-  public education: Array<Education>;
+  private _education: Array<Education>;
+  /**
+   * Get the education
+   */
+  public get education(): Array<Education> {
+    return this._education;
+  }
+  /**
+   * Set the version
+   */
+  public set education(val: Array<Education>) {
+    this._education = val;
+  }
 
   /**
    * Subscribe to the Education Service
@@ -33,15 +45,15 @@ export class EducationComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.setEducation();
-    this.getEducation();
+    this.education = this.education || [];
+    this.subToEducation();
   }
 
   /**
    * Create subscription for the Education
    */
-  private getEducation(): void {
-    this.educationServiceSub = this.educationService.getEducation()
+  private subToEducation(): void {
+    this.educationServiceSub = this.educationService.education
       .subscribe(
         (res: Response): void => {
           this.education = res.response;
@@ -49,15 +61,6 @@ export class EducationComponent implements OnInit, OnDestroy {
         (err: any): any => {
           console.log('An error occurred: ', err);
         });
-  }
-
-  /**
-   * Set the Education by default
-   */
-  private setEducation(): void {
-    const string = 'loading';
-    const date = new Date();
-    this.education = this.education || [];
   }
 
   public ngOnDestroy(): void {
