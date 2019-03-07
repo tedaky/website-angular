@@ -16,9 +16,21 @@ import { Response } from '../../../types/skill';
 export class SkillService {
 
   /**
-   * API URL
+   * URL Holder
    */
-  private url: string;
+  private _url: string;
+  /**
+   * Get API URL
+   */
+  private get url(): string {
+    return this._url;
+  }
+  /**
+   * Set API URL
+   */
+  private set url(val: string) {
+    this._url = val;
+  }
 
   constructor(
     private httpClient: HttpClient
@@ -31,7 +43,7 @@ export class SkillService {
    *
    * @returns `Observable<Response>`
    */
-  public getSkills(): Observable<Response> {
+  public get skill(): Observable<Response> {
     return this.httpClient.get<Response>(this.url)
       .pipe<Response>(timeout<Response>(4000))
       .pipe<Response>(distinctUntilChanged<Response>());
