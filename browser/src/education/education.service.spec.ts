@@ -64,11 +64,11 @@ describe('EducationService', (): void => {
     expect<EducationService>(service).toBeTruthy();
   });
 
-  describe('#getEducation', (): void => {
+  describe('get #education', (): void => {
     it('should return an Observable<Response>', (): void => {
       const mock: Response = response;
 
-      service.getEducation().subscribe((res: Response): void => {
+      service.education.subscribe((res: Response): void => {
         expect<Array<Education>>(res.response).toBeDefined();
         expect<Array<Education>>(res.response).toEqual(education);
       });
