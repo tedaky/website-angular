@@ -16,9 +16,21 @@ import { Response } from '../../../types/message';
 export class MainService {
 
   /**
-   * API URL
+   * URL Holder
    */
-  private url: string;
+  private _url: string;
+  /**
+   * Get API URL
+   */
+  private get url(): string {
+    return this._url;
+  }
+  /**
+   * Set API URL
+   */
+  private set url(val: string) {
+    this._url = val;
+  }
 
   constructor(
     private httpClient: HttpClient
@@ -31,7 +43,7 @@ export class MainService {
    *
    * @returns `Observable<Response>`
    */
-  public getMessages(): Observable<Response> {
+  public get message(): Observable<Response> {
     return this.httpClient.get<Response>(this.url)
       .pipe<Response>(timeout<Response>(4000))
       .pipe<Response>(distinctUntilChanged<Response>());
