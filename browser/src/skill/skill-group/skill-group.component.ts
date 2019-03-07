@@ -12,6 +12,14 @@ import { SkillGroup } from '../../../../types/skill';
 })
 export class SkillGroupComponent {
 
-  @Input() public skillGroup: SkillGroup;
+  @Input() private _skillGroup: SkillGroup;
+
+  public get skillGroup(): SkillGroup {
+    return this._skillGroup;
+  }
+
+  public set skillGroup(val: SkillGroup) {
+    this._skillGroup = val;
+  }
 
 }

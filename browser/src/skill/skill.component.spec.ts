@@ -97,7 +97,7 @@ describe('SkillComponent', (): void => {
       fixture = TestBed.createComponent<SkillComponent>(SkillComponent);
       component = fixture.componentInstance;
       ss = TestBed.get(SkillService);
-      spyOn(ss, 'getSkills').and.returnValue(of(response));
+      spyOnProperty(ss, 'skill').and.returnValue(of(response));
       fixture.detectChanges();
     });
 
@@ -129,7 +129,7 @@ describe('SkillComponent', (): void => {
       fixture = TestBed.createComponent<SkillComponent>(SkillComponent);
       component = fixture.componentInstance;
       ss = TestBed.get(SkillService);
-      spyOn(ss, 'getSkills').and.returnValue(throwError('Test Error'));
+      spyOnProperty(ss, 'skill').and.returnValue(throwError('Test Error'));
       fixture.detectChanges();
     });
 
