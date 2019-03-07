@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import {
   RouterModule,
-  Routes
+  Routes,
+  PreloadAllModules
 } from '@angular/router';
 
 import { MainModule } from '../main/main.module';
@@ -44,7 +45,7 @@ export function appRoutes(env: boolean): Routes {
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes(environment.production))
+    RouterModule.forRoot(appRoutes(environment.production), { preloadingStrategy: PreloadAllModules })
   ],
   exports: [
     RouterModule
