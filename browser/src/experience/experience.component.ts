@@ -19,12 +19,24 @@ import {
 export class ExperienceComponent implements OnInit, OnDestroy {
 
   /**
-   * The Experiences
+   * Experience Holder
    */
-  public experience: Array<Experience>;
+  private _experience: Array<Experience>;
+  /**
+   * Get the experience
+   */
+  public get experience(): Array<Experience> {
+    return this._experience;
+  }
+  /**
+   * Set the experience
+   */
+  public set experience(val: Array<Experience>) {
+    this._experience = val;
+  }
 
   /**
-   * Subscribe to the Message Service
+   * Subscribe to the Experience Service
    */
   private experienceServiceSub: Subscription;
 
@@ -33,15 +45,15 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.setExperiences();
-    this.getExperiences();
+    this.experience = this.experience || [];
+    this.subToExperience();
   }
 
   /**
-   * Create subscription for the Message
+   * Create subscription for the Experience
    */
-  private getExperiences(): void {
-    this.experienceServiceSub = this.experienceService.getExperiences()
+  private subToExperience(): void {
+    this.experienceServiceSub = this.experienceService.experience
       .subscribe(
         (res: Response): void => {
           this.experience = res.response;
@@ -49,13 +61,6 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         (err: any): any => {
           console.log('An error occurred: ', err);
         });
-  }
-
-  /**
-   * Set the Message by default
-   */
-  private setExperiences(): void {
-    this.experience = this.experience || [];
   }
 
   public ngOnDestroy(): void {

@@ -91,7 +91,7 @@ describe('ExperienceComponent', (): void => {
       fixture = TestBed.createComponent<ExperienceComponent>(ExperienceComponent);
       component = fixture.componentInstance;
       es = TestBed.get(ExperienceService);
-      spyOn(es, 'getExperiences').and.returnValue(of(response));
+      spyOnProperty(es, 'experience').and.returnValue(of(response));
       fixture.detectChanges();
     });
 
@@ -121,7 +121,7 @@ describe('ExperienceComponent', (): void => {
       fixture = TestBed.createComponent<ExperienceComponent>(ExperienceComponent);
       component = fixture.componentInstance;
       es = TestBed.get(ExperienceService);
-      spyOn(es, 'getExperiences').and.returnValue(throwError('Test Error'));
+      spyOnProperty(es, 'experience').and.returnValue(throwError('Test Error'));
       fixture.detectChanges();
     });
 
