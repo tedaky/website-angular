@@ -19,9 +19,21 @@ import {
 export class SkillComponent implements OnInit, OnDestroy {
 
   /**
-   * The Skills
+   * Skill Holder
    */
-  public skill: Array<SkillGroupItem>;
+  public _skill: Array<SkillGroupItem>;
+  /**
+   * Get the skill
+   */
+  public get skill() {
+    return this._skill;
+  }
+  /**
+   * Set the skill
+   */
+  public set skill(val: Array<SkillGroupItem>) {
+    this._skill = val;
+  }
 
   /**
    * Subscribe to the Skills Service
@@ -33,15 +45,15 @@ export class SkillComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.setSkills();
-    this.getSkills();
+    this.skill = this.skill || [];
+    this.subToSkill();
   }
 
   /**
    * Create subscription for the Skills
    */
-  private getSkills(): void {
-    this.skillServiceSub = this.skillService.getSkills()
+  private subToSkill(): void {
+    this.skillServiceSub = this.skillService.skill
       .subscribe(
         (res: Response): void => {
           this.skill = res.response;
@@ -49,13 +61,6 @@ export class SkillComponent implements OnInit, OnDestroy {
         (err: any): any => {
           console.log('An error occurred: ', err);
         });
-  }
-
-  /**
-   * Set the Skills by default
-   */
-  private setSkills(): void {
-    this.skill = this.skill || [];
   }
 
   public ngOnDestroy(): void {
