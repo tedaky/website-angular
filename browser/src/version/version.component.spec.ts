@@ -84,7 +84,7 @@ describe('VersionComponent', (): void => {
       fixture = TestBed.createComponent<VersionComponent>(VersionComponent);
       component = fixture.componentInstance;
       vs = TestBed.get(VersionService);
-      spyOn(vs, 'getVersions').and.returnValue(of(response));
+      spyOnProperty(vs, 'version').and.returnValue(of(response));
       fixture.detectChanges();
     });
 
@@ -114,7 +114,7 @@ describe('VersionComponent', (): void => {
       fixture = TestBed.createComponent<VersionComponent>(VersionComponent);
       component = fixture.componentInstance;
       vs = TestBed.get(VersionService);
-      spyOn(vs, 'getVersions').and.returnValue(throwError('Test Error'));
+      spyOnProperty(vs, 'version').and.returnValue(throwError('Test Error'));
       fixture.detectChanges();
     });
 
