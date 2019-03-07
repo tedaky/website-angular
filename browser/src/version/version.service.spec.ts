@@ -62,7 +62,7 @@ describe('VersionService', (): void => {
     it('should return an Observable<Response>', (): void => {
       const mock: Response = response;
 
-      service.getVersions().subscribe((res: Response): void => {
+      service.version.subscribe((res: Response): void => {
         expect<Array<Version>>(res.response).toBeDefined();
         expect<Array<Version>>(res.response).toEqual(version);
       });
