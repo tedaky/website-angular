@@ -56,11 +56,11 @@ describe('MainService', (): void => {
     expect<MainService>(service).toBeTruthy();
   });
 
-  describe('#getMessages', (): void => {
+  describe('get #message', (): void => {
     it('should return an Observable<Message>', (): void => {
       const mock: Response = response;
 
-      service.getMessages().subscribe((res: Response): void => {
+      service.message.subscribe((res: Response): void => {
         expect<Array<Message>>(res.response).toBeDefined();
         expect<Array<Message>>(res.response).toEqual(messages);
       });

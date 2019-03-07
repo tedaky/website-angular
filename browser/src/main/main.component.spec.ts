@@ -96,7 +96,7 @@ describe('MainComponent', (): void => {
       fixture = TestBed.createComponent<MainComponent>(MainComponent);
       component = fixture.componentInstance;
       ms = TestBed.get(MainService);
-      spyOn(ms, 'getMessages').and.returnValue(of(response));
+      spyOnProperty(ms, 'message').and.returnValue(of(response));
       fixture.detectChanges();
     });
 
@@ -130,7 +130,7 @@ describe('MainComponent', (): void => {
       fixture = TestBed.createComponent<MainComponent>(MainComponent);
       component = fixture.componentInstance;
       ms = TestBed.get(MainService);
-      spyOn(ms, 'getMessages').and.returnValue(throwError('Test Error'));
+      spyOnProperty(ms, 'message').and.returnValue(throwError('Test Error'));
       fixture.detectChanges();
     });
 
