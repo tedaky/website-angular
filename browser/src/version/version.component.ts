@@ -25,7 +25,7 @@ export class VersionComponent implements OnInit, OnDestroy {
   /**
    * Get the version
    */
-  public get version() {
+  public get version(): Array<Version> {
     return this._version;
   }
   /**
