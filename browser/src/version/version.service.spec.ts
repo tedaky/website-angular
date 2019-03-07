@@ -58,7 +58,7 @@ describe('VersionService', (): void => {
     expect<VersionService>(service).toBeTruthy();
   });
 
-  describe('#getVersions', (): void => {
+  describe('get #version', (): void => {
     it('should return an Observable<Response>', (): void => {
       const mock: Response = response;
 
