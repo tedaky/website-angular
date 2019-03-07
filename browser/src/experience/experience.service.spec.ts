@@ -65,11 +65,11 @@ describe('ExperienceService', (): void => {
     expect<ExperienceService>(service).toBeTruthy();
   });
 
-  describe('#getExperiences', (): void => {
+  describe('get #experience', (): void => {
     it('should return an Observable<Response>', (): void => {
       const mock: Response = response;
 
-      service.getExperiences().subscribe((res: Response): void => {
+      service.experience.subscribe((res: Response): void => {
         expect<Array<Experience>>(res.response).toBeDefined();
         expect<Array<Experience>>(res.response).toEqual(experience);
       });
