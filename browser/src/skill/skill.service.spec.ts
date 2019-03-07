@@ -38,7 +38,7 @@ const response: Response = {
   response: skill
 };
 
-describe('SkillsService', (): void => {
+describe('SkillService', (): void => {
   let injector: TestBed;
   let service: SkillService;
   let httpMock: HttpTestingController;
@@ -64,11 +64,11 @@ describe('SkillsService', (): void => {
     expect<SkillService>(service).toBeTruthy();
   });
 
-  describe('#getSkills', (): void => {
+  describe('get #skill', (): void => {
     it('should return an Observable<Message>', (): void => {
       const mock: Response = response;
 
-      service.getSkills().subscribe((res: Response): void => {
+      service.skill.subscribe((res: Response): void => {
         expect<Array<SkillGroupItem>>(res.response).toBeDefined();
         expect<Array<SkillGroupItem>>(res.response).toEqual(skill);
       });

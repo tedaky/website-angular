@@ -12,6 +12,14 @@ import { SkillItem } from '../../../../types/skill';
 })
 export class SkillItemComponent {
 
-  @Input() public skillItem: SkillItem;
+  @Input() private _skillItem: SkillItem;
+
+  public get skillItem(): SkillItem {
+    return this._skillItem;
+  }
+
+  public set skillItem(val: SkillItem) {
+    this._skillItem = val;
+  }
 
 }
