@@ -19,9 +19,21 @@ import {
 export class VersionComponent implements OnInit, OnDestroy {
 
   /**
-   * The Version
+   * Version Holder
    */
-  public version: Array<Version>;
+  private _version: Array<Version>;
+  /**
+   * Get the version
+   */
+  public get version() {
+    return this._version;
+  }
+  /**
+   * Set the version
+   */
+  public set version(val: Array<Version>) {
+    this._version = val;
+  }
 
   /**
    * Subscribe to the Version Service
@@ -33,15 +45,15 @@ export class VersionComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.setVersions();
-    this.getVersions();
+    this.version = this.version || [];
+    this.subToVersion();
   }
 
   /**
    * Create subscription for the Version
    */
-  private getVersions(): void {
-    this.versionServiceSub = this.versionService.getVersions()
+  private subToVersion(): void {
+    this.versionServiceSub = this.versionService.version
       .subscribe(
         (res: Response): void => {
           this.version = res.response;
@@ -49,13 +61,6 @@ export class VersionComponent implements OnInit, OnDestroy {
         (err: any): any => {
           console.log('An error occurred: ', err);
         });
-  }
-
-  /**
-   * Set the Version by default
-   */
-  private setVersions(): void {
-    this.version = this.version || [];
   }
 
   public ngOnDestroy(): void {
