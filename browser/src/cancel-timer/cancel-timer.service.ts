@@ -14,8 +14,6 @@ export class CancelTimerService {
    * @param timer - Interval in milliseconds
    */
   public cancel(timer: number): Observable<number> {
-    const cancelInterval$: Observable<number> = interval(timer);
-    const cancel: Observable<number> = cancelInterval$.pipe<number>(take<number>(1));
-    return cancel;
+    return interval(timer).pipe<number>(take<number>(1));
   }
 }
