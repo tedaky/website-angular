@@ -65,7 +65,7 @@ describe('PromptUpdateService', (): void => {
   });
 
   it('#promptUpdate', (): void => {
-    service.promptUpdate().subscribe((val: UpdateAvailableEvent): void => {
+    service.promptUpdate.subscribe((val: UpdateAvailableEvent): void => {
       expect<UpdateAvailableEvent>(val).toBeTruthy();
     });
   });
