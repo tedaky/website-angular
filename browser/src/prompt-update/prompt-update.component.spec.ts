@@ -23,7 +23,7 @@ const updateAvailableEvent: UpdateAvailableEvent = {
 };
 
 class FakePromptUpdateService {
-  public promptUpdate() {
+  public get promptUpdate() {
     return Observable.create(
       (observer: any): void => {
         observer.next(updateAvailableEvent);

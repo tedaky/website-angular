@@ -3,12 +3,7 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import {
-  interval,
-  Observable,
-  Subscription
-} from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { promptUpdateAnimations } from './prompt-update.animations';
 
@@ -24,31 +19,107 @@ import { CancelTimerService } from '../cancel-timer/cancel-timer.service';
 export class PromptUpdateComponent implements OnInit, OnDestroy {
 
   /**
-   * Variable that tells the Update Prompt to be available
+   * updateAvailable Holder
    */
-  public updateAvailable: boolean;
+  private _updateAvailable: boolean;
   /**
-   * Variable to close the Update Prompt overriding `updateAvailable`
+   * Get updateAvailable
    */
-  public closeUpdate: boolean;
+  public get updateAvailable(): boolean {
+    return this._updateAvailable;
+  }
+  /**
+   * Set updateAvailable
+   */
+  public set updateAvailable(val: boolean) {
+    this._updateAvailable = val;
+  }
 
   /**
-   * Subscribe to prompt update service
+   * closeUpdate Holder
    */
-  private promptUpdateServiceSub: Subscription;
+  private _closeUpdate: boolean;
   /**
-   * Subscribe to the cancel count down
+   * Get closeUpdate
    */
-  private cancelSub: Subscription;
+  public get closeUpdate(): boolean {
+    return this._closeUpdate;
+  }
   /**
-   * Subscribe to reissue the update available prompt
+   * Set closeUpdate
    */
-  private reissueSub: Subscription;
+  public set closeUpdate(val: boolean) {
+    this._closeUpdate = val;
+  }
 
   /**
-   * Set the maximum loop of cancel and reissue
+   * continueCounter Holder
    */
-  private continueCounter: number;
+  private _continueCounter: number;
+  /**
+   * Get continueCounter
+   */
+  private get continueCounter(): number {
+    return this._continueCounter;
+  }
+  /**
+   * Set continueCounter
+   */
+  private set continueCounter(val: number) {
+    this._continueCounter = val;
+  }
+
+  /**
+   * promptUpdateServiceSub Holder
+   */
+  private _promptUpdateServiceSub: Subscription;
+  /**
+   * Get promptUpdateServiceSub
+   */
+  private get promptUpdateServiceSub(): Subscription {
+    return this._promptUpdateServiceSub;
+  }
+  /**
+   * Set promptUpdateServiceSub
+   */
+  private set promptUpdateServiceSub(val: Subscription) {
+    this._promptUpdateServiceSub = val;
+  }
+
+  /**
+   * cancelSub Holder
+   */
+  private _cancelSub: Subscription;
+  /**
+   * Get cancelSub
+   */
+  private get cancelSub(): Subscription {
+    return this._cancelSub;
+  }
+  /**
+   * Set cancelSub
+   */
+  private set cancelSub(val: Subscription) {
+    this._cancelSub = val;
+  }
+
+  /**
+   * reissueSub Holder
+   */
+  private _reissueSub: Subscription;
+  /**
+   * Get reissueSub
+   */
+  private get reissueSub(): Subscription {
+    return this._reissueSub;
+  }
+  /**
+   * Set reissueSub
+   */
+  private set reissueSub(val: Subscription) {
+    this._reissueSub = val;
+  }
+
 
   public constructor(
     private promptUpdateService: PromptUpdateService,
@@ -66,7 +137,7 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
    * Create subscription to update
    */
   private promptUpdate(): void {
-    this.promptUpdateServiceSub = this.promptUpdateService.promptUpdate().subscribe(
+    this.promptUpdateServiceSub = this.promptUpdateService.promptUpdate.subscribe(
       // Next
       (): void => {
         this.updateAvailable = true;
