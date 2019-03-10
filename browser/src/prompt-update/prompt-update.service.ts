@@ -15,7 +15,7 @@ export class PromptUpdateService {
   /**
    * Observe the `UpdateAvailableEvent`
    */
-  public promptUpdate(): Observable<UpdateAvailableEvent> {
+  public get promptUpdate(): Observable<UpdateAvailableEvent> {
     return this.swUpdate.available;
   }
 
