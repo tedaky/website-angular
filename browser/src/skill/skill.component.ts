@@ -36,9 +36,21 @@ export class SkillComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Subscribe to the Skills Service
+   * skillServiceSub Holder
    */
-  private skillServiceSub: Subscription;
+  private _skillServiceSub: Subscription;
+  /**
+   * Get skillServiceSub
+   */
+  private get skillServiceSub(): Subscription {
+    return this._skillServiceSub;
+  }
+  /**
+   * Set skillServiceSub
+   */
+  private set skillServiceSub(val: Subscription) {
+    this._skillServiceSub = val;
+  }
 
   public constructor(
     private skillService: SkillService
