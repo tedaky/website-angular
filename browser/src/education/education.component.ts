@@ -36,9 +36,21 @@ export class EducationComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Subscribe to the Education Service
+   * educationServiceSub Holder
    */
-  private educationServiceSub: Subscription;
+  private _educationServiceSub: Subscription;
+  /**
+   * Get educationServiceSub
+   */
+  private get educationServiceSub(): Subscription {
+    return this._educationServiceSub;
+  }
+  /**
+   * Set educationServiceSub
+   */
+  private set educationServiceSub(val: Subscription) {
+    this._educationServiceSub = val;
+  }
 
   public constructor(
     private educationService: EducationService
