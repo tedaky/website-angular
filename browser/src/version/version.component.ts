@@ -36,9 +36,21 @@ export class VersionComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Subscribe to the Version Service
+   * versionServiceSub Holder
    */
-  private versionServiceSub: Subscription;
+  private _versionServiceSub: Subscription;
+  /**
+   * Get the versionServiceSub
+   */
+  private get versionServiceSub(): Subscription {
+    return this._versionServiceSub;
+  }
+  /**
+   * Set the versionServiceSub
+   */
+  private set versionServiceSub(val: Subscription) {
+    this._versionServiceSub = val;
+  }
 
   public constructor(
     private versionService: VersionService
