@@ -53,9 +53,21 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Subscribe to the Message Service
+   * mainServiceSub Holder
    */
-  private mainServiceSub: Subscription;
+  private _mainServiceSub: Subscription;
+  /**
+   * Get mainServiceSub
+   */
+  private get mainServiceSub(): Subscription {
+    return this._mainServiceSub;
+  }
+  /**
+   * Set mainServiceSub
+   */
+  private set mainServiceSub(val: Subscription) {
+    this._mainServiceSub = val;
+  }
 
   public constructor(
     private mainService: MainService
