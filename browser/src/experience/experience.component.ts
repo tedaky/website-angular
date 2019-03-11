@@ -36,9 +36,21 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Subscribe to the Experience Service
+   * experienceServiceSub Holder
    */
-  private experienceServiceSub: Subscription;
+  private _experienceServiceSub: Subscription;
+  /**
+   * Get experienceServiceSub
+   */
+  private get experienceServiceSub(): Subscription {
+    return this._experienceServiceSub;
+  }
+  /**
+   * Set experienceServiceSub
+   */
+  private set experienceServiceSub(val: Subscription) {
+    this._experienceServiceSub = val;
+  }
 
   public constructor(
     private experienceService: ExperienceService
