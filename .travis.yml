@@ -38,7 +38,7 @@ install:
   - npm install coveralls
 
 before_script:
-  - cp ./config/db.cred.sample.ts ./config/db.cred.ts
+  - cp ./.env.sample ./.env
   - cp ./config/database.sample.json ./config/database.json
   - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
   - sudo mysql_upgrade -u root
@@ -47,18 +47,17 @@ before_script:
 
 jobs:
   include:
-    - stage: lint
-      script:
-        - npm run lint
     - stage: dev
       script:
         - npm run pugpostinstall
+        - npm run lint
         - npm run build:ssr
         - npm run db:up:travis:all
         - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
         - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - stage: stage
       script:
+        - npm run lint
         - npm run pugpostinstall
         - npm run build:ssr:production
         - npm run db:up:travis:all
@@ -66,6 +65,7 @@ jobs:
         - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - stage: production
       script:
+        - npm run lint
         - npm run pugpostinstall
         - npm run build:ssr:production
         - npm run db:up:travis:all
@@ -73,7 +73,6 @@ jobs:
         - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
 stages:
-  - lint
   - name: dev
     if: branch = development
   - name: stage
