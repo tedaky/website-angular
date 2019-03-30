@@ -3,7 +3,7 @@ import app from './app';
 /**
  * Port number to listen to
  */
-const port: string|number = process.env.PORT || 4000;
+const { port } = require('../environment');
 
 // Start up the Node server
 app.listen(port, (): void => {
