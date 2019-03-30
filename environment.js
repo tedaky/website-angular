@@ -6,8 +6,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = {
+  db: process.env.DBNAME,
   host: process.env.DBHOST,
-  user: process.env.DBUSER,
   pass: process.env.DBPASS,
-  db: process.env.DBNAME
+  port: process.env.PORT || 4000,
+  user: process.env.DBUSER
 };
