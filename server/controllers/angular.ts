@@ -11,7 +11,12 @@ export class AngularController {
    * @param next - Move to the Next route `Request`
    */
   public getAngular(req: any, res: any, next: any): void {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.status(200).render(join(process.cwd(), 'dist/local/browser', 'index.html'), { req });
+    const render = async (): Promise<void> => { };
+    render()
+    .then<void, never>(async () => {
+      // Send
+      res.header('Access-Control-Allow-Origin', '*');
+      res.status(200).render(join(process.cwd(), 'dist/local/browser', 'index.html'), { req });
+    });
   }
 }
