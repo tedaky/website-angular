@@ -17,8 +17,6 @@ export class VersionController {
     const versionModel: VersionModel = new VersionModel();
     const versionHelper: VersionHelper = new VersionHelper();
 
-    // version holder
-    let version: Array<Version>;
     // versionResponse holder
     let response: Array<Version>;
     // newest header holder
@@ -30,12 +28,12 @@ export class VersionController {
       // Get the `version`
       await versionModel.version()
         .then<void, never>((val: Array<Version>): void => {
-          response = version = val;
+          response = val;
         });
     })
     .then<void, never>(async (): Promise<void> => {
       // Send `version` for newest processing
-      await versionHelper.getNewest(version)
+      await versionHelper.getNewest(response.slice(0))
         .then<void, never>((val: Date): void => {
           newest = val;
         });

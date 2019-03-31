@@ -17,8 +17,6 @@ export class EducationController {
     const educationModel: EducationModel = new EducationModel();
     const educationHelper: EducationHelper = new EducationHelper();
 
-    // education holder
-    let education: Array<Education>;
     // educationResponse holder
     let response: Array<Education>;
     // newest header holder
@@ -30,12 +28,12 @@ export class EducationController {
       // Get the `education`
       await educationModel.education()
         .then<void, never>((val: Array<Education>): void => {
-          response = education = val;
+          response = val;
         });
     })
     .then<void, never>(async (): Promise<void> => {
       // Send `education` for newest processing
-      await educationHelper.getNewest(education)
+      await educationHelper.getNewest(response.slice(0))
         .then<void, never>((val: string): void => {
           newest = val;
         });
