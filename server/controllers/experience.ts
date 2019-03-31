@@ -17,8 +17,6 @@ export class ExperienceController {
     const experienceModel: ExperienceModel = new ExperienceModel();
     const experienceHelper: ExperienceHelper = new ExperienceHelper();
 
-    // experience holder
-    let experience: Array<Experience>;
     // experienceResponse holder
     let response: Array<Experience>;
     // newest header holder
@@ -30,12 +28,12 @@ export class ExperienceController {
       // Get the `experience`
       await experienceModel.experience()
         .then<void, never>((val: Array<Experience>): void => {
-          response = experience = val;
+          response = val;
         });
     })
     .then<void, never>(async (): Promise<void> => {
       // Send `experience` for newest processing
-      await experienceHelper.getNewest(experience)
+      await experienceHelper.getNewest(response.slice(0))
         .then<void, never>((val: string): void => {
           newest = val;
         });

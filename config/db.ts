@@ -1,5 +1,4 @@
 import * as mysql from 'mysql';
-import { host, user, db, pass } from './db.cred';
 
 /**
  * The MySQL Connection
@@ -13,6 +12,9 @@ export class MySQL {
   public connection: mysql.Connection;
 
   constructor() {
+
+    const { host, user, pass, db } = require('../environment');
+
     this.host = host;
     this.user = user;
     this.pass = pass;

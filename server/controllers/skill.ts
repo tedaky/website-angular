@@ -48,14 +48,14 @@ export class SkillController {
     })
     .then<void, never>(async (): Promise<void> => {
       // Send `skillItem` and `skillGroup` for `JSON` processing
-      await skillsHelper.jsonify(skillItem, skillGroup)
+      await skillsHelper.jsonify(skillItem.slice(0), skillGroup.slice(0))
         .then<void, never>((val: Array<SkillGroupItem>): void => {
           response = val;
         });
     })
     .then<void, never>(async (): Promise<void> => {
       // Send `skillItem` and `skillGroup` for newest processing
-      await skillsHelper.getNewest(skillItem, skillGroup)
+      await skillsHelper.getNewest(skillItem.slice(0), skillGroup.slice(0))
         .then<void, never>((val: Date): void => {
           newest = val;
         });
