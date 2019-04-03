@@ -1,5 +1,5 @@
 // tslint:disable: unified-signatures
-import { key } from '../../../object/key';
+import '../../key';
 
 declare global {
   interface Array<T> {
@@ -28,16 +28,16 @@ declare global {
  * @returns input array in sorted order
  */
 function sortByNumber<T>(path?: Array<string>): Array<T> {
-  path = path ? path : [];
+  path = path || [];
   return this.sort((a: T, b: T): number => {
-    return key<T>(path, a) - key<T>(path, b);
+    return path.key<string>(a) - path.key<string>(b);
   });
 }
 
-if (Array.prototype.sortByNumber) {
-  throw (new Error('Array.prototype.sortByNumber is already defined - overriding it will be dangerous.'));
+if (!Array.prototype.sortByNumber) {
+  Array.prototype.sortByNumber = sortByNumber;
+} else {
+  console.log('Array.prototype.sortByNumber is already defined - overriding it will be dangerous.');
 }
-
-Array.prototype.sortByNumber = sortByNumber;
 
 export { };
