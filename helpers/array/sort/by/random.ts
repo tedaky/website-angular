@@ -20,10 +20,10 @@ function sortByRandom<T>(): Array<T> {
   });
 }
 
-if (Array.prototype.sortByRandom) {
-  throw (new Error('Array.prototype.sortByRandom is already defined - overriding it will be dangerous.'));
+if (!Array.prototype.sortByRandom) {
+  Array.prototype.sortByRandom = sortByRandom;
+} else {
+  console.log('Array.prototype.sortByRandom is already defined - overriding it will be dangerous.');
 }
-
-Array.prototype.sortByRandom = sortByRandom;
 
 export { };

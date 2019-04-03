@@ -83,7 +83,3 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-
-
-import '../helpers/array/sort/by/date';
-import '../helpers/array/sort/by/number';
