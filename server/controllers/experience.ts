@@ -20,7 +20,7 @@ export class ExperienceController {
     // experienceResponse holder
     let response: Array<Experience>;
     // newest header holder
-    let newest: string;
+    let newest: Date;
 
     const render = async (): Promise<void> => { };
     render()
@@ -34,7 +34,7 @@ export class ExperienceController {
     .then<void, never>(async (): Promise<void> => {
       // Send `experience` for newest processing
       await experienceHelper.getNewest(response.slice(0))
-        .then<void, never>((val: string): void => {
+        .then<void, never>((val: Date): void => {
           newest = val;
         });
     })
