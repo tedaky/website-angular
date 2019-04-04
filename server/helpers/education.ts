@@ -1,5 +1,5 @@
+import '../../helpers/array/sort/by/date';
 import { Education } from '../../types/education';
-import { sortArrayByDate } from '../../helpers/array-sort';
 
 /**
  * Helper for education results from MySQL
@@ -13,14 +13,13 @@ export class EducationHelper {
    */
   public async getNewest(education: Array<Education>): Promise<string> {
     // Join each of the modified dates from `education`
+    return education.map<string>((val: Education): string => {
+      return [
+        val.education_modified_at,
+        val.school_modified_at
+      ].join(',');
+    }).join(',').split(',')
     // Ascending sort of `education` by `_modified_at`
-    return sortArrayByDate<string>(
-      education.map<string>((val: Education): string => {
-        return [
-          val.education_modified_at,
-          val.school_modified_at
-        ].join(',');
-      }).join(',').split(',')
-    )[0];
+    .sortByDate<string>()[0];
   }
 }
