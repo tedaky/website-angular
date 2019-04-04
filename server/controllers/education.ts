@@ -20,7 +20,7 @@ export class EducationController {
     // educationResponse holder
     let response: Array<Education>;
     // newest header holder
-    let newest: string;
+    let newest: Date;
 
     const render = async (): Promise<void> => { };
     render()
@@ -34,7 +34,7 @@ export class EducationController {
     .then<void, never>(async (): Promise<void> => {
       // Send `education` for newest processing
       await educationHelper.getNewest(response.slice(0))
-        .then<void, never>((val: string): void => {
+        .then<void, never>((val: Date): void => {
           newest = val;
         });
     })
