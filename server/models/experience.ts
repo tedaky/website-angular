@@ -22,24 +22,24 @@ export class ExperienceModel {
     const a: Promise<Array<Experience>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
-          awe.experience_order,
-          awe.experience_description,
-          awp.position_title,
-          awc.company_name,
-          awc.company_link,
-          awc.company_logo,
-          awc.company_description,
-          awe.experience_start_date,
-          awe.experience_end_date,
-          awe.experience_modified_at,
-          awc.company_modified_at,
-          awp.position_modified_at
-        FROM experience awe
-        JOIN company awc
-        ON awc.company_id = awe.experience_company_id
-        JOIN position awp
-        ON awp.position_id = awe.experience_position_id
-        ORDER BY awe.experience_order ASC;`,
+          e.experience_order,
+          e.experience_description,
+          p.position_title,
+          c.company_name,
+          c.company_link,
+          c.company_logo,
+          c.company_description,
+          e.experience_start_date,
+          e.experience_end_date,
+          e.experience_modified_at,
+          c.company_modified_at,
+          p.position_modified_at
+        FROM experience e
+        JOIN company c
+        ON c.company_id = e.experience_company_id
+        JOIN position p
+        ON p.position_id = e.experience_position_id
+        ORDER BY e.experience_order ASC;`,
         /**
          * Mysql response
          * @param err - `mysql.MysqlError`

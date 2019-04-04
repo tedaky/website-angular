@@ -22,11 +22,11 @@ export class MessageModel {
     const a: Promise<Array<Message>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
-          message_id,
-          message_description,
-          message_modified_at
-        FROM message
-        ORDER BY message_modified_at ASC;`,
+          m.message_id,
+          m.message_description,
+          m.message_modified_at
+        FROM message m
+        ORDER BY m.message_modified_at ASC;`,
         /**
          * Mysql response
          * @param err - `mysql.MysqlError`
