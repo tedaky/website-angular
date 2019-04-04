@@ -1,5 +1,6 @@
 import '../../helpers/array/sort/by/date';
 import '../../helpers/array/sort/by/number';
+import '../../helpers/array/find/max/by/date';
 import {
   SkillItem,
   SkillGroup,
@@ -48,9 +49,9 @@ export class SkillHelper {
   public async getNewest(skillItem: Array<SkillItem>, skillGroup: Array<SkillGroup>): Promise<Date> {
     return [
       // Ascending sort of `skillGroup` by `skill_group_modified_at`
-      skillGroup.sortByDate<SkillGroup>(['skill_group_modified_at'])[0].skill_group_modified_at,
+      skillGroup.findMaxByDate<SkillGroup>(['skill_group_modified_at']),
       // Ascending sort of `skillItem` by `skill_item_modified_at`
-      skillItem.sortByDate<SkillItem>(['skill_item_modified_at'])[0].skill_item_modified_at
-    ].sortByDate<Date>()[0];
+      skillItem.findMaxByDate<SkillItem>(['skill_item_modified_at'])
+    ].findMaxByDate<Date>();
   }
 }

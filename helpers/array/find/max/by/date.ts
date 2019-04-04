@@ -8,7 +8,7 @@ declare global {
      *
      * @returns maximum value
      */
-    findMaxByDate<S extends T>(): this;
+    findMaxByDate<S extends T>(): Date;
     /**
      * Find maximun value of array by Date
      *
@@ -16,7 +16,7 @@ declare global {
      *
      * @returns maximum value
      */
-    findMaxByDate<S extends T>(path: Array<string>): this;
+    findMaxByDate<S extends T>(path: Array<string>): Date;
   }
 }
 
@@ -27,12 +27,9 @@ declare global {
  *
  * @returns maximum value
  */
-function findMaxByDate<T>(path?: Array<string>): Array<T> {
+function findMaxByDate<T>(path?: Array<string>): Date {
   path = path || [];
   return this
-    .map((el: T): T => {
-      return el;
-    })
     .reduce((pv: T | number, cv: T): T | number | Array<(T | number)> => {
       const pva: number = (pv === -Infinity) ? -Infinity : new Date(path.key<string>(pv)).getTime();
       const cva: number = new Date(path.key<string>(cv)).getTime();

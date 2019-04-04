@@ -8,7 +8,7 @@ declare global {
      *
      * @returns minimun value
      */
-    findMinByDate<S extends T>(): this;
+    findMinByDate<S extends T>(): Date;
     /**
      * Find minimun value of array by Date
      *
@@ -16,7 +16,7 @@ declare global {
      *
      * @returns minimun value
      */
-    findMinByDate<S extends T>(path: Array<string>): this;
+    findMinByDate<S extends T>(path: Array<string>): Date;
   }
 }
 
@@ -27,12 +27,9 @@ declare global {
  *
  * @returns minimun value
  */
-function findMinByDate<T>(path?: Array<string>): Array<T> {
+function findMinByDate<T>(path?: Array<string>): Date {
   path = path || [];
   return this
-    .map((el: T): T => {
-      return el;
-    })
     .reduce((pv: T | number, cv: T): T | number | Array<(T | number)> => {
       const pva: number = (pv === Infinity) ? Infinity : new Date(path.key<string>(pv)).getTime();
       const cva: number = new Date(path.key<string>(cv)).getTime();
