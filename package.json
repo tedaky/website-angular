@@ -30,7 +30,8 @@
     "webpack:server:production": "webpack --config server/webpack.server.config.prod.js --progress --colors",
     "build:browser-and-server-bundles-production": "ng build --prod --aot --optimization --buildOptimizer && ng run angular-website:server:production",
     "pugpostinstall": "node ./browser/ng-add-pug-loader.js",
-    "changelog": "./node_modules/.bin/gulp release"
+    "changelog": "./node_modules/.bin/gulp release",
+    "setup": "npm install && npm run pugpostinstall"
   },
   "pre-commit": [
     "ng lint",

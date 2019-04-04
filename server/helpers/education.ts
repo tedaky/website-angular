@@ -1,4 +1,5 @@
 import '../../helpers/array/sort/by/date';
+import '../../helpers/array/find/max/by/date';
 import { Education } from '../../types/education';
 
 /**
@@ -11,15 +12,17 @@ export class EducationHelper {
    * @param education - `Array<Education>`
    * @return `Promise<string>`
    */
-  public async getNewest(education: Array<Education>): Promise<string> {
+  public async getNewest(education: Array<Education>): Promise<Date> {
     // Join each of the modified dates from `education`
-    return education.map<string>((val: Education): string => {
-      return [
-        val.education_modified_at,
-        val.school_modified_at
-      ].join(',');
-    }).join(',').split(',')
-    // Ascending sort of `education` by `_modified_at`
-    .sortByDate<string>()[0];
+    return education
+      .reduce((pv: Array<Date>, cv: Education): Array<Date> => {
+        return [
+          ...pv,
+          cv.education_modified_at,
+          cv.school_modified_at
+        ];
+      }, [])
+      // Ascending sort of `education` by `_modified_at`
+      .findMaxByDate<Date>();
   }
 }

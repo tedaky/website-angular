@@ -1,4 +1,5 @@
 import '../../helpers/array/sort/by/date';
+import '../../helpers/array/find/max/by/date';
 import { Version } from '../../types/version';
 
 /**
@@ -14,6 +15,6 @@ export class VersionHelper {
    */
   public async getNewest(version: Array<Version>): Promise<Date> {
     // Ascending sort of `version` by `_modified_at`
-    return version.sortByDate<Version>(['version_modified_at'])[0].version_modified_at;
+    return version.findMaxByDate<Version>(['version_modified_at']);
   }
 }

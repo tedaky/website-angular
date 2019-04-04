@@ -1,4 +1,5 @@
 import '../../helpers/array/sort/by/date';
+import '../../helpers/array/find/max/by/date';
 import { Experience } from '../../types/experience';
 
 /**
@@ -11,16 +12,18 @@ export class ExperienceHelper {
    * @param experience - `Array<Experience>`
    * @return `Promise<string>`
    */
-  public async getNewest(experience: Array<Experience>): Promise<string> {
+  public async getNewest(experience: Array<Experience>): Promise<Date> {
     // Join each of the modified dates from `experience`
-    return experience.map<string>((val: Experience): string => {
-      return [
-        val.experience_modified_at,
-        val.company_modified_at,
-        val.position_modified_at
-      ].join(',');
-    }).join(',').split(',')
-    // Ascending sort of `experience` by `_modified_at`
-    .sortByDate<string>()[0];
+    return experience
+      .reduce((pv: Array<Date>, cv: Experience): Array<Date> => {
+        return [
+          ...pv,
+          cv.experience_modified_at,
+          cv.company_modified_at,
+          cv.position_modified_at
+        ];
+      }, [])
+      // Ascending sort of `experience` by `_modified_at`
+      .findMaxByDate<Date>();
   }
 }
