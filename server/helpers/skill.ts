@@ -1,6 +1,7 @@
 import '../../helpers/array/sort/by/date';
 import '../../helpers/array/sort/by/number';
 import '../../helpers/array/find/max/by/date';
+import '../../helpers/array/group/by';
 import {
   SkillItem,
   SkillGroup,
@@ -20,16 +21,15 @@ export class SkillHelper {
    * @return `Promise<Array<SkillGroupItem>>`
    */
   public async jsonify(skillItem: Array<SkillItem>, skillGroup: Array<SkillGroup>): Promise<Array<SkillGroupItem>> {
+    const skillItemCollection: any = skillItem
+      .sortByNumber<SkillItem>(['skill_item_order'])
+      .groupBy<SkillItem, any>(['skill_item_skill_group_id']);
     // Sort the `SkillGroup`s
     skillGroup.sortByNumber(['skill_group_order']);
     const response: Array<SkillGroupItem> = [];
     for (const tmpSkillGroup of skillGroup) {
       // filter the `SkillItem`s that only match `skill_group_id`
-      const tmpSkillItem: Array<SkillItem> = skillItem.filter((val: SkillItem): boolean => {
-        return (val.skill_item_skill_group_id === tmpSkillGroup.skill_group_id);
-      })
-      // Sort the remaining `SkillItem`s
-      .sortByNumber<SkillItem>(['skill_item_order']);
+      const tmpSkillItem: Array<SkillItem> = skillItemCollection[tmpSkillGroup.skill_group_id];
       // Add the result to the response
       response.push({
         skill_group: tmpSkillGroup,

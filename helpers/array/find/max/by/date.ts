@@ -30,6 +30,9 @@ declare global {
 function findMaxByDate<T>(path?: Array<string>): Date {
   path = path || [];
   return this
+    .map((el: T): T => {
+      return el;
+    })
     .reduce((pv: T | number, cv: T): T | number | Array<(T | number)> => {
       const pva: number = (pv === -Infinity) ? -Infinity : new Date(path.key<string>(pv)).getTime();
       const cva: number = new Date(path.key<string>(cv)).getTime();
