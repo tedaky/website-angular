@@ -25,14 +25,23 @@ export class SkillModel {
     const a: Promise<Array<SkillItem>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
-          skill_item_id,
-          skill_item_name,
-          skill_item_level,
-          skill_item_order,
-          skill_item_skill_group_id,
-          skill_item_modified_at
-        FROM skill_item
-        ORDER BY skill_item_order ASC;`,
+          si.skill_item_id,
+          si.skill_item_name,
+          si.skill_item_level,
+          si.skill_item_order,
+          si.skill_item_skill_group_id,
+          si.skill_item_modified_at
+        FROM skill_item si
+        JOIN skill_group sg
+        ON si.skill_item_skill_group_id = sg.skill_group_id
+        GROUP BY
+          si.skill_item_id,
+          si.skill_item_name,
+          si.skill_item_level,
+          si.skill_item_order,
+          si.skill_item_skill_group_id,
+          si.skill_item_modified_at
+        ORDER BY si.skill_item_order ASC;`,
         /**
          * Mysql response
          * @param err - `mysql.MysqlError`
@@ -75,12 +84,19 @@ export class SkillModel {
     const a: Promise<Array<SkillGroup>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
-          skill_group_id,
-          skill_group_name,
-          skill_group_order,
-          skill_group_modified_at
-        FROM skill_group
-        ORDER BY skill_group_order ASC;`,
+          sg.skill_group_id,
+          sg.skill_group_name,
+          sg.skill_group_order,
+          sg.skill_group_modified_at
+        FROM skill_group sg
+        JOIN skill_item si
+        ON si.skill_item_skill_group_id = sg.skill_group_id
+        GROUP BY
+          sg.skill_group_id,
+          sg.skill_group_name,
+          sg.skill_group_order,
+          sg.skill_group_modified_at
+        ORDER BY sg.skill_group_order ASC;`,
         /**
          * Mysql response
          * @param err - `mysql.MysqlError`

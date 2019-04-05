@@ -22,13 +22,13 @@ export class VersionModel {
     const a: Promise<Array<Version>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
-          awv.version_name,
-          awv.version_image,
-          awv.version_link,
-          awv.version_order,
-          awv.version_modified_at
-        FROM version awv
-        ORDER BY awv.version_order ASC;`,
+          v.version_name,
+          v.version_image,
+          v.version_link,
+          v.version_order,
+          v.version_modified_at
+        FROM version v
+        ORDER BY v.version_order ASC;`,
         /**
          * Mysql response
          * @param err - `mysql.MysqlError`

@@ -22,21 +22,21 @@ export class EducationModel {
     const a: Promise<Array<Education>> = new Promise((resolve: any, reject: any): void => {
       connect.connection.query(
         `SELECT
-          awe.education_order,
-          awe.education_degree,
-          awe.education_field,
-          awe.education_cgpa,
-          aws.school_name,
-          aws.school_link,
-          aws.school_logo,
-          awe.education_start_date,
-          awe.education_end_date,
-          awe.education_modified_at,
-          aws.school_modified_at
-        FROM education awe
-        JOIN school aws
-        ON aws.school_id = awe.education_school_id
-        ORDER BY awe.education_order ASC;`,
+          e.education_order,
+          e.education_degree,
+          e.education_field,
+          e.education_cgpa,
+          s.school_name,
+          s.school_link,
+          s.school_logo,
+          e.education_start_date,
+          e.education_end_date,
+          e.education_modified_at,
+          s.school_modified_at
+        FROM education e
+        JOIN school s
+        ON s.school_id = e.education_school_id
+        ORDER BY e.education_order ASC;`,
         /**
          * Mysql response
          * @param err - `mysql.MysqlError`
