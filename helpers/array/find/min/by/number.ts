@@ -30,6 +30,9 @@ declare global {
 function findMaxByNumber<T>(path?: Array<string>): number {
   path = path || [];
   return this
+    .map((el: T): T => {
+      return el;
+    })
     .reduce((pv: T | number, cv: T): T | number | Array<(T | number)> => {
       const pva: number = path.key<string>(pv);
       const cva: number = path.key<string>(cv);
