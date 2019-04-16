@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/local/browser",
+            "outputPath": "dist/browser",
             "index": "browser/index.html",
             "main": "browser/main.ts",
             "polyfills": "browser/polyfills.ts",
@@ -40,7 +40,7 @@
                   "with": "environments/environment.prod.ts"
                 }
               ],
-              "outputPath": "dist/prod/browser",
+              "outputPath": "dist/browser",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -67,7 +67,7 @@
                   "with": "environments/environment.dev.ts"
                 }
               ],
-              "outputPath": "dist/dev/browser",
+              "outputPath": "dist/browser",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
@@ -92,7 +92,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/local/server",
+            "outputPath": "dist/server",
             "main": "server/main.server.ts",
             "tsConfig": "server/tsconfig.server.json"
           },
@@ -104,7 +104,7 @@
                   "with": "environments/environment.prod.ts"
                 }
               ],
-              "outputPath": "dist/prod/server",
+              "outputPath": "dist/server",
               "optimization": true,
               "sourceMap": false,
               "namedChunks": false,

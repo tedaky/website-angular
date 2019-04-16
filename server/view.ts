@@ -10,6 +10,6 @@ export class View {
    */
   public set(app: any): void {
     app.set('view engine', 'html');
-    app.set('views', join(process.cwd(), 'dist/local/browser'));
+    app.set('views', join(process.cwd(), 'dist/browser'));
   }
 }

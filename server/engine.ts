@@ -13,12 +13,12 @@ export class Engine {
    */
   public set(app: any): void {
     // Requires successful build of Angular to get the AppServerModuleNgFactory and LAZY_MODULE_MAP
-    const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../dist/local/server/main');
+    const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../dist/server/main');
 
     /**
      * Create the template from the `index.html` file
      */
-    const template: string = readFileSync(join(process.cwd(), 'dist/local/browser', 'index.html')).toString();
+    const template: string = readFileSync(join(process.cwd(), 'dist/browser', 'index.html')).toString();
 
     // Uses the successful build of Angular to set the Engine
     app.engine('html', (_: any, options: any, callback: any): void => {

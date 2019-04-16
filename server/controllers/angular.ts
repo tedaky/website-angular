@@ -16,7 +16,7 @@ export class AngularController {
     .then<void, never>(async () => {
       // Send
       res.header('Access-Control-Allow-Origin', '*');
-      res.status(200).render(join(process.cwd(), 'dist/local/browser', 'index.html'), { req });
+      res.status(200).render(join(process.cwd(), 'dist/browser', 'index.html'), { req });
     });
   }
 }

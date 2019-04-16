@@ -14,7 +14,7 @@ module.exports = {
   // this makes sure we include node_modules and other 3rd party libraries
   externals: [/(node_modules|main\..*\.js)/],
   output: {
-    path: path.join(__dirname, '../dist/prod'),
+    path: path.join(__dirname, '../dist'),
     filename: '[name].js'
   },
   module: {
