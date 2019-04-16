@@ -67,7 +67,7 @@
                   "with": "environments/environment.dev.ts"
                 }
               ],
-              "outputPath": "dist/dev/browser",
+              "outputPath": "dist/browser",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
