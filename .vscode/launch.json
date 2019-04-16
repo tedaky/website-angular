@@ -7,14 +7,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Dev Server",
-      "program": "${workspaceFolder}/dist/local/server.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Production Server",
-      "program": "${workspaceFolder}/dist/prod/server.js"
+      "name": "Launch Server",
+      "program": "${workspaceFolder}/dist/server.js"
     }
   ]
 }

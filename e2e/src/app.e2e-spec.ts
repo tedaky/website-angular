@@ -13,10 +13,10 @@ describe('workspace-project App', (): void => {
   beforeEach((): void => {
     page = new AppPage();
     page.navigateTo();
-    if (fs.existsSync(join(process.cwd(), 'dist/prod/server.js'))) {
-      server = require(join(process.cwd(), 'dist/prod/server'));
+    if (fs.existsSync(join(process.cwd(), 'dist/server.js'))) {
+      server = require(join(process.cwd(), 'dist/server'));
     } else {
-      server = require(join(process.cwd(), 'dist/local/server'));
+      server = require(join(process.cwd(), 'dist/server'));
     }
   });
 

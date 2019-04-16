@@ -60,7 +60,7 @@ export class Routes {
 
     // Server static files from /browser
     app.route('*.*')
-      .get(exp.static(join(process.cwd(), 'dist/local/browser')));
+      .get(exp.static(join(process.cwd(), 'dist/browser')));
 
     /**
      * Create the `AngularController`
