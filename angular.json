@@ -28,6 +28,7 @@
               "browser/manifest.json"
             ],
             "styles": [
+              "browser/custom-theme.scss",
               "browser/styles.sass"
             ],
             "scripts": []
