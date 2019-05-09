@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  origin: 'http://development.etiedeken.com/',
+  origin: 'http://localhost:4100/',
 };
