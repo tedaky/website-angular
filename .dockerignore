@@ -1,0 +1,15 @@
+Dockerfile*
+node_modules
+npm-debug.log
+docker-compose*
+.dockerignore
+.env
+.git
+.gitignore
+*/bin
+*/obj
+README.md
+LICENSE
+.vscode
+.github
+.circleci

@@ -1,0 +1,20 @@
+version: '2.1'
+
+services:
+  angular-website:
+    container_name: angular-website
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4200:80
+    links:
+      - database
+  database:
+      context: .
+      dockerfile: Dockerfile-mysql

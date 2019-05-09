@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  angular-website:
+    image: angular-website
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 4200:80
+      - 9229:9229
+    ## set your startup file here
+    command: node --inspect index.js
